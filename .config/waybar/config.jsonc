@@ -242,9 +242,9 @@
     "format": " ",
     "tooltip": true,
     "tooltip-format": "Clcik(left-Player : right-Settings)|Scroll(up-Weather : down-Keybinds)",
-    "on-click": "DRI_PRIME=1 gjs ~/.hyprcandy/GJS/media-main.js",
-    "on-click-right": "DRI_PRIME=1 gjs ~/.hyprcandy/GJS/toggle-main.js",
-    "on-scroll-up": "DRI_PRIME=1 gjs ~/.hyprcandy/GJS/weather-main.js",
+    "on-click": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/media-main.js",
+    "on-click-right": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/toggle-main.js",
+    "on-scroll-up": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/weather-main.js",
     "on-scroll-down": "DRI_PRIME=1 ~/.config/hypr/scripts/keybindings.sh"
   },
 
