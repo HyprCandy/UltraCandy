@@ -143,6 +143,14 @@ function createMediaBox() {
             border-radius: 4px;
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
         }
+        .media-progress-bar.seeking progressbar fill {
+            background-color: #ff6b6b;
+            box-shadow: 0 0 12px rgba(255, 107, 107, 0.8);
+        }
+        .media-progress-bar.paused progressbar fill {
+            background-color: #666666;
+            box-shadow: 0 0 8px rgba(102, 102, 102, 0.6);
+        }
         .media-info-center {
             margin: 0px;
             padding: 0px;
@@ -507,7 +515,10 @@ function createMediaBox() {
                             try {
                                 const stateVariant = player.get_cached_property('PlaybackStatus');
                                 playbackState = stateVariant ? stateVariant.deep_unpack() : 'Stopped';
-                            } catch (e) {}
+                                // Debug: print(`Playback state: ${playbackState}, Position: ${Math.floor(position/1000000)}s`);
+                            } catch (e) {
+                                print(`Error getting playback state: ${e}`);
+                            }
                             titleLabel.set_label(title);
                             artistLabel.set_label(artist);
                             if (artUrl && typeof artUrl === 'string' && artUrl.length > 0) {
@@ -539,17 +550,57 @@ function createMediaBox() {
                             }
                             if (playbackState === 'Playing') {
                                 playBtn.set_icon_name('media-playback-pause-symbolic');
+                                progress.remove_css_class('paused');
                             } else {
                                 playBtn.set_icon_name('media-playback-start-symbolic');
+                                progress.add_css_class('paused');
                             }
                             if (length > 0) {
-                                const fraction = position / length;
-                                progress.set_fraction(fraction);
-                                const posSec = Math.floor(position / 1000000);
+                                // Update last known position and playback state
+                                const previousPosition = lastPosition;
+                                const previousState = lastPlaybackState;
+                                lastPosition = position;
+                                lastPlaybackState = playbackState;
+                                
+                                // Determine which position to display
+                                let displayPosition = position;
+                                let displayFraction = position / length;
+                                
+                                // Handle position freezing for paused state
+                                if (previousState === 'Playing' && playbackState !== 'Playing') {
+                                    // Just transitioned to paused - freeze the position
+                                    frozenPosition = previousPosition;
+                                    isPositionFrozen = true;
+                                    // Debug: print(`Paused detected: freezing at ${Math.floor(frozenPosition/1000000)}s`);
+                                } else if (playbackState === 'Playing') {
+                                    // Playing - unfreeze position
+                                    isPositionFrozen = false;
+                                }
+                                
+                                // Use frozen position if paused, otherwise use current position
+                                if (isPositionFrozen && playbackState !== 'Playing') {
+                                    displayPosition = frozenPosition;
+                                    displayFraction = frozenPosition / length;
+                                } else {
+                                    displayPosition = position;
+                                    displayFraction = position / length;
+                                }
+                                
+                                // Only update progress bar if not currently seeking AND media is playing
+                                if (!isSeeking && playbackState === 'Playing') {
+                                    progress.set_fraction(displayFraction);
+                                } else if (!isSeeking && playbackState !== 'Playing' && previousPosition > 0) {
+                                    // When paused, show the frozen position
+                                    progress.set_fraction(displayFraction);
+                                }
+                                
+                                const posSec = Math.floor(displayPosition / 1000000);
                                 const lenSec = Math.floor(length / 1000000);
                                 progress.set_text(`${Math.floor(posSec/60)}:${('0'+(posSec%60)).slice(-2)} / ${Math.floor(lenSec/60)}:${('0'+(lenSec%60)).slice(-2)}`);
                             } else {
-                                progress.set_fraction(0.0);
+                                if (!isSeeking) {
+                                    progress.set_fraction(0.0);
+                                }
                                 progress.set_text('--:-- / --:--');
                             }
                             let shuffleOn = false;
@@ -759,23 +810,40 @@ function createMediaBox() {
         let fraction = Math.max(0, Math.min(1, x / alloc.width));
         return fraction;
     }
+    
     let seekTarget = 0;
+    let isSeeking = false;
+    let lastPosition = 0;
+    let lastPlaybackState = 'Stopped';
+    let frozenPosition = 0;
+    let isPositionFrozen = false;
     const gesture = new Gtk.GestureClick();
+    const dragGesture = new Gtk.GestureDrag();
+    
     gesture.connect('pressed', (gesture, n_press, x, y) => {
         if (!player) return;
+        isSeeking = true;
         let fraction = getPointerFraction(progress, x);
         seekTarget = fraction;
         progress.set_fraction(fraction);
+        // Add visual feedback during seeking
+        progress.add_css_class('seeking');
     });
+    
     gesture.connect('released', (gesture, n_press, x, y) => {
-        if (!player) return;
+        if (!player || !isSeeking) return;
+        isSeeking = false;
         let fraction = getPointerFraction(progress, x);
         seekTarget = fraction;
+        
         let metadataVariant = player.get_cached_property('Metadata');
         let metadata = metadataVariant ? metadataVariant.deep_unpack() : {};
         let length = metadata['mpris:length'] ? metadata['mpris:length'].deep_unpack() : 0;
+        
         if (length > 0) {
             let newPos = Math.floor(length * seekTarget);
+            
+            // Try SetPosition first (more reliable)
             try {
                 Gio.DBus.session.call(
                     busName,
@@ -783,38 +851,106 @@ function createMediaBox() {
                     'org.mpris.MediaPlayer2.Player',
                     'SetPosition',
                     GLib.Variant.new_tuple([
-                        GLib.Variant.new_object_path('/org/mpris/MediaPlayer2'),
+                        GLib.Variant.new_object_path('/org/mpris/MediaPlayer2/TrackList/0'),
                         GLib.Variant.new_int64(newPos)
                     ]),
                     null,
                     Gio.DBusCallFlags.NONE,
                     -1,
                     null,
-                    null
+                    (source, result) => {
+                        try {
+                            source.call_finish(result);
+                            print(`Seek successful: ${newPos} microseconds`);
+                            // Add a small delay before resuming normal updates
+                            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                                isSeeking = false;
+                                progress.remove_css_class('seeking');
+                                // Update frozen position after seek
+                                try {
+                                    const stateVariant = player.get_cached_property('PlaybackStatus');
+                                    const currentPlaybackState = stateVariant ? stateVariant.deep_unpack() : 'Stopped';
+                                    if (currentPlaybackState !== 'Playing') {
+                                        frozenPosition = newPos;
+                                    }
+                                } catch (e) {
+                                    // If we can't get playback state, assume not playing
+                                    frozenPosition = newPos;
+                                }
+                                return false;
+                            });
+                        } catch (e) {
+                            print(`SetPosition failed: ${e}, trying Seek method`);
+                            // Fallback to Seek method
+                            try {
+                                let positionVariant = player.get_cached_property('Position');
+                                let currentPos = positionVariant ? positionVariant.deep_unpack() : 0;
+                                let offset = newPos - currentPos;
+                                Gio.DBus.session.call(
+                                    busName,
+                                    '/org/mpris/MediaPlayer2',
+                                    'org.mpris.MediaPlayer2.Player',
+                                    'Seek',
+                                    GLib.Variant.new_tuple([
+                                        GLib.Variant.new_int64(offset)
+                                    ]),
+                                    null,
+                                    Gio.DBusCallFlags.NONE,
+                                    -1,
+                                    null,
+                                    (source2, result2) => {
+                                        try {
+                                            source2.call_finish(result2);
+                                            print(`Seek fallback successful: ${offset} microseconds offset`);
+                                            // Add a small delay before resuming normal updates
+                                            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                                                isSeeking = false;
+                                                progress.remove_css_class('seeking');
+                                                // Update frozen position after seek
+                                                try {
+                                                    const stateVariant = player.get_cached_property('PlaybackStatus');
+                                                    const currentPlaybackState = stateVariant ? stateVariant.deep_unpack() : 'Stopped';
+                                                    if (currentPlaybackState !== 'Playing') {
+                                                        frozenPosition = newPos;
+                                                    }
+                                                } catch (e) {
+                                                    // If we can't get playback state, assume not playing
+                                                    frozenPosition = newPos;
+                                                }
+                                                return false;
+                                            });
+                                        } catch (e2) {
+                                            print(`Seek fallback failed: ${e2}`);
+                                            isSeeking = false;
+                                            progress.remove_css_class('seeking');
+                                        }
+                                    }
+                                );
+                            } catch (e2) {
+                                print(`Seek calculation failed: ${e2}`);
+                            }
+                        }
+                    }
                 );
             } catch (e) {
-                try {
-                    let positionVariant = player.get_cached_property('Position');
-                    let currentPos = positionVariant ? positionVariant.deep_unpack() : 0;
-                    let offset = newPos - currentPos;
-                    Gio.DBus.session.call(
-                        busName,
-                        '/org/mpris/MediaPlayer2',
-                        'org.mpris.MediaPlayer2.Player',
-                        'Seek',
-                        GLib.Variant.new_tuple([
-                            GLib.Variant.new_int64(offset)
-                        ]),
-                        null,
-                        Gio.DBusCallFlags.NONE,
-                        -1,
-                        null,
-                        null
-                    );
-                } catch (e2) {}
+                print(`SetPosition call failed: ${e}`);
+                isSeeking = false;
+                progress.remove_css_class('seeking');
             }
         }
     });
+    
+    // Handle drag gesture for seeking
+    dragGesture.connect('drag-update', (gesture, x, y) => {
+        if (!player || !isSeeking) return;
+        let fraction = getPointerFraction(progress, x);
+        seekTarget = fraction;
+        progress.set_fraction(fraction);
+    });
+    
+    // Add gesture controllers to progress bar
+    progress.add_controller(gesture);
+    progress.add_controller(dragGesture);
 
     // --- Periodic update ---
     updatePlayerAsync(() => updateTrackInfoAsync());
