@@ -173,28 +173,28 @@ function createMediaBox() {
             padding: 4px;
         }
         .media-controls-center button:hover {
-            background-color: rgba(0, 255, 255, 0.38);
-            border-color: rgba(0, 255, 255, 0.9);
-            box-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+            background-color: @source_color;
+            border-color: @source_color;
+            box-shadow: 0 0 12px 2px @background, 0 0 0 2px @background inset;
         }
         .media-controls-center button:active {
-            background-color: rgba(0, 255, 255, 0.5);
+            background-color: @source_color;
             transform: scale(0.95);
         }
         .media-controls-center button.shuffle-active {
-            background-color: rgba(0, 255, 255, 0.4);
-            border-color: rgba(0, 255, 255, 0.8);
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+            background-color: @source_color;
+            border-color: @source_color;
+            box-shadow: 0 0 8px 2px @background, 0 0 0 2px @background inset;
         }
         .media-controls-center button.loop-track {
-            background-color: rgba(0, 255, 255, 0.4);
-            border-color: rgba(0, 255, 255, 0.8);
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+            background-color: @source_color;
+            border-color: @source_color;
+            box-shadow: 0 0 8px 2px @background, 0 0 0 2px @background inset;
         }
         .media-controls-center button.loop-playlist {
-            background-color: rgba(0, 255, 255, 0.5);
-            border-color: rgba(0, 255, 255, 0.9);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            background-color: @source_color;
+            border-color: @source_color;
+            box-shadow: 0 0 10px 2px @background, 0 0 0 2px @background inset;
         }
         .media-info-container {
             margin-bottom: 4px;

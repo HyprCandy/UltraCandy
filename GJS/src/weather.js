@@ -53,8 +53,8 @@ function createWeatherBox() {
         .weather-temp {
             font-size: 1.8em;
             font-weight: 700;
-            color: #00ffff;
-            text-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+            color: @source_color;
+            text-shadow: 0 0 12px @background;
             opacity: 1;
         }
         .weather-desc {
@@ -184,6 +184,95 @@ function createWeatherBox() {
     return weatherFrame;
 }
 
+function createWeatherBoxForEmbed() {
+    // Only the weather content box, no overlay or extra margins
+    const weatherBox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        spacing: 4,
+        hexpand: true,
+        vexpand: true,
+        halign: Gtk.Align.CENTER,
+        valign: Gtk.Align.CENTER,
+        margin_top: 0,
+        margin_bottom: 0
+    });
+    weatherBox.add_css_class('weather-content');
+
+    const weatherTemp = new Gtk.Label({
+        label: '--°C',
+        halign: Gtk.Align.CENTER,
+        valign: Gtk.Align.CENTER,
+    });
+    weatherTemp.add_css_class('weather-temp');
+    const weatherDesc = new Gtk.Label({
+        label: 'Weather',
+        halign: Gtk.Align.CENTER,
+        valign: Gtk.Align.CENTER,
+        ellipsize: 3,
+        max_width_chars: 15,
+    });
+    weatherDesc.add_css_class('weather-desc');
+    const weatherLocation = new Gtk.Label({
+        label: 'Location',
+        halign: Gtk.Align.CENTER,
+        valign: Gtk.Align.CENTER,
+        ellipsize: 3,
+        max_width_chars: 15,
+    });
+    weatherLocation.add_css_class('weather-location');
+    weatherBox.append(weatherTemp);
+    weatherBox.append(weatherDesc);
+    weatherBox.append(weatherLocation);
+
+    // --- Weather async/cached update function using wttr.in ---
+    let weatherCache = null;
+    let weatherCacheTime = 0;
+    const WEATHER_CACHE_DURATION = 10 * 60 * 1000;
+    const WEATHER_URL = 'https://wttr.in/?format=j1';
+    const session = new Soup.Session();
+
+    function setWeatherLabels(weatherData) {
+        weatherTemp.set_label(`${weatherData.temp}°C`);
+        weatherDesc.set_label(weatherData.desc);
+        weatherLocation.set_label(weatherData.loc);
+    }
+
+    function updateWeather() {
+        const now = Date.now();
+        if (weatherCache && (now - weatherCacheTime < WEATHER_CACHE_DURATION)) {
+            setWeatherLabels(weatherCache);
+            return;
+        }
+        let message = Soup.Message.new('GET', WEATHER_URL);
+        session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, res) => {
+            try {
+                let bytes = session.send_and_read_finish(res);
+                let text = imports.byteArray.toString(bytes.get_data());
+                let data = JSON.parse(text);
+                let current = data.current_condition && data.current_condition[0];
+                let temp = current ? current.temp_C : '--';
+                let desc = current && current.weatherDesc && current.weatherDesc[0] ? current.weatherDesc[0].value : 'Weather';
+                let loc = data.nearest_area && data.nearest_area[0] && data.nearest_area[0].areaName && data.nearest_area[0].areaName[0] ? data.nearest_area[0].areaName[0].value : 'Location';
+                let weatherData = { temp, desc, loc };
+                weatherCache = weatherData;
+                weatherCacheTime = Date.now();
+                setWeatherLabels(weatherData);
+            } catch (e) {
+                setWeatherLabels({ temp: '--', desc: 'Weather', loc: 'Location' });
+            }
+        });
+    }
+
+    updateWeather();
+    const weatherInterval = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 30000, () => {
+        updateWeather();
+        return true;
+    });
+
+    return weatherBox;
+}
+
 var exports = {
-    createWeatherBox
+    createWeatherBox,
+    createWeatherBoxForEmbed
 }; 

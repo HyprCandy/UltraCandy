@@ -258,9 +258,16 @@ popover.menu {
     font-weight: bold;
     padding: 4px 32px; }
 
-/***********
+/*****************
+ * Progressbars *
+*****************/
+progressbar progress{
+  background-color: @primary;
+}
+
+/*************
  * Hyprland *
- ***********/
+*************/
  
 .sidebar-pane, .sidebar-pane:backdrop,
 .sidebar,
@@ -269,7 +276,7 @@ popover.menu {
 .navigation-sidebar:backdrop,
 placessidebar,
 placessidebar:backdrop {
-  background: @inverse_on_surface; }
+  background: linear-gradient(45deg, @source_color 0%, @background 100%, #9558e1 0%, #16121a 100%); }
 .sidebar-pane .top-bar, .sidebar-pane .top-bar headerbar,
 .sidebar .top-bar,
 .sidebar .top-bar headerbar,
@@ -277,15 +284,15 @@ placessidebar:backdrop {
 .navigation-sidebar .top-bar headerbar,
 placessidebar .top-bar,
 placessidebar .top-bar headerbar {
-  background: @inverse_on_surface; }
+  background: linear-gradient(45deg, @source_color 0%, @background 100%, #9558e1 0%, #16121a 100%); }
 
-.content-pane {
-  background-color: @inverse_on_surface; }
-
-.background, .background:backdrop, .view, iconview, .view:backdrop, iconview:backdrop {
-  background-color: @inverse_on_surface; }
-
-window {
-  background-color: @inverse_on_surface; }
+  .content-pane {
+    background-color: @inverse_on_surface; }
+  
+  .background {
+    background-color: @inverse_on_surface; }
+  
+  window {
+    background-color: @inverse_on_surface; }
 
 /*# sourceMappingURL=gtk-dark.css.map */
