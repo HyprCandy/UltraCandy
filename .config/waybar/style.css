@@ -16,7 +16,7 @@
 window#waybar {
   background: none;
   border: 2px solid @source_color;
-  border-radius: 0px;
+  border-radius: 20px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ background ├───
@@ -24,7 +24,7 @@ window#waybar {
 window#waybar > box {
   background: @blur_background;
   margin: 2px;
-  border-radius: 0px
+  border-radius: 20px
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
