@@ -290,9 +290,9 @@ placessidebar .top-bar headerbar {
     background-color: @inverse_on_surface; }
   
   .background, .background:backdrop, .view, iconview, .view:backdrop, iconview:backdrop {
-    background-color: @inverse_on_surface 85%; }
+    background-color: @inverse_on_surface 100%; }
   
   window {
-    background-color: @blur_background8 20%; }
+    background-color: @blur_background8 100%; }
 
 /*# sourceMappingURL=gtk-dark.css.map */
