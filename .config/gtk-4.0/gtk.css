@@ -276,7 +276,7 @@ progressbar progress{
 .navigation-sidebar:backdrop,
 placessidebar,
 placessidebar:backdrop {
-  background: linear-gradient(45deg, @source_color 0%, @inverse_on_surface 100%, #9558e1 0%, #16121a 100%); }
+  background: linear-gradient(90deg, @inverse_on_surface 0%, @source_color 100%, #9558e1 0%, #16121a 100%); }
 .sidebar-pane .top-bar, .sidebar-pane .top-bar headerbar,
 .sidebar .top-bar,
 .sidebar .top-bar headerbar,
@@ -284,7 +284,7 @@ placessidebar:backdrop {
 .navigation-sidebar .top-bar headerbar,
 placessidebar .top-bar,
 placessidebar .top-bar headerbar {
-  background: linear-gradient(45deg, @source_color 0%, @inverse_on_surface 100%, #9558e1 0%, #16121a 100%); }
+  background: linear-gradient(90deg, @inverse_on_surface 0%, @source_color 100%, #9558e1 0%, #16121a 100%); }
 
   .content-pane {
     background-color: @inverse_on_surface; }
