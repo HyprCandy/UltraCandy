@@ -176,7 +176,7 @@
   "theme.bar.menus.shadowMargins": "2px 2px 2px 2px",
   "theme.bar.menus.menu.dashboard.profile.size": "12em",
   "menus.dashboard.shortcuts.left.shortcut3.command": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/media-main.js",
-  "menus.dashboard.shortcuts.left.shortcut1.command": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/candy-main.js",
+  "menus.dashboard.shortcuts.left.shortcut1.command": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/toggle-main.js",
   "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Candy-Settings",
   "menus.dashboard.shortcuts.left.shortcut1.icon": "",
   "menus.dashboard.shortcuts.left.shortcut2.command": "DRI_PRIME=1 gjs ~/.ultracandy/GJS/weather-main.js",

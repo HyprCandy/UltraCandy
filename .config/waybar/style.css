@@ -15,7 +15,7 @@
 */
 window#waybar {
   background: none;
-  border: 2px solid @primary_fixed_dim;
+  border: 0px solid /*@on_primary_fixed_variant; */@primary_fixed_dim;
   border-radius: 20px;
 }
 
@@ -46,7 +46,7 @@ tooltip label {
 #window,
 #tray,
 #custom-keybinds,
-#custom-settings,
+#custom-weather,
 #custom-player,
 #idle_inhibitor,
 #clock,
@@ -169,6 +169,49 @@ tooltip label {
   border-radius: 20px;
 }
 
+/* ──────────────────────────────────────────────────────────┤ tray popovers ├───
+*/
+
+/* Tray popover windows */
+popover {
+  background: @on_primary;
+  border: 1.5px solid @source_color;
+  border-radius: 8px;
+  font-size: 11px;
+  min-width: 180px;
+  padding: 4px;
+}
+
+/* Tray popover labels and text */
+popover label,
+popover menuitem {
+  color: @main-fg;
+  font-size: 10px;
+  padding: 3px 6px;
+  min-height: 20px;
+}
+
+/* Tray popover menu items */
+popover menuitem:hover {
+  background: @primary_fixed_dim;
+  color: @on_primary;
+}
+
+/* Specific tray application styling */
+.waybar .tray popover {
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: normal;
+}
+
+/* Alternative selectors to try */
+#tray popover,
+window.popup {
+  font-size: 11px;
+}
+
+window.popup * {
+  font-size: 10px;
+}
 
 /* ────────────────────────────────────────────────────────────┤ window ├───
 */
@@ -193,7 +236,7 @@ tooltip label {
   padding: 0 0 0 1px;
 }
 
-/* ─────────────────────────────────────────────────────────┤ settings ├───
+/* ─────────────────────────────────────────────────────────┤ weather ├───
 */
 #custom-left3 {
   color: @on_primary;
@@ -201,7 +244,7 @@ tooltip label {
   padding-left: 3px;
 }
 
-#custom-settings {
+#custom-weather {
   background: @on_primary;
   padding: 0 0 0 1px;
 }
