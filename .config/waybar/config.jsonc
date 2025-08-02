@@ -366,7 +366,7 @@
 
     "tooltip-format": "Discharging: {time}",
     "tooltip-format-charging": "Charging: {time}",
-    "interval": 300,
+    "interval": 1,
     "min-length": 6,
     "max-length": 6
   },
