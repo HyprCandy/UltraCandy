@@ -119,24 +119,25 @@ tooltip label {
 
 #workspaces button {
   color: @module-fg;
-  border-radius: 8px;
-  box-shadow: none;
-  margin-right: 10px;
   transition: none;
+  border-radius: 8px;
+  margin: 2px;
+  padding: 0 5px;
 }
 
 #workspaces button:hover {
   color: @primary;
   background: @transparent;
   text-shadow: none;
+  margin: 2px;
+  padding: 0 5px;
 }
 
 #workspaces button.active {
   color: @on_primary;
   background: @primary_fixed_dim;
-  text-shadow: 0 0 2px @blur_background;
-  box-shadow: 0 0 2px 1px @blur_background;
   margin: 2px;
+  padding: 0 5px;
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -150,9 +151,8 @@ tooltip label {
 /* Urgent workspace (has urgent/notification windows) */
 #workspaces button.urgent {
   color: @critical;
-  text-shadow: 0 0 2px @blur_background;
-  box-shadow: 0 0 2px 1px @blur_background;
   margin: 2px;
+  padding: 0 5px;
 }
 
 /*#custom-right1 {
@@ -176,7 +176,7 @@ tooltip label {
 popover {
   background: @on_primary;
   border: 1.5px solid @source_color;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 11px;
   min-width: 180px;
   padding: 4px;
@@ -538,14 +538,14 @@ tooltip label,
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
 */
-#workspaces button {
+/*#workspaces button {
   border-radius: 8px;
-  padding: 0 2px;
+  padding: 0 5px;
 }
 
 #workspaces button.active {
-  padding: 0 6px;
-}
+  padding: 0 5px;
+}*/
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
 */
