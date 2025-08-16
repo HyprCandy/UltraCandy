@@ -22,14 +22,14 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: @blur_background;
-  margin-top: 4.5px;
+  background: none;
+  margin-top: 0.0px;
   margin-left: 4.5px;
   margin-right: 4.5px;
   margin-bottom: 0px;
   border-radius: 20px;
   padding: 4.5px;
-  border: 2px solid @on_primary_fixed_variant;
+  border: 0px solid @on_primary_fixed_variant;
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
@@ -389,13 +389,14 @@ window.popup * {
 /* ───────────────────────────────────────────────────────────┤ media info ├───
 */
 #mpris {
+  color: @on_primary_fixed_variant;
   background: rgba(255, 255, 255, 0.1);
   padding: 0 8px 0 8px;
   border-radius: 20px;
 }
 
 #mpris:hover {
-  color: @hover-fg;
+  color: @primary_fixed_dim;
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
