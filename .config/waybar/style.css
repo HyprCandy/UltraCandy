@@ -389,14 +389,14 @@ window.popup * {
 /* ───────────────────────────────────────────────────────────┤ media info ├───
 */
 #mpris {
-  color: @on_primary_fixed_variant;
-  background: rgba(255, 255, 255, 0.1);
+  color: @primary_fixed_dim;
+  background: @on_primary_fixed_variant;
   padding: 0 8px 0 8px;
   border-radius: 20px;
 }
 
 #mpris:hover {
-  color: @primary_fixed_dim;
+  color: @hover-fg;
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
