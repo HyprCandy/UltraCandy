@@ -1,7 +1,19 @@
 # UltraCandy
 [NOTE] UltraCandy is the complete version & HyprCandy is now mainly for testing
 
-➡[UltraCandy](https://github.com/HyprCandy/ultracandyinstall.git)/[HyprCandy](https://github.com/HyprCandy/hyprcandyinstall.git)⬅ are system-wide, cohesively themed Hyprland configurations for Arch and Arch-based distributions with extra quality of life features with a 'waybar' and 'hyprpanel' option for both. I recommend hyprpanel on the free HyprCandy version. UltraCandy install script is on my ko-fi page.
+➡[UltraCandy](https://github.com/HyprCandy/ultracandyinstall.git)⬅ is system-wide, cohesively themed Hyprland configuration for Arch and Arch-based distributions with extra quality of life features.
+
+## Features & How to reach me : 
+
+• Automatic idle-inhbitor activated when waybar/hyprpanel is toggled off whenever you want extra screen space since you won't be able to activate it through waybar's/hyprpanel's idle-inhibitor button. This is great for lighter resource usage as well while still being able to keep your device awake.
+
+• Custom control center to easily modify waybar if waybar option is chosen, hyprland windows,the dock, launch hyprpicker, adjust opacty, change dock start icon,enable/disable xray mode  and hyprsunset/hyprshade.
+
+• Extensive rofi menus: wifi, bluetooth, application finder, keybinds, clipboard, emoji-picker, glyph-picker
+
+• System-wide color generation for GTK3/4 and QT6 applications plus other Hyprland elements along with other other quality of life settings.
+
+• The background is also cohesively auto-generated and applied for sddm, rofi, wlogout and hyprlock (GDM backgrounds have to be set manually through the 'GDM Settings' app but it's available as an option).
 
 UltraCandy with waybar option plus settings app
 <img width="1366" height="768" alt="screenshot_17082025_004449" src="https://github.com/user-attachments/assets/c83cf9aa-8b98-4c00-bc15-3c1ab115700e" />
@@ -10,17 +22,6 @@ UltraCandy with waybar option plus settings app
 HyprCandy with hyprpanel option plus settings app
 <img width="1366" height="768" alt="screenshot_01082025_005207" src="https://github.com/user-attachments/assets/9c29064f-5873-487b-8581-71644e69a47a" />
 
-
-
-## Features & How to reach me or support : 
-
-• Automatic idle-inhbitor activated when waybar/hyprpanel is toggled off whenever you want extra screen space since you won't be able to activate it through waybar's/hyprpanel's idle-inhibitor button. This is great for lighter resource usage as well while still being able to keep your device awake.
-
-• Easy settings changes through the custom control center
-
-• System-wide color generation for GTK3/4 and QT6 applications plus other Hyprland elements along with other other quality of life settings.
-
-• The background is also cohesively auto-generated and applied for sddm, rofi, wlogout and hyprlock (GDM backgrounds have to be set manually through the 'GDM Settings' app but it's available as an option).
 
 If you like my work, run the free HyprCandy [install script](https://github.com/HyprCandy/hyprcandyinstall.git) or grab the UltraCandy [install script](https://ko-fi.com/s/f56114285c). You can also grab bits and bops from the [main repo](https://github.com/HyprCandy/Hyprcandy.git) or you can [support my work](https://ko-fi.com/ianmking) or just spread the word of this cohesive Hyprland setup 🙂.
 
