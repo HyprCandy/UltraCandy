@@ -79,8 +79,8 @@ Keybinds, Clipboard, Emoji-Picker, Glyph-Picker
 ## Inspirations
 I got some inspiration from:
 
-[HYDE Project](https://github.com/HyDE-Project/HyDE.git)
-
 [ML4W](https://github.com/mylinuxforwork/dotfiles.git)
+
+[HYDE Project](https://github.com/HyDE-Project/HyDE.git)
 
 and others...
