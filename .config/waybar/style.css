@@ -291,7 +291,7 @@ window.popup * {
 }
 
 #custom-distro {
-  color: @primary;
+  color: @color10;
   /*background: @distro-bg;*/
   background: @on_primary_fixed_variant;
   margin: 0 -1px -2px 0;
@@ -575,3 +575,5 @@ tooltip label,
   - power button → `power_expand` (line 152)
   - all other modules → `module_expand` (line 166)
 */
+
+@import "colors-wallust.css";
