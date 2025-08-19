@@ -48,7 +48,7 @@ Monochrome theme apply's an onyx theme to every themeable element on all backgro
 
 ## Custom Fish and Zsh with Starship
 You can customize them further adding even more plugins and personal aliases
-<img width="1366" height="768" alt="screenshot_19082025_010917" src="https://github.com/user-attachments/assets/0b175ec7-6d48-4e90-8210-26184f8032f2" />
+<img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
 
 
 ## Hyprlock
