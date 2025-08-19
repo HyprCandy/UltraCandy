@@ -110,7 +110,7 @@ tooltip label {
 }
 
 #workspaces {
-  background: @on_primary;
+  background: @on_primary_fixed_variant;
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 0px;
@@ -283,7 +283,7 @@ window.popup * {
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
 */
 #custom-left5 {
-  color: @on_primary_fixed_variant;
+  color: @scrim;
   background: @transparent;
   text-shadow: none;
   margin-bottom: -2px;
@@ -293,14 +293,14 @@ window.popup * {
 #custom-distro {
   color: @color10;
   /*background: @distro-bg;*/
-  background: @on_primary_fixed_variant;
+  background: @scrim;
   margin: 0 -1px -2px 0;
   padding: 0 0 0 3px;
   text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
 }
 
 #custom-right2 {
-  color: @on_primary_fixed_variant;
+  color: @scrim;
   background: @transparent;
   text-shadow: none;
   margin-bottom: -2px;
