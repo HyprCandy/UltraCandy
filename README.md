@@ -49,7 +49,7 @@ Just a few of the possible system colors and automatic sddm background applicati
 UltraCandy
 <img width="1366" height="768" alt="screenshot_17082025_014409" src="https://github.com/user-attachments/assets/25f00199-3a98-4407-adbe-ab79dbdf2d0c" />
 <img width="1366" height="768" alt="screenshot_17082025_020311" src="https://github.com/user-attachments/assets/b2706bef-7c3b-42aa-a119-bd4a22d865cf" />
-Monochrome theme apply's an onyx theme to every themeable element on all backgrounds
+Monochrome theme apply's an onyx/graphite theme to every themeable element on all backgrounds
 <img width="1366" height="768" alt="screenshot_17082025_004243" src="https://github.com/user-attachments/assets/1988f4c2-c445-4359-888b-331dd9ee8e53" />
 
 
