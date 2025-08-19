@@ -15,6 +15,12 @@
 
 • The background is also cohesively auto-generated and applied for sddm, rofi, wlogout and hyprlock (GDM backgrounds have to be set manually through the 'GDM Settings' app but it's available as an option).
 
+
+## Custom Fish and Zsh with Starship
+You can customize them further adding even more plugins and personal aliases
+<img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
+
+
 UltraCandy with waybar option plus settings app
 <img width="1366" height="768" alt="screenshot_17082025_004449" src="https://github.com/user-attachments/assets/c83cf9aa-8b98-4c00-bc15-3c1ab115700e" />
 <img width="1366" height="768" alt="screenshot_17082025_020238" src="https://github.com/user-attachments/assets/c664c274-c3c4-4c4a-ae5a-671b450ab4bc" />
@@ -46,10 +52,6 @@ UltraCandy
 Monochrome theme apply's an onyx theme to every themeable element on all backgrounds
 <img width="1366" height="768" alt="screenshot_17082025_004243" src="https://github.com/user-attachments/assets/1988f4c2-c445-4359-888b-331dd9ee8e53" />
 
-## Custom Fish and Zsh with Starship
-You can customize them further adding even more plugins and personal aliases
-<img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
-
 
 ## Hyprlock
 <img width="1366" height="768" alt="screenshot_18082025_233241" src="https://github.com/user-attachments/assets/d1cfd810-ef8a-43bb-9f20-2c43e28e55b4" />
@@ -62,12 +64,12 @@ You can customize them further adding even more plugins and personal aliases
 
 ## Rofi Menus
 Application Finder
-<img width="992" height="563" alt="screenshot_17082025_023120" src="https://github.com/user-attachments/assets/2cc10a9d-f849-448a-9511-41037ae692ec" />
+<img width="1366" height="768" alt="screenshot_19082025_211545" src="https://github.com/user-attachments/assets/4e86936e-dd94-45fc-b5f8-9ab0c479747d" />
 Keybinds, Clipboard, Emoji-Picker, Glyph-Picker
-<img width="727" height="582" alt="screenshot_17082025_023149" src="https://github.com/user-attachments/assets/6503a247-c1ab-414f-8aaf-4ebad9611e92" />
-<img width="404" height="512" alt="screenshot_17082025_023227" src="https://github.com/user-attachments/assets/f6b8c100-89ee-4ebe-8377-97fb339b6294" />
-<img width="245" height="586" alt="screenshot_17082025_023307" src="https://github.com/user-attachments/assets/718f270f-a179-467d-a4cb-e9cd09d446a2" />
-<img width="246" height="587" alt="screenshot_17082025_023330" src="https://github.com/user-attachments/assets/aee8c86a-c405-443b-9154-65d481e81c2e" />
+<img width="737" height="594" alt="screenshot_19082025_211820" src="https://github.com/user-attachments/assets/21282375-9ad9-468b-8a55-1125911cce3c" />
+<img width="416" height="522" alt="screenshot_19082025_211751" src="https://github.com/user-attachments/assets/d3c07da7-c402-46bc-9206-1290490f44fb" />
+<img width="254" height="589" alt="screenshot_19082025_211628" src="https://github.com/user-attachments/assets/f8bdc3d6-4ff0-4b2c-a1f6-ce6ced9d65dd" />
+<img width="252" height="589" alt="screenshot_19082025_211709" src="https://github.com/user-attachments/assets/2c987094-2e4d-4b2c-8be1-a701a7c6fc58" />
 
 
 ## Wlogout Theme
