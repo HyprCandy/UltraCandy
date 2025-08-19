@@ -41,3 +41,9 @@ saturation = 85
 [templates]
 kitty.template = 'kitty.conf'
 kitty.target = '~/.config/kitty/colors-wallust.conf'
+
+hypr.template = 'hyprland.conf'
+hypr.target = '~/.config/hypr/colors-wallust.conf'
+
+waybar.template = 'waybar.css'
+waybar.target = '~/.config/waybar/colors-wallust.css'
