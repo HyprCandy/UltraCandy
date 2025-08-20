@@ -15,19 +15,7 @@
 
 • The background is also cohesively auto-generated and applied for sddm, rofi, wlogout and hyprlock (GDM backgrounds have to be set manually through the 'GDM Settings' app but it's available as an option).
 
-
-## Custom Fish and Zsh with Starship
-You can customize them further adding even more plugins and personal aliases
-<img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
-
-
-UltraCandy with waybar option plus settings app
-<img width="1366" height="768" alt="screenshot_17082025_004449" src="https://github.com/user-attachments/assets/c83cf9aa-8b98-4c00-bc15-3c1ab115700e" />
-<img width="1366" height="768" alt="screenshot_17082025_020238" src="https://github.com/user-attachments/assets/c664c274-c3c4-4c4a-ae5a-671b450ab4bc" />
-
-HyprCandy with hyprpanel option plus settings app
-<img width="1366" height="768" alt="screenshot_01082025_005207" src="https://github.com/user-attachments/assets/9c29064f-5873-487b-8581-71644e69a47a" />
-
+• Easy dotfiles update: In the terminal run "ultracandy".
 
 If you like my work, run the free HyprCandy [install script](https://github.com/HyprCandy/hyprcandyinstall.git) or grab the UltraCandy [install script](https://ko-fi.com/s/f56114285c). You can also grab bits and bops from the [main repo](https://github.com/HyprCandy/Hyprcandy.git) or you can [support my work](https://ko-fi.com/ianmking) or just spread the word of this cohesive Hyprland setup 🙂.
 
@@ -40,17 +28,32 @@ Chat on [Reddit](https://www.reddit.com/u/I-miruka/s/TOeCgRpby6)
 
 Since I'm an aeronautics graduate and not a programmer it took me ages to learn how to set up everything during my free time before creating this repo. It was stressful abut worthwhile in the end. Anyway checkout the little showcase below:
 
-## Update
-In the terminal run "hyprcandy" or "ultracandy" based on the version you use.
 
-## More System Colors (There's more beyond these as well)
+## Some System Colors (There's more beyond these as well)
 Just a few of the possible system colors and automatic sddm background application
 
-UltraCandy
+
+UltraCandy with waybar option plus settings app
+
+[NOTE]Monochrome theme apply's an onyx/graphite theme to every QT6 and GTK3/4 window on all backgrounds
+<img width="1366" height="768" alt="screenshot_17082025_004449" src="https://github.com/user-attachments/assets/c83cf9aa-8b98-4c00-bc15-3c1ab115700e" />
+<img width="1366" height="768" alt="screenshot_17082025_004243" src="https://github.com/user-attachments/assets/1988f4c2-c445-4359-888b-331dd9ee8e53" />
+<img width="1366" height="768" alt="screenshot_17082025_020238" src="https://github.com/user-attachments/assets/c664c274-c3c4-4c4a-ae5a-671b450ab4bc" />
 <img width="1366" height="768" alt="screenshot_17082025_014409" src="https://github.com/user-attachments/assets/25f00199-3a98-4407-adbe-ab79dbdf2d0c" />
 <img width="1366" height="768" alt="screenshot_17082025_020311" src="https://github.com/user-attachments/assets/b2706bef-7c3b-42aa-a119-bd4a22d865cf" />
-Monochrome theme apply's an onyx/graphite theme to every themeable element on all backgrounds
-<img width="1366" height="768" alt="screenshot_17082025_004243" src="https://github.com/user-attachments/assets/1988f4c2-c445-4359-888b-331dd9ee8e53" />
+
+UltraCandy with hyprpanel option plus settings app
+
+[NOTE]Missing features in the hyprpanel custom control center compared to waybar's version can be set directly from hyprpanel
+<img width="1366" height="768" alt="screenshot_20082025_113347" src="https://github.com/user-attachments/assets/b950ec0c-e9c6-44ac-958a-c433b9a5e057" />
+
+
+## Custom Fish and Zsh with Starship
+You can customize them further adding even more plugins and personal aliases
+<img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
+Stylized group mode
+<img width="1366" height="768" alt="screenshot_20082025_105908" src="https://github.com/user-attachments/assets/f904e5e9-3ed2-43f1-a074-3ef0b9956539" />
+<img width="1366" height="768" alt="screenshot_20082025_105923" src="https://github.com/user-attachments/assets/98beb4ee-af29-4ba4-bc94-6ce451c480f4" />
 
 
 ## Hyprlock
