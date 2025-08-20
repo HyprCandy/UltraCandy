@@ -17,9 +17,8 @@
     //"custom/right1",
 
     "custom/paddw",
-    "tray",       	    // system tray
     //"custom/right1",
-    "hyprland/window",
+    "mpris",               // media info
     "custom/cava"           // cava visualizer
   ],
 
@@ -59,7 +58,8 @@
   ],
 
   "modules-right": [
-    "mpris",                // media info
+    "hyprland/window",
+    "tray",       	    // system tray
 
     "custom/left6",
     "pulseaudio",           // output device
@@ -105,35 +105,34 @@
   },
 },
 
-  // ──────────────────────────────────────────────────────────────┤ tray ├───
+  // ─────────────────────────────────────────────────────────┤ media info ├───
 
-  "tray": {
-    "icon-size": 14,
-    "spacing": 6
-  },
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "{status_icon} {title} - {artist}",
 
-  // ─────────────────────────────────────────────────────────────┤ window ├───
+    "player-icons": {
+      "default": "󰝚 ",
+      "spotify": "<span foreground='#a6da95'>󰓇 </span>",
+      "firefox": "<span foreground='#ed8796'>󰗃 </span>"
+    },
+    "status-icons": {
+      "paused": "<span color='#b7bdf8'>\u200A\u200A󰏤\u2009\u2009</span>"
+    },
 
-  "hyprland/window": {
-    "swap-icon-label": false,
-    "format": "",
-    "icon": true,
-    "icon-size": 16,
-    "tooltip": false,
-    "min-length": 0,
-    "max-length": 0,
+    "tooltip-format": "Playing: {title} - {artist}",
+    "tooltip-format-paused": "Paused: {title} - {artist}",
+    "min-length": 5,
+    "max-length": 25
   },
   
   // ──────────────────────────────────────────────────────────────┤ cava ├───
 
   "custom/cava": {
-    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json",
+    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --hide-when-inactive",
     "return-type": "json",
-    "icon-size": 6,
-    "spacing": 2,
     "format": "{}",
     "restart-interval": 0,
-    "on-click": "python3 ~/.config/waybar/scripts/cava-waybar-wrapper.py reload",
     "tooltip": false,
     "min-length": 0,
     "max-length": 50
@@ -181,7 +180,7 @@
    // },
 
    // "format": "󰘚 {percentage}%",
-   // "format-critical": "󰀦 {percentage}%",
+   // "format-critical": "󰀦 {percentage}%",
    // "tooltip": false,
     // "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
    // "interval": 5,
@@ -241,7 +240,7 @@
 
     "calendar": {
       "mode": "month",
-      "mode-mon-col": 7,
+      "mode-mon-col": 3,
       "on-click-right": "mode",
 
       "format": {
@@ -314,26 +313,24 @@
     "max-length": 1
   },
 
-  // ─────────────────────────────────────────────────────────┤ media info ├───
+  // ─────────────────────────────────────────────────────────────┤ window ├───
 
-  "mpris": {
-    "format": "{player_icon} {title} - {artist}",
-    "format-paused": "{status_icon} {title} - {artist}",
+  "hyprland/window": {
+    "swap-icon-label": false,
+    "format": "",
+    "icon": true,
+    "icon-size": 16,
+    "tooltip": false,
+    "min-length": 0,
+    "max-length": 0,
+  }, 
+  
+  // ──────────────────────────────────────────────────────────────┤ tray ├───
 
-    "player-icons": {
-      "default": "󰝚 ",
-      "spotify": "<span foreground='#a6da95'>󰓇 </span>",
-      "firefox": "<span foreground='#ed8796'>󰗃 </span>"
-    },
-    "status-icons": {
-      "paused": "<span color='#b7bdf8'>\u200A\u200A󰏤\u2009\u2009</span>"
-    },
-
-    "tooltip-format": "Playing: {title} - {artist}",
-    "tooltip-format-paused": "Paused: {title} - {artist}",
-    "min-length": 5,
-    "max-length": 25
-  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6
+  }, 
 
   // ──────────────────────────────────────────────────────┤ output device ├───
 
