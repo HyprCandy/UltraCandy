@@ -124,7 +124,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @primary;
+  color: @color13;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -132,7 +132,7 @@ tooltip label {
 }
 
 #workspaces button:hover {
-  color: @hover-fg;
+  color: @primary;
   background: transparent;
   text-shadow: none;
   margin: 2px;
@@ -149,14 +149,14 @@ tooltip label {
 
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @primary_fixed_dim;
+  color: @color13;
   background: transparent;
   margin: 2px;
   padding: 0 5px;
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @hover-fg;
+  color: @primary;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -169,7 +169,7 @@ tooltip label {
 /* ───────────────────────────────────────────────────────────┤ media info ├───
 */
 #mpris {
-  color: @color13;
+  color: @primary;
   background: linear-gradient(180deg, @on_primary, @scrim);
   margin-left: 0px;
   padding-left: 8px;
@@ -178,7 +178,7 @@ tooltip label {
 }
 
 #mpris:hover {
-  color: @hover-fg;
+  color: @color13;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
