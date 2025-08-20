@@ -111,7 +111,7 @@ tooltip label {
 }
 
 #workspaces {
-  background: @on_primary_fixed_variant;
+  background: linear-gradient(180deg, @on_primary, @scrim);
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 0px;
@@ -119,12 +119,12 @@ tooltip label {
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  margin-right: 6px;
+  margin-right: 0px;
   border-radius: 20px;
 }
 
 #workspaces button {
-  color: @color13;
+  color: @primary;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -132,7 +132,7 @@ tooltip label {
 }
 
 #workspaces button:hover {
-  color: @primary;
+  color: @hover-fg;
   background: transparent;
   text-shadow: none;
   margin: 2px;
@@ -141,19 +141,15 @@ tooltip label {
 
 #workspaces button.active {
   color: @on_primary;
-  background: @primary_fixed_dim;
+  background: @primary;
   margin: 2px;
   padding: 0 5px;
 }
 
-/*#workspaces button.active:hover {
-  color: @primary_fixed_dim;
-  background: @on_primary;
-}*/
 
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @color13;
+  color: @primary_fixed_dim;
   background: transparent;
   margin: 2px;
   padding: 0 5px;
@@ -170,69 +166,19 @@ tooltip label {
   padding: 0 5px;
 }
 
-/*#custom-right1 {
-  color: @primary_fixed_dim;
-  background: @transaparent;
-  margin-bottom: 0;
-  margin-right: -6px;
-}*/
-
-/* ───────────────────────────────────────────────────────────┤ tray ├───
+/* ───────────────────────────────────────────────────────────┤ media info ├───
 */
-#tray {
-  background: @blur_background;
+#mpris {
+  color: @color13;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 0px;
+  padding-left: 8px;
+  padding-right: 4px;
   border-radius: 20px;
 }
 
-/* ──────────────────────────────────────────────────────────┤ tray popovers ├───
-*/
-
-/* Tray popover windows */
-popover {
-  background: @on_primary;
-  border: 1.5px solid @source_color;
-  border-radius: 10px;
-  font-size: 11px;
-  min-width: 180px;
-  padding: 4px;
-}
-
-/* Tray popover labels and text */
-popover label,
-popover menuitem {
-  color: @main-fg;
-  font-size: 10px;
-  padding: 3px 6px;
-  min-height: 20px;
-}
-
-/* Tray popover menu items */
-popover menuitem:hover {
-  background: @primary_fixed_dim;
-  color: @on_primary;
-}
-
-/* Specific tray application styling */
-.waybar .tray popover {
-  font-family: "JetBrainsMono Nerd Font";
-  font-weight: normal;
-}
-
-/* Alternative selectors to try */
-#tray popover,
-window.popup {
-  font-size: 11px;
-}
-
-window.popup * {
-  font-size: 10px;
-}
-
-/* ────────────────────────────────────────────────────────────┤ window ├───
-*/
-#window {
-  border-radius: 30px;
-  margin-left: 6px;
+#mpris:hover {
+  color: @hover-fg;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
@@ -241,22 +187,16 @@ window.popup * {
 #custom-cava {
   color: @color13;
   background: transparent;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-left: 6px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-weight: normal;
   transition: all 0.3s ease;
 }
 
-/*#custom-cava:hover {
-  color: @primary_fixed_dim;
-  background: transparent;
-}*/
-
 /* When cava is hidden (no media playing) */
 #custom-cava.cava-hidden {
-  min-width: 0;
   padding: 0;
   margin: 0;
   opacity: 0;
@@ -264,38 +204,12 @@ window.popup * {
 
 /* When cava is active (media playing) */
 #custom-cava.cava-active {
-  min-width: 100px;
   opacity: 1;
 }
 
-/* Alternative styling - more compact */
-/*
-#custom-cava {
-  color: @primary_fixed_dim;
-  background: transparent;
-  border: 1px solid @primary_fixed_dim;
-  border-radius: 10px;
-  margin-left: 4px;
-  padding: 2px 6px;
-  font-family: monospace;
-  font-size: 9px;
+#custom-cava.cava-silent {
+    opacity: 0.6;
 }
-*/
-
-/* Alternative styling - more prominent */
-/*
-#custom-cava {
-  color: @on_primary;
-  background: linear-gradient(45deg, @primary_fixed_dim, @scrim);
-  border-radius: 20px;
-  margin-left: 8px;
-  padding: 4px 12px;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 11px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-*/
 
 /* ──────────────────────────────────────────────────────────┤ keybinds ├───
 */
@@ -310,6 +224,7 @@ window.popup * {
 }
 
 #custom-keybinds {
+  color: @primary;
   background: @on_primary_fixed_variant;
   padding: 0 0 0 1px;
 }
@@ -327,6 +242,7 @@ window.popup * {
 }
 
 #custom-weather {
+  color: @primary;
   background: @on_primary;
   padding: 0 0 0 1px;
 }
@@ -334,14 +250,6 @@ window.popup * {
 #custom-weather:hover {
   color: @hover-fg;
 }
-
-/*#memory.warning {
-  color: @warning;
-}
-
-#memory.critical {
-  color: @critical;
-}*/
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
 */
@@ -352,6 +260,7 @@ window.popup * {
 }
 
 #custom-player {
+  color: @primary;
   background: @scrim;
 }
 
@@ -376,7 +285,6 @@ window.popup * {
 
 #custom-distro {
   color: @color13;
-  /*background: @distro-bg;*/
   background: transparent;
   border-radius: 0px;
   margin: 0 -1px -2px 0;
@@ -404,6 +312,7 @@ window.popup * {
 }
 
 #idle_inhibitor {
+  color: @primary;
   background: @scrim;
   padding: 0 0 0 7px;
 }
@@ -426,6 +335,7 @@ window.popup * {
 /* ─────────────────────────────────────────────────────────────────┤ date ├───
 */
 #clock.date {
+  color: @primary;
   background: @on_primary;
 }
 
@@ -441,6 +351,7 @@ window.popup * {
 /* ────────────────────────────────────────────────────────────────┤ wi-fi ├───
 */
 #custom-wifi {
+  color: @primary;
   background: @on_primary_fixed_variant;
   padding: 0 8px 0 5px;
 }
@@ -452,6 +363,7 @@ window.popup * {
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
 */
 #bluetooth {
+  color: @primary;
   background: @on_primary_fixed_variant;
   padding-right: 5px;
 }
@@ -463,6 +375,7 @@ window.popup * {
 /* ────────────────────────────────────────────────────────┤ system update ├───
 */
 #custom-update {
+  color: @primary;
   padding-right: 8px;
   background: @on_primary_fixed_variant;
 }
@@ -476,19 +389,66 @@ window.popup * {
   background: @transparent;
 }
 
-/* ───────────────────────────────────────────────────────────┤ media info ├───
+/* ────────────────────────────────────────────────────────────┤ window ├───
 */
-#mpris {
-  color: @color13;
-  background: @on_primary_fixed_variant;
-  /*font-family: "C059 Bold Italic";
-  font-size: 11px;*/
-  padding: 0 8px 0 8px;
+#window {
   border-radius: 20px;
+  margin-left: 8px;
+  margin-right: 2px;
 }
 
-#mpris:hover {
-  color: @hover-fg;
+/* ───────────────────────────────────────────────────────────┤ tray ├───
+*/
+#tray {
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  border-radius: 30px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* ──────────────────────────────────────────────────────────┤ tray popovers ├───
+*/
+
+/* Tray popover windows */
+popover {
+  color: @primary;
+  background: @on_primary;
+  border: 1.5px solid @source_color;
+  border-radius: 10px;
+  font-size: 11px;
+  min-width: 180px;
+  padding: 4px;
+}
+
+/* Tray popover labels and text */
+popover label,
+popover menuitem {
+  color: @primary;
+  font-size: 10px;
+  padding: 3px 6px;
+  min-height: 20px;
+}
+
+/* Tray popover menu items */
+popover menuitem:hover {
+  background: @primary_fixed_dim;
+  color: @on_primary;
+}
+
+/* Specific tray application styling */
+.waybar .tray popover {
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: normal;
+}
+
+/* Alternative selectors to try */
+#tray popover,
+window.popup {
+  font-size: 11px;
+}
+
+window.popup * {
+  font-size: 10px;
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -497,10 +457,11 @@ window.popup * {
   color: @scrim;
   background: @transparent;
   padding-left: 3px;
-  margin-left: 8px;
+  margin-left: 0px;
 }
 
 #pulseaudio {
+  color: @primary;
   background: @scrim;
 }
 
@@ -517,6 +478,7 @@ window.popup * {
 }
 
 #backlight {
+  color: @primary;
   background: @on_primary;
 }
 
@@ -529,7 +491,7 @@ window.popup * {
 }
 
 #battery {
-  color: @module-fg;
+  color: @primary;
   background: @on_primary_fixed_variant;
 }
 
