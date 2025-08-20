@@ -148,6 +148,69 @@ class CavaConfig:
         return default
 
 
+class MediaDetector:
+    """Detect if media is playing using playerctl or other methods"""
+    
+    def __init__(self):
+        self.last_check = 0
+        self.check_interval = 2  # Check every 2 seconds
+        self.cached_status = False
+        self.playerctl_available = self._check_playerctl_available()
+    
+    def _check_playerctl_available(self):
+        """Check if playerctl is available"""
+        try:
+            subprocess.run(['playerctl', '--version'], 
+                         stdout=subprocess.DEVNULL, 
+                         stderr=subprocess.DEVNULL,
+                         check=True)
+            return True
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            return False
+    
+    def _check_media_playerctl(self):
+        """Check if media is playing using playerctl"""
+        try:
+            result = subprocess.run(['playerctl', 'status'], 
+                                  capture_output=True, 
+                                  text=True, 
+                                  timeout=1)
+            status = result.stdout.strip().lower()
+            return status == 'playing'
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+            return False
+    
+    def _check_media_pulseaudio(self):
+        """Check if any audio streams are active using pactl"""
+        try:
+            result = subprocess.run(['pactl', 'list', 'sink-inputs'], 
+                                  capture_output=True, 
+                                  text=True, 
+                                  timeout=2)
+            # If there are sink inputs, audio is likely playing
+            return 'Sink Input #' in result.stdout
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+            return False
+    
+    def is_media_playing(self, force_check=False):
+        """Check if media is currently playing with caching"""
+        current_time = time.time()
+        
+        # Use cached result if recent enough and not forcing
+        if not force_check and current_time - self.last_check < self.check_interval:
+            return self.cached_status
+        
+        # Try playerctl first if available
+        if self.playerctl_available:
+            self.cached_status = self._check_media_playerctl()
+        else:
+            # Fallback to pulseaudio check
+            self.cached_status = self._check_media_pulseaudio()
+        
+        self.last_check = current_time
+        return self.cached_status
+
+
 class CavaDataParser:
     """Handle cava data parsing and formatting"""
 
@@ -712,6 +775,7 @@ class CavaClient:
         )
         self.socket_file = os.path.join(self.runtime_dir, "hyde", "cava.sock")
         self.parser = CavaDataParser()
+        self.media_detector = MediaDetector()
 
     def _auto_start_manager_if_needed(self, bars=16, range_val=15):
         """Automatically start manager if not running"""
@@ -735,8 +799,9 @@ class CavaClient:
         bars=16,
         range_val=15,
         json_output=False,
+        hide_when_inactive=False,
     ):
-        """Start the cava client"""
+        """Start the cava client with enhanced hiding functionality"""
         if not self._auto_start_manager_if_needed(bars, range_val):
             print("Error: Could not start cava manager", file=sys.stderr)
             sys.exit(1)
@@ -754,24 +819,69 @@ class CavaClient:
             client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
             client_socket.connect(self.socket_file)
 
-            standby_output = self.parser._handle_standby_mode(
-                standby_mode, bar_chars, width
-            )
-            if not (
-                (standby_mode == 0 and standby_output == "")
-                or (standby_mode == "" and standby_output == "")
-            ):
+            # Track state for hiding functionality
+            last_media_check = 0
+            media_check_interval = 2  # Check media status every 2 seconds
+            consecutive_silent_count = 0
+            silent_threshold = 10  # Hide after 10 consecutive silent readings
+            is_hidden = False
+            last_output_time = time.time()
+
+            # Initial media check and standby output
+            is_media_playing = self.media_detector.is_media_playing(force_check=True)
+            
+            if not is_media_playing and hide_when_inactive:
+                # If no media is playing and hide_when_inactive is True, output empty and hide
                 if json_output:
-                    output = {
-                        "text": standby_output,
-                        "tooltip": "Cava audio visualizer - standby mode",
-                    }
+                    output = {"text": "", "class": "cava-hidden"}
                     print(json.dumps(output), flush=True)
                 else:
-                    print(standby_output, flush=True)
+                    print("", flush=True)
+                is_hidden = True
+            else:
+                # Show initial standby output
+                standby_output = self.parser._handle_standby_mode(
+                    standby_mode, bar_chars, width
+                )
+                if not (
+                    (standby_mode == 0 and standby_output == "")
+                    or (standby_mode == "" and standby_output == "")
+                ):
+                    if json_output:
+                        output = {
+                            "text": standby_output,
+                            "tooltip": "Cava audio visualizer - standby mode",
+                            "class": "cava-standby"
+                        }
+                        print(json.dumps(output), flush=True)
+                    else:
+                        print(standby_output, flush=True)
 
             buffer = ""
             while True:
+                current_time = time.time()
+                
+                # Periodically check media status if hide_when_inactive is enabled
+                if hide_when_inactive and current_time - last_media_check > media_check_interval:
+                    is_media_playing = self.media_detector.is_media_playing()
+                    last_media_check = current_time
+                    
+                    # If media stopped and we're not hidden yet, hide immediately
+                    if not is_media_playing and not is_hidden:
+                        if json_output:
+                            output = {"text": "", "class": "cava-hidden"}
+                            print(json.dumps(output), flush=True)
+                        else:
+                            print("", flush=True)
+                        is_hidden = True
+                        consecutive_silent_count = 0
+                        continue
+                    
+                    # If media started and we're hidden, show standby mode
+                    elif is_media_playing and is_hidden:
+                        is_hidden = False
+                        consecutive_silent_count = 0
+
                 data = client_socket.recv(1024)
                 if not data:
                     break
@@ -783,17 +893,81 @@ class CavaClient:
                     while "\n" in buffer:
                         line, buffer = buffer.split("\n", 1)
                         if line.strip():
+                            # Parse the data to check for silence
+                            try:
+                                values = [int(x) for x in line.split(";") if x.isdigit()]
+                                is_silent = not values or all(v == 0 for v in values)
+                            except ValueError:
+                                is_silent = True
+                            
+                            # Handle hiding logic
+                            if hide_when_inactive:
+                                # Check if media is still playing
+                                if current_time - last_media_check > media_check_interval:
+                                    is_media_playing = self.media_detector.is_media_playing()
+                                    last_media_check = current_time
+                                
+                                if not is_media_playing:
+                                    # No media playing - hide immediately
+                                    if not is_hidden:
+                                        if json_output:
+                                            output = {"text": "", "class": "cava-hidden"}
+                                            print(json.dumps(output), flush=True)
+                                        else:
+                                            print("", flush=True)
+                                        is_hidden = True
+                                    continue
+                                
+                                elif is_silent:
+                                    # Media is playing but audio is silent
+                                    consecutive_silent_count += 1
+                                    if consecutive_silent_count >= silent_threshold and not is_hidden:
+                                        # Hide after extended silence even if media is "playing"
+                                        if json_output:
+                                            output = {"text": "", "class": "cava-hidden"}
+                                            print(json.dumps(output), flush=True)
+                                        else:
+                                            print("", flush=True)
+                                        is_hidden = True
+                                    elif not is_hidden:
+                                        # Show standby mode during brief silence
+                                        standby_output = self.parser._handle_standby_mode(
+                                            standby_mode, bar_chars, width
+                                        )
+                                        if json_output:
+                                            output = {
+                                                "text": standby_output,
+                                                "tooltip": "Cava audio visualizer - silent",
+                                                "class": "cava-silent"
+                                            }
+                                            print(json.dumps(output), flush=True)
+                                        else:
+                                            if standby_output:
+                                                print(standby_output, flush=True)
+                                    continue
+                                
+                                else:
+                                    # Audio activity detected - show and reset counters
+                                    consecutive_silent_count = 0
+                                    is_hidden = False
+
+                            # Format and display the audio data
                             formatted = self.parser.format_data(
                                 line, bar_chars, width, standby_mode
                             )
+                            
                             should_suppress = (
                                 standby_mode == 0 and formatted == ""
                             ) or (standby_mode == "" and formatted == "")
-                            if not should_suppress:
+                            
+                            if not should_suppress and not (hide_when_inactive and is_hidden):
+                                last_output_time = current_time
                                 if json_output:
+                                    css_class = "cava-active" if not is_silent else "cava-standby"
                                     output = {
                                         "text": formatted,
                                         "tooltip": "Cava audio visualizer - active",
+                                        "class": css_class
                                     }
                                     print(json.dumps(output), flush=True)
                                 else:
@@ -891,6 +1065,11 @@ def create_client_parser(subparsers, name, help_text):
         default=None,
         help='Standby mode (0-3 or string): 0=clean (totally hides the module), 1=blank (makes module expand as spaces), 2=full (occupies the module with full bar), 3=low (makes the module display the lowest set bar), ""=displays nothing and compresses the module, string=displays the custom string',
     )
+    parser.add_argument(
+        "--hide-when-inactive",
+        action="store_true",
+        help="Hide the visualizer when no media is playing or after extended silence"
+    )
     if name == "waybar":
         parser.add_argument(
             "--json", action="store_true", help="Output JSON format for waybar tooltips"
@@ -948,6 +1127,7 @@ def main():
         range_val = int(cava_config.get_value("CAVA_RANGE", "15"))
 
         json_output = args.command == "waybar" and hasattr(args, "json") and args.json
+        hide_when_inactive = hasattr(args, "hide_when_inactive") and args.hide_when_inactive
 
         client = CavaClient()
         client.start(
@@ -957,6 +1137,7 @@ def main():
             bars=bars,
             range_val=range_val,
             json_output=json_output,
+            hide_when_inactive=hide_when_inactive,
         )
 
     elif args.command == "status":
