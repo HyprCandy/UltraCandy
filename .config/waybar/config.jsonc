@@ -19,11 +19,12 @@
     "custom/paddw",
     "tray",       	    // system tray
     //"custom/right1",
-    "hyprland/window"
+    "hyprland/window",
+    "custom/cava"           // cava visualizer
   ],
 
   "modules-center": [
-    "rofi",
+    //"rofi",
     "custom/paddc",
     "custom/left2",
     "custom/keybinds",
@@ -121,6 +122,21 @@
     "tooltip": false,
     "min-length": 0,
     "max-length": 0,
+  },
+  
+  // ──────────────────────────────────────────────────────────────┤ cava ├───
+
+  "custom/cava": {
+    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json",
+    "return-type": "json",
+    "icon-size": 6,
+    "spacing": 2,
+    "format": "{}",
+    "restart-interval": 0,
+    "on-click": "python3 ~/.config/waybar/scripts/cava-waybar-wrapper.py reload",
+    "tooltip": false,
+    "min-length": 0,
+    "max-length": 50
   },
   
   // ────────────────────────────────────────────────────────┤ keybinds ├───
