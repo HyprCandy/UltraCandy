@@ -22,52 +22,137 @@ import shlex
 from pathlib import Path
 
 
-class HydeConfig:
-    """Handle Hyde configuration loading and parsing"""
+class CavaConfig:
+    """Handle Cava configuration loading and parsing from ~/.config/cava/config"""
 
     def __init__(self):
         self.config = self._load_config()
 
     def _load_config(self):
-        """Load Hyde configuration from $XDG_STATE_HOME/hyde/config"""
-        state_dir = os.path.expanduser(os.getenv("XDG_STATE_HOME", "~/.local/state"))
-        config_file = os.path.join(state_dir, "hyde", "config")
+        """Load Cava configuration from ~/.config/cava/config"""
+        config_dir = os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config"))
+        config_file = os.path.join(config_dir, "cava", "config")
 
         if not os.path.exists(config_file):
             return {}
 
         config = {}
+        current_section = None
+        
         try:
             with open(config_file, "r") as f:
                 for line in f:
                     line = line.strip()
-                    if line.startswith("export ") and "=" in line:
-                        line = line[7:]
-                        if "=" in line:
-                            key, value = line.split("=", 1)
-                            value = value.strip()
-                            if value.startswith("(") and value.endswith(")"):
-                                # Remove parentheses and split using shlex to respect quotes
-                                value = value[1:-1].strip()
-                                value = shlex.split(value)
-                            else:
-                                value = value.strip("\"'")
-                            config[key] = value
+                    
+                    # Skip empty lines and comments
+                    if not line or line.startswith('#') or line.startswith(';'):
+                        continue
+                    
+                    # Check for section headers [section_name]
+                    if line.startswith('[') and line.endswith(']'):
+                        current_section = line[1:-1].strip()
+                        continue
+                    
+                    # Parse key = value pairs
+                    if '=' in line and current_section:
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip()
+                        
+                        # Store with section prefix (e.g., "general_bars", "input_method")
+                        config_key = f"{current_section}_{key}"
+                        config[config_key] = value
+                        
         except Exception as e:
-            print(f"Warning: Could not load Hyde config: {e}", file=sys.stderr)
+            print(f"Warning: Could not load Cava config: {e}", file=sys.stderr)
 
         return config
 
     def get_value(self, key, default=None):
-        """Get value from Hyde config, falling back to environment, then default"""
-        return self.config.get(key, os.getenv(key, default))
+        """Get value from Cava config, falling back to environment, then default
+        
+        For cava config compatibility, this method maps common cava settings:
+        - CAVA_BARS -> general_bars
+        - CAVA_RANGE -> output_ascii_max_range  
+        - CAVA_CHANNELS -> output_channels
+        - CAVA_REVERSE -> output_reverse
+        """
+        # Map common environment variables to cava config keys
+        key_mapping = {
+            'CAVA_BARS': 'general_bars',
+            'CAVA_RANGE': 'output_ascii_max_range',
+            'CAVA_CHANNELS': 'output_channels', 
+            'CAVA_REVERSE': 'output_reverse',
+            # Add more mappings as needed for specific prefixed versions
+            'CAVA_WAYBAR_BARS': 'general_bars',
+            'CAVA_WAYBAR_RANGE': 'output_ascii_max_range',
+            'CAVA_WAYBAR_CHANNELS': 'output_channels',
+            'CAVA_WAYBAR_REVERSE': 'output_reverse',
+            'CAVA_STDOUT_BARS': 'general_bars',
+            'CAVA_STDOUT_RANGE': 'output_ascii_max_range',
+            'CAVA_STDOUT_CHANNELS': 'output_channels',
+            'CAVA_STDOUT_REVERSE': 'output_reverse',
+            'CAVA_HYPRLOCK_BARS': 'general_bars',
+            'CAVA_HYPRLOCK_RANGE': 'output_ascii_max_range',
+            'CAVA_HYPRLOCK_CHANNELS': 'output_channels',
+            'CAVA_HYPRLOCK_REVERSE': 'output_reverse',
+        }
+        
+        # Check if we have a mapping for this key
+        cava_key = key_mapping.get(key)
+        if cava_key and cava_key in self.config:
+            value = self.config[cava_key]
+            
+            # Convert numeric strings to appropriate types
+            if value.isdigit():
+                return int(value)
+            elif value.lower() in ('true', 'yes', 'on'):
+                return 1
+            elif value.lower() in ('false', 'no', 'off'):
+                return 0
+            else:
+                return value
+        
+        # Fall back to environment variable
+        env_value = os.getenv(key)
+        if env_value is not None:
+            # Try to convert to int if it's numeric
+            if env_value.isdigit():
+                return int(env_value)
+            elif env_value.lower() in ('true', 'yes', 'on'):
+                return 1
+            elif env_value.lower() in ('false', 'no', 'off'):
+                return 0
+            else:
+                return env_value
+        
+        # Return default
+        return default
+
+    def get_cava_value(self, section, key, default=None):
+        """Get a value directly from a specific cava config section"""
+        config_key = f"{section}_{key}"
+        value = self.config.get(config_key)
+        
+        if value is not None:
+            # Convert numeric strings and booleans
+            if value.isdigit():
+                return int(value)
+            elif value.lower() in ('true', 'yes', 'on'):
+                return True
+            elif value.lower() in ('false', 'no', 'off'):
+                return False
+            else:
+                return value
+                
+        return default
 
 
 class CavaDataParser:
     """Handle cava data parsing and formatting"""
 
     @staticmethod
-    def format_data(line, bar_chars="▁▂▃▄▅▆▇█", width=None, standby_mode="", padding=" "):
+    def format_data(line, bar_chars="▁▂▃▄▅▆▇█", width=None, standby_mode="", padding=""):
         """Format cava data with custom bar characters (list or string) and optional padding"""
         line = line.strip()
         if not line:
@@ -121,24 +206,6 @@ class CavaDataParser:
                 result_parts.append(padding)
 
         return "".join(result_parts)
-
-    @staticmethod
-    def _handle_standby_mode(standby_mode, bar_chars, width):
-        """Handle standby mode when no audio activity - matches bash script logic"""
-        if isinstance(standby_mode, str):
-            return standby_mode
-        elif standby_mode == 0:
-            return ""
-        elif standby_mode == 1:
-            return "‎ "
-        elif standby_mode == 2:
-            full_char = bar_chars[-1]
-            return full_char * (width or len(bar_chars))
-        elif standby_mode == 3:
-            low_char = bar_chars[0]
-            return low_char * (width or len(bar_chars))
-        else:
-            return str(standby_mode)
 
     @staticmethod
     def _handle_standby_mode(standby_mode, bar_chars, width):
@@ -366,11 +433,11 @@ class CavaServer:
             except subprocess.TimeoutExpired:
                 self.cava_process.kill()
         # Always use latest config values
-        hyde_config = HydeConfig()
-        bars = int(hyde_config.get_value("CAVA_BARS", 16))
-        range_val = int(hyde_config.get_value("CAVA_RANGE", 15))
-        channels = hyde_config.get_value("CAVA_CHANNELS", "stereo")
-        reverse = hyde_config.get_value("CAVA_REVERSE", 0)
+        cava_config = CavaConfig()
+        bars = int(cava_config.get_value("CAVA_BARS", 16))
+        range_val = int(cava_config.get_value("CAVA_RANGE", 15))
+        channels = cava_config.get_value("CAVA_CHANNELS", "stereo")
+        reverse = cava_config.get_value("CAVA_REVERSE", 0)
         try:
             reverse = int(reverse)
         except Exception:
@@ -390,15 +457,15 @@ class CavaServer:
     def _create_cava_config(
         self, bars=16, range_val=15, channels="stereo", reverse=0, prefix=""
     ):
-        """Create cava configuration file with channels and reverse support, using HydeConfig with or without prefix as appropriate"""
-        hyde_config = HydeConfig()
+        """Create cava configuration file with channels and reverse support, using CavaConfig with or without prefix as appropriate"""
+        cava_config = CavaConfig()
 
         if prefix:
-            config_channels = hyde_config.get_value(f"CAVA_{prefix}_CHANNELS")
-            config_reverse = hyde_config.get_value(f"CAVA_{prefix}_REVERSE")
+            config_channels = cava_config.get_value(f"CAVA_{prefix}_CHANNELS")
+            config_reverse = cava_config.get_value(f"CAVA_{prefix}_REVERSE")
         else:
-            config_channels = hyde_config.get_value("CAVA_CHANNELS")
-            config_reverse = hyde_config.get_value("CAVA_REVERSE")
+            config_channels = cava_config.get_value("CAVA_CHANNELS")
+            config_reverse = cava_config.get_value("CAVA_REVERSE")
         if config_channels in ("mono", "stereo"):
             channels = config_channels
         if config_reverse is not None:
@@ -744,7 +811,7 @@ class CavaClient:
                 pass
 
     @staticmethod
-    def parse_command_config(hyde_config, command, args):
+    def parse_command_config(cava_config, command, args):
         """Parse configuration for a specific command type"""
         prefix = f"CAVA_{command.upper()}"
 
@@ -753,11 +820,11 @@ class CavaClient:
             bar_chars = args.bar_array
         else:
             # Prefer BAR_ARRAY from config if present and is a list
-            bar_array = hyde_config.get_value(f"{prefix}_BAR_ARRAY")
+            bar_array = cava_config.get_value(f"{prefix}_BAR_ARRAY")
             if bar_array and isinstance(bar_array, list):
                 bar_chars = bar_array
             else:
-                bar_chars = args.bar or hyde_config.get_value(
+                bar_chars = args.bar or cava_config.get_value(
                     f"{prefix}_BAR", "▁▂▃▄▅▆▇█"
                 )
                 if isinstance(bar_chars, str):
@@ -766,7 +833,7 @@ class CavaClient:
         width = (
             args.width
             if args.width is not None
-            else int(hyde_config.get_value(f"{prefix}_WIDTH", "0") or 0)
+            else int(cava_config.get_value(f"{prefix}_WIDTH", "0") or 0)
         )
         if not width:
             width = len(bar_chars) if bar_chars else 8
@@ -776,7 +843,7 @@ class CavaClient:
             if isinstance(standby_mode, str) and standby_mode.isdigit():
                 standby_mode = int(standby_mode)
         else:
-            standby_mode = hyde_config.get_value(f"{prefix}_STANDBY", "0")
+            standby_mode = cava_config.get_value(f"{prefix}_STANDBY", "0")
             if standby_mode is None or standby_mode == "":
                 standby_mode = "\n"
             elif isinstance(standby_mode, str) and standby_mode.isdigit():
@@ -871,14 +938,14 @@ def main():
         server.start(args.bars, args.range, args.channels, args.reverse)
 
     elif args.command in ["waybar", "stdout", "hyprlock"]:
-        hyde_config = HydeConfig()
+        cava_config = CavaConfig()
 
         bar_chars, width, standby_mode = CavaClient.parse_command_config(
-            hyde_config, args.command, args
+            cava_config, args.command, args
         )
 
         bars = width
-        range_val = int(hyde_config.get_value("CAVA_RANGE", "15"))
+        range_val = int(cava_config.get_value("CAVA_RANGE", "15"))
 
         json_output = args.command == "waybar" and hasattr(args, "json") and args.json
 
