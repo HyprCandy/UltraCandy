@@ -22,14 +22,14 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: @blur_background;
-  margin-top: 4.5px;
+  background: none;
+  margin-top: 0.0px;
   margin-left: 8.5px;
   margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20px;
   padding: 4.5px;
-  border: 2px solid @inverse_primary;
+  border: 0px solid @inverse_primary;
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
@@ -48,8 +48,9 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────────┤ general ├───
 */
 #custom-theme,
-#window,
 #tray,
+#window,
+#custom-cava,
 #custom-keybinds,
 #custom-weather,
 #custom-player,
@@ -104,7 +105,7 @@ tooltip label {
 */
 #custom-left1 {
   color: @workspaces;
-  background: @transparent;
+  background: transparent;
   margin-bottom: 0;
   padding-left: 2px;
 }
@@ -123,7 +124,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @module-fg;
+  color: @color13;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -132,7 +133,7 @@ tooltip label {
 
 #workspaces button:hover {
   color: @primary;
-  background: @transparent;
+  background: transparent;
   text-shadow: none;
   margin: 2px;
   padding: 0 5px;
@@ -145,12 +146,21 @@ tooltip label {
   padding: 0 5px;
 }
 
+/*#workspaces button.active:hover {
+  color: @primary_fixed_dim;
+  background: @on_primary;
+}*/
+
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @primary;
-  background: @transparent;
+  color: @color13;
+  background: transparent;
   margin: 2px;
   padding: 0 5px;
+}
+
+#workspaces button.persistent:not(.active):not(.empty):hover {
+  color: @hover-fg;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -170,7 +180,7 @@ tooltip label {
 /* ───────────────────────────────────────────────────────────┤ tray ├───
 */
 #tray {
-  background: @on_primary;
+  background: @blur_background;
   border-radius: 20px;
 }
 
@@ -225,6 +235,68 @@ window.popup * {
   margin-left: 6px;
 }
 
+/* ──────────────────────────────────────────────────────────────┤ cava ├───
+*/
+
+#custom-cava {
+  color: @color13;
+  background: transparent;
+  border-radius: 20px;
+  margin-left: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-weight: normal;
+  transition: all 0.3s ease;
+}
+
+/*#custom-cava:hover {
+  color: @primary_fixed_dim;
+  background: transparent;
+}*/
+
+/* When cava is hidden (no media playing) */
+#custom-cava.cava-hidden {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+/* When cava is active (media playing) */
+#custom-cava.cava-active {
+  min-width: 100px;
+  opacity: 1;
+}
+
+/* Alternative styling - more compact */
+/*
+#custom-cava {
+  color: @primary_fixed_dim;
+  background: transparent;
+  border: 1px solid @primary_fixed_dim;
+  border-radius: 10px;
+  margin-left: 4px;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 9px;
+}
+*/
+
+/* Alternative styling - more prominent */
+/*
+#custom-cava {
+  color: @on_primary;
+  background: linear-gradient(45deg, @primary_fixed_dim, @scrim);
+  border-radius: 20px;
+  margin-left: 8px;
+  padding: 4px 12px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+*/
+
 /* ──────────────────────────────────────────────────────────┤ keybinds ├───
 */
 #custom-paddc {
@@ -242,6 +314,10 @@ window.popup * {
   padding: 0 0 0 1px;
 }
 
+#custom-keybinds:hover {
+  color: @hover-fg;
+}
+
 /* ─────────────────────────────────────────────────────────┤ weather ├───
 */
 #custom-left3 {
@@ -253,6 +329,10 @@ window.popup * {
 #custom-weather {
   background: @on_primary;
   padding: 0 0 0 1px;
+}
+
+#custom-weather:hover {
+  color: @hover-fg;
 }
 
 /*#memory.warning {
@@ -280,30 +360,40 @@ window.popup * {
   margin-bottom: -1px;
 }
 
+#custom-player:hover {
+  color: @hover-fg;
+}
+
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
 */
 #custom-left5 {
-  color: @scrim;
-  background: @transparent;
+  color: transparent;
+  background: transparent;
   text-shadow: none;
   margin-bottom: -2px;
-  padding-left: 3px;
+  padding-left: 0px;
 }
 
 #custom-distro {
-  color: @color10;
+  color: @color13;
   /*background: @distro-bg;*/
-  background: @scrim;
+  background: transparent;
+  border-radius: 0px;
   margin: 0 -1px -2px 0;
   padding: 0 0 0 3px;
   text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
 }
 
 #custom-right2 {
-  color: @scrim;
-  background: @transparent;
+  color: transparent;
+  background: transparent;
   text-shadow: none;
   margin-bottom: -2px;
+  padding-right: 0px;
+}
+
+#custom-distro:hover {
+  color: @hover-fg;
 }
 
 /* ─────────────────────────────────────────────────────────────────┤ time ├───
@@ -389,8 +479,10 @@ window.popup * {
 /* ───────────────────────────────────────────────────────────┤ media info ├───
 */
 #mpris {
-  color: @primary_fixed_dim;
+  color: @color13;
   background: @on_primary_fixed_variant;
+  /*font-family: "C059 Bold Italic";
+  font-size: 11px;*/
   padding: 0 8px 0 8px;
   border-radius: 20px;
 }
@@ -471,12 +563,10 @@ window.popup * {
   padding: 0 6px 0 9px;
 }
 
-#custom-power:hover {
+/*#custom-power:hover {
   color: @primary_fixed_dim;
-  background: rgba(255, 255, 255, 0.1);
-  text-shadow: none;
-  box-shadow: none;
-}
+  background: @on_primary;
+}*/
 
 /* ───────────────────────────────────────────────────────────┤ font sizes ├───
 */
