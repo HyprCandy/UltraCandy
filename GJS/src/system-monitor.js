@@ -270,7 +270,7 @@ function createSystemMonitorBox() {
             min-height: 300px;
             padding: 6px;
             box-shadow: 0 2px 12px 0 rgba(0,0,0,0.22);
-            background: linear-gradient(135deg, @source_color 0%, @background 100%);
+            background: linear-gradient(45deg, @source_color 0%, @background 100%);
             background-size: cover;
         }
         .monitor-section {
