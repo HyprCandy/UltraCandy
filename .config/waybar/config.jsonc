@@ -62,16 +62,12 @@
     "tray",       	    // system tray
     "power-profiles-daemon",        // power profiles
 
-    "custom/left6",
     "pulseaudio",           // output device
 
-    "custom/left7",
     "backlight",            // brightness
 
-    "custom/left8",
     "battery",              // battery
 
-    "custom/leftin2",
     "custom/power"          // power button
   ],
 
