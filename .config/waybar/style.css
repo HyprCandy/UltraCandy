@@ -323,6 +323,7 @@ tooltip label {
 }
 
 #clock.time {
+  color: @primary;
   background: @scrim;
   margin-left: -2px;
   padding: 0 3px 0 0;
