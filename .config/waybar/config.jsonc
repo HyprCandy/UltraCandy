@@ -60,6 +60,7 @@
   "modules-right": [
     "hyprland/window",
     "tray",       	    // system tray
+    "power-profiles-daemon",        // power profiles
 
     "custom/left6",
     "pulseaudio",           // output device
@@ -328,8 +329,21 @@
   // ──────────────────────────────────────────────────────────────┤ tray ├───
 
   "tray": {
-    "icon-size": 14,
+    "icon-size": 12,
     "spacing": 6
+  },
+  
+  // ────────────────────────────────────────────────────┤ power-profiles ├───
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "󰠠",
+      "balanced": "󰽣",
+      "power-saver": "󰽥"
+    }
   }, 
 
   // ──────────────────────────────────────────────────────┤ output device ├───
