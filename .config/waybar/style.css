@@ -409,17 +409,6 @@ tooltip label {
   padding-right: 4px;
 }
 
-/* ─────────────────────────────────────────────────┤ power-profiles ├───
-*/
-#power-profiles-daemon {
-  color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
-  margin-left: 6px;
-  border-radius: 30px;
-  padding-left: 6px;
-  padding-right: 8px;
-}
-
 /* ──────────────────────────────────────────────────────────┤ tray popovers ├───
 */
 
@@ -463,6 +452,21 @@ window.popup {
 
 window.popup * {
   font-size: 10px;
+}
+
+/* ─────────────────────────────────────────────────┤ power-profiles ├───
+*/
+#power-profiles-daemon {
+  color: @primary;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 8px;
+}
+
+#power-profiles-daemon:hover {
+  color: @hover-fg;
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -516,6 +520,10 @@ window.popup * {
 
 #battery.charging {
   color: @charging;
+}
+
+#battery:hover {
+  color: @hover-fg;
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
