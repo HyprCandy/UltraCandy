@@ -405,8 +405,8 @@ tooltip label {
   color: @primary;
   background: linear-gradient(180deg, @on_primary, @scrim);
   border-radius: 30px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 /* ─────────────────────────────────────────────────┤ power-profiles ├───
