@@ -48,8 +48,7 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────────┤ general ├───
 */
 #custom-theme,
-#tray,
-#window,
+#mpris,
 #custom-cava,
 #custom-keybinds,
 #custom-weather,
@@ -59,7 +58,9 @@ tooltip label {
 #custom-wifi,
 #bluetooth,
 #custom-update,
-#mpris,
+#window,
+#tray,
+#power-profiles-daemon,
 #pulseaudio,
 #backlight,
 #battery,
@@ -124,7 +125,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @color13;
+  color: @color12;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -149,7 +150,7 @@ tooltip label {
 
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @color13;
+  color: @color12;
   background: transparent;
   margin: 2px;
   padding: 0 5px;
@@ -178,14 +179,14 @@ tooltip label {
 }
 
 #mpris:hover {
-  color: @color13;
+  color: @color12;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
 */
 
 #custom-cava {
-  color: @color13;
+  color: @color12;
   background: transparent;
   border-radius: 20px;
   margin-left: 6px;
@@ -284,7 +285,7 @@ tooltip label {
 }
 
 #custom-distro {
-  color: @color13;
+  color: @color12;
   background: transparent;
   border-radius: 0px;
   margin: 0 -1px -2px 0;
@@ -400,9 +401,21 @@ tooltip label {
 /* ───────────────────────────────────────────────────────────┤ tray ├───
 */
 #tray {
+  color: @primary;
   background: linear-gradient(180deg, @on_primary, @scrim);
   border-radius: 30px;
-  padding-left: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* ─────────────────────────────────────────────────┤ power-profiles ├───
+*/
+#power-profiles-daemon {
+  color: @primary;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 4px;
+  border-radius: 30px;
+  padding-left: 6px;
   padding-right: 8px;
 }
 
