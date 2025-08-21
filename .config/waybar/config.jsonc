@@ -395,7 +395,8 @@
     "tooltip-format-charging": "Charging: {time}",
     "interval": 1,
     "min-length": 6,
-    "max-length": 6
+    "max-length": 6,
+    "on-click": "gjs ~/.ultracandy/GJS/candy-system-monitor.js",
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
