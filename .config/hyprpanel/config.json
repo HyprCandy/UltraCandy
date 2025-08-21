@@ -89,6 +89,7 @@
       ],
       "right": [
         "cava",
+        "updates",
         "hypridle",
         "hyprsunset",
         "weather",
@@ -228,5 +229,8 @@
   "menus.dashboard.shortcuts.left.shortcut3.tooltip": "Candy-Player",
   "menus.dashboard.shortcuts.left.shortcut4.tooltip": "Keybinds",
   "menus.dashboard.shortcuts.left.shortcut4.command": "DRI_PRIME=1 ~/.config/hypr/scripts/keybindings.sh",
-  "menus.dashboard.shortcuts.left.shortcut4.icon": ""
+  "menus.dashboard.shortcuts.left.shortcut4.icon": "",
+  "theme.bar.buttons.modules.updates.enableBorder": false,
+  "bar.customModules.updates.padZero": true,
+  "bar.customModules.updates.label": true
 }
