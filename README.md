@@ -7,11 +7,11 @@
 
 • Automatic idle-inhbitor activated when waybar/hyprpanel is toggled off whenever you want extra screen space since you won't be able to activate it through waybar's/hyprpanel's idle-inhibitor button. This is great for lighter resource usage as well while still being able to keep your device awake.
 
-• Custom control center to easily modify waybar if waybar option is chosen, hyprland windows,the dock, launch hyprpicker, adjust opacty, change dock start icon,enable/disable xray mode  and hyprsunset/hyprshade.
+• Custom control center to easily modify waybar if waybar option is chosen, hyprland windows,the dock, launch hyprpicker, adjust opacty, change dock start icon,enable/disable xray mode  and hyprsunset/hyprshade. (I like to wsitch to islands mode for dark backgrounds and the blurred bar for lighter backgrounds).
 
 • Extensive rofi menus: wifi, bluetooth, application finder, keybinds, clipboard, emoji-picker, glyph-picker
 
-• System-wide color generation for GTK3/4 and QT6 applications plus other Hyprland elements along with other other quality of life settings.
+• System-wide color generation through Matugen for GTK3/4 & QT6 applications plus most of waybar if it's chosen and orofi windows while Wallust themes themes the terminal and parts of waybar.
 
 • The background is also cohesively auto-generated and applied for sddm, rofi, wlogout and hyprlock (GDM backgrounds have to be set manually through the 'GDM Settings' app but it's available as an option).
 
@@ -35,15 +35,14 @@ Just a few of the possible system colors and automatic sddm background applicati
 
 UltraCandy with waybar option plus settings app
 
-Content theme colors
-<img width="1366" height="768" alt="screenshot_20082025_192715" src="https://github.com/user-attachments/assets/cd8dc8eb-374d-4f15-8491-e1ad65db5917" />
-<img width="1366" height="768" alt="screenshot_20082025_193707" src="https://github.com/user-attachments/assets/e3581aa0-6c64-4a30-950f-b95389d1e94f" />
-<img width="1366" height="768" alt="screenshot_20082025_194625" src="https://github.com/user-attachments/assets/a054d8ba-8f68-4d99-b0a4-13869b37439b" />
-<img width="1366" height="768" alt="screenshot_20082025_195453" src="https://github.com/user-attachments/assets/db3449c1-57f6-44d7-a662-db404ad7a43b" />
+Matugen Content theme colors + Wallust
+<img width="1366" height="768" alt="screenshot_21082025_034752" src="https://github.com/user-attachments/assets/73dce27b-99f9-4c31-860a-9dd2d4fa2cdb" />
+<img width="1366" height="768" alt="screenshot_21082025_033239" src="https://github.com/user-attachments/assets/b31df7da-0520-444a-9b6c-623dc435b86c" />
+<img width="1366" height="768" alt="screenshot_21082025_033113" src="https://github.com/user-attachments/assets/6fd6bcb0-4065-4a02-88bb-79ad93fcb4e2" />
+<img width="1366" height="768" alt="screenshot_21082025_033502" src="https://github.com/user-attachments/assets/b5964992-f08a-4a5b-8849-7dd14b38e728" />
 
-[NOTE]Monochrome theme apply's an onyx/graphite theme to every QT6 and GTK3/4 window on all backgrounds
-<img width="1366" height="768" alt="screenshot_20082025_200217" src="https://github.com/user-attachments/assets/ed98269b-952b-4eb9-9f6c-2d6b505e8cf1" />
-
+[NOTE]Matugen-Monochrome theme apply's an onyx/graphite theme to every QT6 and GTK3/4 window on all backgrounds
+<img width="1366" height="768" alt="screenshot_21082025_033705" src="https://github.com/user-attachments/assets/31c62d0f-1f78-4511-bb5e-c4bca52ae188" />
 
 UltraCandy with hyprpanel option plus settings app
 
@@ -53,15 +52,15 @@ UltraCandy with hyprpanel option plus settings app
 
 ## Control Center Plus Media-Player and Weather Widgets
 
-<img width="1366" height="768" alt="screenshot_20082025_201014" src="https://github.com/user-attachments/assets/87270632-c8f2-4922-8f22-bfaaaef31671" />
+<img width="1366" height="768" alt="screenshot_21082025_032453" src="https://github.com/user-attachments/assets/0caa4218-a56b-4769-bf33-7911415b61a2" />
 
 
 ## Custom Fish and Zsh with Starship
 You can customize them further adding even more plugins and personal aliases
 <img width="1366" height="768" alt="screenshot_19082025_211247" src="https://github.com/user-attachments/assets/a8e65373-0465-47ca-abc6-ca57b1c534dd" />
 Stylized group mode
-<img width="1366" height="768" alt="screenshot_20082025_105908" src="https://github.com/user-attachments/assets/f904e5e9-3ed2-43f1-a074-3ef0b9956539" />
-<img width="1366" height="768" alt="screenshot_20082025_105923" src="https://github.com/user-attachments/assets/98beb4ee-af29-4ba4-bc94-6ce451c480f4" />
+<img width="1365" height="694" alt="screenshot_21082025_035455" src="https://github.com/user-attachments/assets/7447d849-0de3-4b9b-8a6e-fd086dba4343" />
+<img width="1366" height="692" alt="screenshot_21082025_035524" src="https://github.com/user-attachments/assets/f00da4ac-9bad-47ce-9d3e-71c08b8a575b" />
 
 
 ## Hyprlock
