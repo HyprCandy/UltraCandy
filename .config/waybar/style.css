@@ -414,7 +414,7 @@ tooltip label {
 #power-profiles-daemon {
   color: @primary;
   background: linear-gradient(180deg, @on_primary, @scrim);
-  margin-left: 4px;
+  margin-left: 6px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 8px;
@@ -467,16 +467,14 @@ window.popup * {
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
 */
-#custom-left6 {
-  color: @scrim;
-  background: @transparent;
-  padding-left: 3px;
-  margin-left: 0px;
-}
 
 #pulseaudio {
   color: @primary;
-  background: @scrim;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 #pulseaudio:hover {
@@ -485,28 +483,27 @@ window.popup * {
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
 */
-#custom-left7 {
-  color: @on_primary;
-  background: @scrim;
-  padding-left: 2px;
-}
 
 #backlight {
   color: @primary;
-  background: @on_primary;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 4px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ battery ├───
 */
-#custom-left8 {
-  color: @on_primary_fixed_variant;
-  background: @on_primary;
-  padding-left: 2px;
-}
 
 #battery {
   color: @primary;
-  background: @on_primary_fixed_variant;
+  background: linear-gradient(180deg, @on_primary, @scrim);
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 #battery.warning {
