@@ -141,7 +141,7 @@ tooltip label {
 
 #workspaces button.active {
   color: @on_primary;
-  background: @primary;
+  background: @primary_fixed_dim;
   margin: 2px;
   padding: 0 5px;
 }
