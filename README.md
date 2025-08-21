@@ -33,6 +33,10 @@ followed by:
 ```shell
 bash UltraCandy_installer.sh
 ```
+To update dotfiles run this in the terminal:
+```shell
+ultracandy
+```
 
 ➡ ❣️ If you like my project, your [support](https://ko-fi.com/ianmking) will mean a lot ⬅
 You can also grab bits and bops from the [main repo](https://github.com/HyprCandy/UltraCandy.git) and help spread the word of this cohesive Hyprland setup 🙂.
