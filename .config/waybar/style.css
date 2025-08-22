@@ -409,6 +409,10 @@ tooltip label {
   padding-right: 4px;
 }
 
+#tray:hover {
+  color: @hover-fg;
+}
+
 /* ──────────────────────────────────────────────────────────┤ tray popovers ├───
 */
 
