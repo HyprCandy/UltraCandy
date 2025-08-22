@@ -99,7 +99,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
@@ -231,7 +231,7 @@ tooltip label {
 }
 
 #custom-keybinds:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ─────────────────────────────────────────────────────────┤ weather ├───
@@ -249,7 +249,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
@@ -271,7 +271,7 @@ tooltip label {
 }
 
 #custom-player:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
@@ -319,7 +319,7 @@ tooltip label {
 }
 
 #idle_inhibitor:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 #clock.time {
@@ -342,7 +342,7 @@ tooltip label {
 }
 
 #clock.date:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 #custom-right4 {
@@ -359,7 +359,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
@@ -371,7 +371,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ────────────────────────────────────────────────────────┤ system update ├───
@@ -383,7 +383,7 @@ tooltip label {
 }
 
 #custom-update:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 #custom-right5 {
@@ -407,10 +407,6 @@ tooltip label {
   border-radius: 30px;
   padding-left: 4px;
   padding-right: 4px;
-}
-
-#tray:hover {
-  color: @hover-fg;
 }
 
 /* ──────────────────────────────────────────────────────────┤ tray popovers ├───
@@ -470,7 +466,7 @@ window.popup * {
 }
 
 #power-profiles-daemon:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -486,7 +482,7 @@ window.popup * {
 }
 
 #pulseaudio:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
@@ -527,7 +523,7 @@ window.popup * {
 }
 
 #battery:hover {
-  color: @hover-fg;
+  color: @inverse_primary
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
