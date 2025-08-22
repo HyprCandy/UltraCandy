@@ -302,7 +302,7 @@ tooltip label {
 }
 
 #custom-distro:hover {
-  color: @hover-fg;
+  color: @primary;
 }
 
 /* ─────────────────────────────────────────────────────────────────┤ time ├───
