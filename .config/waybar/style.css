@@ -497,6 +497,10 @@ window.popup * {
   padding-right: 6px;
 }
 
+#backlight:hover {
+  color: @color12
+}
+
 /* ──────────────────────────────────────────────────────────────┤ battery ├───
 */
 
