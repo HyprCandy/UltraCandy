@@ -99,7 +99,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
@@ -231,7 +231,7 @@ tooltip label {
 }
 
 #custom-keybinds:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ─────────────────────────────────────────────────────────┤ weather ├───
@@ -249,7 +249,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
@@ -271,7 +271,7 @@ tooltip label {
 }
 
 #custom-player:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
@@ -319,7 +319,7 @@ tooltip label {
 }
 
 #idle_inhibitor:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 #clock.time {
@@ -342,7 +342,7 @@ tooltip label {
 }
 
 #clock.date:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 #custom-right4 {
@@ -359,7 +359,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
@@ -371,7 +371,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ────────────────────────────────────────────────────────┤ system update ├───
@@ -383,7 +383,7 @@ tooltip label {
 }
 
 #custom-update:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 #custom-right5 {
@@ -466,7 +466,7 @@ window.popup * {
 }
 
 #power-profiles-daemon:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -482,7 +482,7 @@ window.popup * {
 }
 
 #pulseaudio:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
@@ -523,7 +523,7 @@ window.popup * {
 }
 
 #battery:hover {
-  color: @inverse_primary
+  color: @color12
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
