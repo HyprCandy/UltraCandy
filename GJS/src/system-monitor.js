@@ -15,10 +15,14 @@ let systemData = {
     network: { rx: 0, tx: 0, rxTotal: 0, txTotal: 0 },
     processes: [],
     uptime: 0,
-    loadAvg: [0, 0, 0]
+    loadAvg: [0, 0, 0],
+    temperature: { cpu: 0, available: false }
 };
 
-// Data collection functions
+// Add this variable at the top with other system data
+let previousCPUStats = null;
+
+// Replace your getCPUInfo function with this corrected version
 function getCPUInfo() {
     try {
         let [ok, contents] = GLib.file_get_contents('/proc/stat');
@@ -33,8 +37,29 @@ function getCPUInfo() {
             let nice = parseInt(match[2]);
             let system = parseInt(match[3]);
             let idle = parseInt(match[4]);
-            let total = user + nice + system + idle;
-            let usage = total > 0 ? Math.round(((total - idle) / total) * 100) : 0;
+            
+            let currentStats = {
+                user: user,
+                nice: nice,
+                system: system,
+                idle: idle,
+                total: user + nice + system + idle
+            };
+            
+            let usage = 0;
+            
+            // Calculate usage only if we have previous stats
+            if (previousCPUStats) {
+                let totalDiff = currentStats.total - previousCPUStats.total;
+                let idleDiff = currentStats.idle - previousCPUStats.idle;
+                
+                if (totalDiff > 0) {
+                    usage = Math.round(((totalDiff - idleDiff) / totalDiff) * 100);
+                }
+            }
+            
+            // Store current stats for next calculation
+            previousCPUStats = currentStats;
             
             return { usage: usage, cores: [] };
         }
@@ -42,6 +67,105 @@ function getCPUInfo() {
         print('Error reading CPU info:', e);
     }
     return { usage: 0, cores: [] };
+}
+
+function getTemperatureInfo() {
+    let temps = [];
+    
+    try {
+        // Try to read from thermal zones (most common on modern systems)
+        let thermalZones = [];
+        for (let i = 0; i < 10; i++) { // Check up to 10 thermal zones
+            let thermalPath = `/sys/class/thermal/thermal_zone${i}/temp`;
+            let typePath = `/sys/class/thermal/thermal_zone${i}/type`;
+            
+            try {
+                let [tempOk, tempContents] = GLib.file_get_contents(thermalPath);
+                let [typeOk, typeContents] = GLib.file_get_contents(typePath);
+                
+                if (tempOk && typeOk) {
+                    let tempMilliC = parseInt(imports.byteArray.toString(tempContents).trim());
+                    let type = imports.byteArray.toString(typeContents).trim();
+                    let tempC = tempMilliC / 1000;
+                    
+                    // Filter out unrealistic temperatures
+                    if (tempC > 0 && tempC < 150) {
+                        thermalZones.push({ type: type, temp: tempC });
+                    }
+                }
+            } catch (e) {
+                // Thermal zone doesn't exist, continue
+                break;
+            }
+        }
+        
+        // Find CPU temperature from thermal zones
+        for (let zone of thermalZones) {
+            if (zone.type.toLowerCase().includes('cpu') || 
+                zone.type.toLowerCase().includes('core') ||
+                zone.type.toLowerCase().includes('x86_pkg_temp')) {
+                return { cpu: Math.round(zone.temp), available: true };
+            }
+        }
+        
+        // If no CPU temp found, use the first available temperature
+        if (thermalZones.length > 0) {
+            return { cpu: Math.round(thermalZones[0].temp), available: true };
+        }
+        
+    } catch (e) {
+        print('Error reading thermal zones:', e);
+    }
+    
+    try {
+        // Fallback: try lm-sensors via sensors command
+        let [ok, stdout] = GLib.spawn_command_line_sync('sensors -A');
+        if (ok) {
+            let output = imports.byteArray.toString(stdout);
+            let lines = output.split('\n');
+            
+            for (let line of lines) {
+                // Look for CPU temperature patterns
+                if (line.includes('Core') || line.includes('CPU') || line.includes('Tctl')) {
+                    let match = line.match(/([+-]?\d+\.?\d*).?°C/);
+                    if (match) {
+                        let temp = parseFloat(match[1]);
+                        if (temp > 0 && temp < 150) {
+                            return { cpu: Math.round(temp), available: true };
+                        }
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        print('Error reading sensors:', e);
+    }
+    
+    try {
+        // Another fallback: try hwmon
+        for (let i = 0; i < 5; i++) {
+            let tempPath = `/sys/class/hwmon/hwmon${i}/temp1_input`;
+            let labelPath = `/sys/class/hwmon/hwmon${i}/temp1_label`;
+            
+            try {
+                let [tempOk, tempContents] = GLib.file_get_contents(tempPath);
+                if (tempOk) {
+                    let tempMilliC = parseInt(imports.byteArray.toString(tempContents).trim());
+                    let tempC = tempMilliC / 1000;
+                    
+                    if (tempC > 0 && tempC < 150) {
+                        return { cpu: Math.round(tempC), available: true };
+                    }
+                }
+            } catch (e) {
+                // Continue to next hwmon
+            }
+        }
+    } catch (e) {
+        print('Error reading hwmon:', e);
+    }
+    
+    return { cpu: 0, available: false };
 }
 
 function getMemoryInfo() {
@@ -198,6 +322,7 @@ function updateSystemData() {
     systemData.processes = getProcessList();
     systemData.uptime = getSystemUptime();
     systemData.loadAvg = getLoadAverage();
+    systemData.temperature = getTemperatureInfo(); 
 }
 
 function formatBytes(bytes) {
@@ -274,7 +399,8 @@ function createSystemMonitorBox() {
             background-size: cover;
         }
         .monitor-section {
-            background: rgba(255, 255, 255, 0.05);
+            //background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(45deg, @source_color 0%, @background 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             padding: 4px;
@@ -284,14 +410,14 @@ function createSystemMonitorBox() {
             font-size: 1em;
             font-weight: 700;
             color: @primary_fixed_dim;
-            text-shadow: 0 0 4px @source_color;
+            text-shadow: 0 0 4px @background;
             margin-bottom: 2px;
         }
         .monitor-value {
             font-size: 1em;
             font-weight: 600;
             color: #ffffff;
-            text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 0 3px @background;
         }
         .monitor-label {
             font-size: 0.85em;
@@ -307,15 +433,15 @@ function createSystemMonitorBox() {
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .high-usage {
-            background: rgba(255, 107, 107, 0.2);
+            background: rgba(255, 107, 107, 0.5);
             border-color: rgba(255, 107, 107, 0.4);
         }
         .medium-usage {
-            background: rgba(255, 193, 7, 0.2);
+            background: rgba(255, 193, 7, 0.5);
             border-color: rgba(255, 193, 7, 0.4);
         }
         .low-usage {
-            background: rgba(76, 175, 80, 0.2);
+            background: rgba(76, 175, 80, 0.5);
             border-color: rgba(76, 175, 80, 0.4);
         }
         .progress-bar {
@@ -323,7 +449,7 @@ function createSystemMonitorBox() {
             margin: 4px 0;
         }
         .progress-bar progressbar {
-            background-color: @source_color;
+            background: linear-gradient(45deg, @on_primary 0%, @scrim 100%);
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
         .progress-bar progressbar trough {
@@ -331,7 +457,7 @@ function createSystemMonitorBox() {
             border-radius: 4px;
         }
         .progress-bar progressbar fill {
-            background-color: @primary;
+            background: linear-gradient(45deg, @on_primary 0%, @scrim 100%);
             border-radius: 4px;
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
         }
@@ -429,6 +555,28 @@ function createSystemMonitorBox() {
     memorySection.append(memoryProgress);
     
     mainBox.append(memorySection);
+    
+    // Temperature Section - Compact (add after memory section)
+    const temperatureSection = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        spacing: 2
+    });
+    temperatureSection.add_css_class('monitor-section');
+    
+    const temperatureTitle = new Gtk.Label({ label: 'Temperature', halign: Gtk.Align.START });
+    temperatureTitle.add_css_class('monitor-title');
+    
+    const temperatureLabel = new Gtk.Label({ label: '--°C', halign: Gtk.Align.START });
+    temperatureLabel.add_css_class('monitor-value');
+    
+    const temperatureStatusLabel = new Gtk.Label({ label: 'CPU Temperature', halign: Gtk.Align.START });
+    temperatureStatusLabel.add_css_class('monitor-label');
+    
+    temperatureSection.append(temperatureTitle);
+    temperatureSection.append(temperatureLabel);
+    temperatureSection.append(temperatureStatusLabel);
+    
+    mainBox.append(temperatureSection);
 
     // System Info Section - Compact
     const sysInfoSection = new Gtk.Box({
@@ -486,6 +634,27 @@ function createSystemMonitorBox() {
         memoryUsageLabel.set_label(`${percentage}%`);
         memoryProgress.set_fraction(percentage / 100.0);
     }
+    
+    function updateTemperatureDisplay() {
+        if (systemData.temperature.available) {
+            temperatureLabel.set_label(`${systemData.temperature.cpu}°C`);
+            
+            // Color code based on temperature
+            if (systemData.temperature.cpu > 80) {
+                temperatureStatusLabel.set_label('CPU: Critical 󰈸');
+                temperatureLabel.add_css_class('high-usage');
+            } else if (systemData.temperature.cpu > 65) {
+                temperatureStatusLabel.set_label('CPU: Hot ');
+                temperatureLabel.add_css_class('medium-usage');
+            } else {
+                temperatureStatusLabel.set_label('CPU: Normal ');
+                temperatureLabel.add_css_class('low-usage');
+            }
+        } else {
+            temperatureLabel.set_label('N/A');
+            temperatureStatusLabel.set_label('CPU: Unavailable');
+        }
+    }
 
     function updateSystemInfoDisplay() {
         // Show main disk usage (root filesystem)
@@ -519,6 +688,7 @@ function createSystemMonitorBox() {
         updateSystemData();
         updateCPUDisplay();
         updateMemoryDisplay();
+        updateTemperatureDisplay();
         updateSystemInfoDisplay();
         updateProcessDisplay();
     }
