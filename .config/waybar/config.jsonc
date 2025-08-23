@@ -198,7 +198,11 @@
   // ──────────────────────────────────────────────────────────────┤ distro ├───
 
   "custom/distro": {
-    "format": " ",
+    "format": "{icon}",
+    "icon-size": 12,
+    "format-icons": {
+      "default": " ",
+    },
     "tooltip": true,
     "tooltip-format": "Candy-Settings",
     "on-click": "gjs ~/.ultracandy/GJS/candy-main.js"
