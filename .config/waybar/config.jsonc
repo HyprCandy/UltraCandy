@@ -152,7 +152,7 @@
     "format": " ",
     "tooltip": true,
     "tooltip-format": "Weather",
-    "on-click": "gjs ~/.ultracandy/GJS/weather-main.js",
+    "on-click": "~/.ultracandy/GJS/toggle-weather-widget.sh",
     "min-length": 7,
     "max-length": 7
   },
@@ -163,7 +163,7 @@
     "format": "󰝚 ",
     "tooltip": true,
     "tooltip-format": "Media Player",
-    "on-click": "gjs ~/.ultracandy/GJS/media-main.js",
+    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
     "min-length": 7,
     "max-length": 7
   },
@@ -205,7 +205,7 @@
     },
     "tooltip": true,
     "tooltip-format": "Candy-Settings",
-    "on-click": "gjs ~/.ultracandy/GJS/candy-main.js"
+    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh"
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
@@ -396,7 +396,7 @@
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
-    "on-click": "gjs ~/.ultracandy/GJS/candy-system-monitor.js",
+    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
