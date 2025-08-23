@@ -433,15 +433,15 @@ function createSystemMonitorBox() {
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .high-usage {
-            background: rgba(255, 107, 107, 0.5);
+            background: rgba(255, 107, 107, 0.2);
             border-color: rgba(255, 107, 107, 0.4);
         }
         .medium-usage {
-            background: rgba(255, 193, 7, 0.5);
+            background: rgba(255, 193, 7, 0.2);
             border-color: rgba(255, 193, 7, 0.4);
         }
         .low-usage {
-            background: rgba(76, 175, 80, 0.5);
+            background: rgba(76, 175, 80, 0.2);
             border-color: rgba(76, 175, 80, 0.4);
         }
         .progress-bar {
