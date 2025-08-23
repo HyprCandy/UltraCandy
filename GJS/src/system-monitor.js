@@ -449,7 +449,7 @@ function createSystemMonitorBox() {
             margin: 4px 0;
         }
         .progress-bar progressbar {
-            background: linear-gradient(45deg, @on_primary 0%, @scrim 100%);
+            background: linear-gradient(45deg, @source_color 0%, @scrim 100%);
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
         }
         .progress-bar progressbar trough {
@@ -457,7 +457,7 @@ function createSystemMonitorBox() {
             border-radius: 4px;
         }
         .progress-bar progressbar fill {
-            background: linear-gradient(45deg, @on_primary 0%, @scrim 100%);
+            background: linear-gradient(45deg, @source_color 0%, @scrim 100%);
             border-radius: 4px;
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
         }
