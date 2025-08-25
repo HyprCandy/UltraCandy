@@ -34,7 +34,7 @@ configuration {
 @theme "~/.config/rofi/colors.rasi"
 
 /* ---- Load wallpaper ---- */
-@import "~/.config/hyprcandy/cache/current_wallpaper.rasi"
+@import "~/.config/hyprcandy/cache/current_wallpaper_height.rasi"
 
 /* ---- Border color ---- */
 @import "~/.config/rofi/rofi.rasi"
@@ -54,7 +54,7 @@ configuration {
 
 // Main //
 window {
-    width:                        45em;
+    width:                        35em;
     height:                       36em;
     x-offset:                     0em;
     y-offset:                     2em;
