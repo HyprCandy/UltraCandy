@@ -546,7 +546,7 @@ window.popup * {
 }
 
 #custom-power {
-  color: @color1;
+  color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border: 1.5px solid @primary_fixed_dim;
   margin-left: 0px;
