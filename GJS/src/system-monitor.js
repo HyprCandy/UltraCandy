@@ -400,7 +400,7 @@ function createSystemMonitorBox() {
         }
         .monitor-section {
             //background: rgba(255, 255, 255, 0.05);
-            background: linear-gradient(45deg, @source_color 0%, @background 100%);
+            background: linear-gradient(45deg, @blur_background 0%, @background 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             padding: 4px;
@@ -640,7 +640,7 @@ function createSystemMonitorBox() {
             temperatureLabel.set_label(`${systemData.temperature.cpu}°C`);
             
             // Color code based on temperature
-            if (systemData.temperature.cpu > 80) {
+            if (systemData.temperature.cpu > 90) {
                 temperatureStatusLabel.set_label('CPU: Critical 󰈸');
                 temperatureLabel.add_css_class('high-usage');
             } else if (systemData.temperature.cpu > 65) {
