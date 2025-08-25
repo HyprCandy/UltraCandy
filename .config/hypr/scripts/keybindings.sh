@@ -158,8 +158,8 @@ parse_keybinds() {
                 action=$(echo "$action" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
                 
                 # Handle variables like $mainMod
-                display_modifier=$(echo "$modifier" | sed -e 's/\$mainMod/󰘳/' -e 's/SUPER/󰘳/' -e 's/ALT/Alt/' -e 's/CTRL/Ctrl/' -e 's/SHIFT/Shift/')
-                
+                display_modifier=$(echo "$modifier" | sed -e 's/\$mainMod//' -e 's/SUPER//' -e 's/ALT/Alt/' -e 's/CTRL/Ctrl/' -e 's/SHIFT/Shift/')
+                #󰘳
                 # Format key for better display
                 display_key="$key"
                 if [[ "$bind_type" == "bindm" ]]; then
@@ -174,9 +174,9 @@ parse_keybinds() {
                 
                 # Add category if we have one
                 if [[ -n "$current_category" ]]; then
-                    printf "%-20s │ %-15s │ %-30s │ %s\n" "$display_modifier" "$display_key" "$display_action" "$current_category" >> "$temp_file"
+                    printf "%-5s │ %-5s │ %-5s │ %s\n" "$display_modifier" "$display_key" "$display_action" "$current_category" >> "$temp_file"
                 else
-                    printf "%-20s │ %-15s │ %s\n" "$display_modifier" "$display_key" "$display_action" >> "$temp_file"
+                    printf "%-5s │ %-5s │ %s\n" "$display_modifier" "$display_key" "$display_action" >> "$temp_file"
                 fi
             fi
         fi
@@ -194,16 +194,16 @@ parse_keybinds() {
     
     # Add header
     {
-        echo "🎮 Hyprland Keybindings"
-        echo "════════════════════════════════════════════════════════════════════════════════"
+        echo "🎮 Hyprland Keybindings |  is the SUPER key"
+        echo "═════════════════════════════════════════════════════════════"
         if grep -q "│.*│.*│.*│" "$temp_file"; then
-            printf "%-20s │ %-15s │ %-30s │ %s\n" "Modifier" "Key" "Action" "Category"
+            printf "%-5s │ %-5s │ %-5s │ %s\n" "Modifier" "Key" "Action" "Category"
         else
-            printf "%-20s │ %-15s │ %s\n" "Modifier" "Key" "Action"
+            printf "%-5s │ %-5s │ %s\n" "Modifier" "Key" "Action"
         fi
-        echo "════════════════════════════════════════════════════════════════════════════════"
+        echo "═════════════════════════════════════════════════════════════"
         cat "$temp_file"
-        echo "════════════════════════════════════════════════════════════════════════════════"
+        echo "═════════════════════════════════════════════════════════════"
         echo "Total keybinds: $(wc -l < "$temp_file")"
     } > "${temp_file}.formatted"
     
@@ -270,7 +270,7 @@ show_in_terminal() {
                 fi
                 
                 # Format the line with colors
-                printf "%-20s ${YELLOW}│${RESET} %-15s ${YELLOW}│${RESET} %s\n" "$modifier" "$key" "$action"
+                printf "%-5s ${YELLOW}│${RESET} %-15s ${YELLOW}│${RESET} %s\n" "$modifier" "$key" "$action"
             else
                 echo "$line"
             fi
@@ -368,7 +368,7 @@ if [[ -n "$CATEGORY_FILTER" || -n "$SEARCH_FILTER" ]]; then
     
     # Add footer with count
     {
-        echo "════════════════════════════════════════════════════════════════════════════════"
+        echo "═════════════════════════════════════════════════════════════"
         echo "Filtered keybinds: $(tail -n +7 "$FILTERED_FILE" | grep -v "════" | wc -l)"
     } >> "$FILTERED_FILE"
     
