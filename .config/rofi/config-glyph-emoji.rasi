@@ -34,7 +34,7 @@ configuration {
 @theme "~/.config/rofi/colors.rasi"
 
 /* ---- Load wallpaper ---- */
-@import "~/.config/hyprcandy/cache/current_wallpaper.rasi"
+@import "~/.config/hyprcandy/cache/current_wallpaper_height.rasi"
 
 /* ---- Border color ---- */
 @import "~/.config/rofi/rofi.rasi"
