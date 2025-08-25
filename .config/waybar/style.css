@@ -36,7 +36,7 @@ window#waybar > box {
 */
 tooltip {
   background: @on_primary;
-  border: 1.5px solid @source_color;
+  border: 1.5px solid @color1;
   border-radius: 8px;
 }
 
@@ -100,7 +100,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
@@ -113,7 +113,7 @@ tooltip label {
 }
 
 #workspaces {
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 0px;
@@ -126,7 +126,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @color6;
+  color: @color1;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -142,23 +142,28 @@ tooltip label {
 }
 
 #workspaces button.active {
-  color: @on_primary;
-  background: @primary_fixed_dim;
+  /*color: @on_primary;
+  background: @primary_fixed_dim;*/
+  color: @primary;
+  background: linear-gradient(0deg, @inverse_primary, @scrim);
   margin: 2px;
   padding: 0 5px;
 }
 
+#workspaces button.active:hover {
+  color: @color1;
+}
 
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @color6;
+  color: @primary;
   background: transparent;
   margin: 2px;
   padding: 0 5px;
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @primary;
+  color: @color1;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -172,7 +177,7 @@ tooltip label {
 */
 #mpris {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 0px;
   padding-left: 8px;
   padding-right: 4px;
@@ -180,14 +185,14 @@ tooltip label {
 }
 
 #mpris:hover {
-  color: @color6;
+  color: @color1;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
 */
 
 #custom-cava {
-  color: @color6;
+  color: @color1;
   background: transparent;
   border-radius: 20px;
   margin-left: 6px;
@@ -232,7 +237,7 @@ tooltip label {
 }
 
 #custom-keybinds:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ─────────────────────────────────────────────────────────┤ weather ├───
@@ -250,7 +255,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
@@ -272,7 +277,7 @@ tooltip label {
 }
 
 #custom-player:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
@@ -286,8 +291,8 @@ tooltip label {
 }
 
 #custom-distro {
-  color: @color6;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  color: @color1;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 4px;
   padding-right: 8px;
@@ -321,7 +326,7 @@ tooltip label {
 }
 
 #idle_inhibitor:hover {
-  color: @color6
+  color: @color1
 }
 
 #clock.time {
@@ -344,7 +349,7 @@ tooltip label {
 }
 
 #clock.date:hover {
-  color: @color6
+  color: @color1
 }
 
 #custom-right4 {
@@ -361,7 +366,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
@@ -373,7 +378,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ────────────────────────────────────────────────────────┤ system update ├───
@@ -385,7 +390,7 @@ tooltip label {
 }
 
 #custom-update:hover {
-  color: @color6
+  color: @color1
 }
 
 #custom-right5 {
@@ -405,7 +410,7 @@ tooltip label {
 */
 #tray {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 4px;
   padding-right: 4px;
@@ -460,7 +465,7 @@ window.popup * {
 */
 #power-profiles-daemon {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
   padding-left: 6px;
@@ -468,7 +473,7 @@ window.popup * {
 }
 
 #power-profiles-daemon:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -476,7 +481,7 @@ window.popup * {
 
 #pulseaudio {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
   padding-left: 6px;
@@ -484,7 +489,7 @@ window.popup * {
 }
 
 #pulseaudio:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
@@ -492,7 +497,7 @@ window.popup * {
 
 #backlight {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 4px;
   border-radius: 30px;
   padding-left: 6px;
@@ -500,7 +505,7 @@ window.popup * {
 }
 
 #backlight:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ──────────────────────────────────────────────────────────────┤ battery ├───
@@ -508,7 +513,7 @@ window.popup * {
 
 #battery {
   color: @primary;
-  background: linear-gradient(180deg, @on_primary, @scrim);
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   margin-right: 6px;
   border-radius: 30px;
@@ -529,7 +534,7 @@ window.popup * {
 }
 
 #battery:hover {
-  color: @color6
+  color: @color1
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
@@ -541,19 +546,25 @@ window.popup * {
 }
 
 #custom-power {
-  color: @on_primary;
-  background: @primary_fixed_dim;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.0);
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.0);
-  border-radius: 10px;
-  margin: 2px 2px 2px 0px;
-  padding: 0 6px 0 9px;
+  color: @color1;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  border: 1.5px solid @primary_fixed_dim;
+  margin-left: 0px;
+  border-radius: 30px;
+  padding-left: 8px;
+  padding-right: 4px;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
 }
 
-/*#custom-power:hover {
-  color: @primary_fixed_dim;
-  background: @on_primary;
-}*/
+#custom-power:hover {
+  /*color: @on_primary;
+  background: @primary_fixed_dim;
+  border: 1.5px solid @on_primary;*/
+  color: @primary;
+  background: linear-gradient(0deg, @inverse_primary, @scrim);
+  border: 1.5px solid @primary_fixed_dim;
+}
 
 /* ───────────────────────────────────────────────────────────┤ font sizes ├───
 */
@@ -615,42 +626,5 @@ tooltip label,
 #custom-right2 {
   font-size: 15.68px;
 }
-
-/*
-  Adjust these properties as well to keep the design consistent.
-*/
-
-/* ───────────────────────────────────────────────────────────┤ workspaces ├───
-*/
-/*#workspaces button {
-  border-radius: 8px;
-  padding: 0 5px;
-}
-
-#workspaces button.active {
-  padding: 0 5px;
-}*/
-
-/* ─────────────────────────────────────────────────────────┤ power button ├───
-*/
-#custom-power {
-  border-radius: 10px;
-  padding: 0 6px 0 9px;
-}
-
-/*
-  NOTE: If your changes don’t take effect, they might be overridden by
-  `animation.css`.
-
-  To fix this, copy your updated font sizes from this file and paste them into
-  the corresponding `*_expand` keyframes.
-
-  For example, if you change the font size of the distro icon, update it in
-  `distro_expand`.
-
-  - distro icon → `distro_expand` (line 137)
-  - power button → `power_expand` (line 152)
-  - all other modules → `module_expand` (line 166)
-*/
 
 @import "colors-wallust.css";
