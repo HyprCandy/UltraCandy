@@ -36,7 +36,7 @@ window#waybar > box {
 */
 tooltip {
   background: @on_primary;
-  border: 1.5px solid @color1;
+  border: 1.5px solid @color6;
   border-radius: 8px;
 }
 
@@ -100,7 +100,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
@@ -126,7 +126,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @color1;
+  color: @color6;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -151,7 +151,7 @@ tooltip label {
 }
 
 #workspaces button.active:hover {
-  color: @color1;
+  color: @color6;
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -163,7 +163,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @color1;
+  color: @color6;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -185,14 +185,14 @@ tooltip label {
 }
 
 #mpris:hover {
-  color: @color1;
+  color: @color6;
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
 */
 
 #custom-cava {
-  color: @color1;
+  color: @color6;
   background: transparent;
   border-radius: 20px;
   margin-left: 6px;
@@ -237,7 +237,7 @@ tooltip label {
 }
 
 #custom-keybinds:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ─────────────────────────────────────────────────────────┤ weather ├───
@@ -255,7 +255,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
@@ -277,7 +277,7 @@ tooltip label {
 }
 
 #custom-player:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
@@ -291,7 +291,7 @@ tooltip label {
 }
 
 #custom-distro {
-  color: @color1;
+  color: @color6;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 4px;
@@ -326,7 +326,7 @@ tooltip label {
 }
 
 #idle_inhibitor:hover {
-  color: @color1
+  color: @color6
 }
 
 #clock.time {
@@ -349,7 +349,7 @@ tooltip label {
 }
 
 #clock.date:hover {
-  color: @color1
+  color: @color6
 }
 
 #custom-right4 {
@@ -366,7 +366,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
@@ -378,7 +378,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ────────────────────────────────────────────────────────┤ system update ├───
@@ -390,7 +390,7 @@ tooltip label {
 }
 
 #custom-update:hover {
-  color: @color1
+  color: @color6
 }
 
 #custom-right5 {
@@ -473,7 +473,7 @@ window.popup * {
 }
 
 #power-profiles-daemon:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -489,7 +489,7 @@ window.popup * {
 }
 
 #pulseaudio:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
@@ -505,7 +505,7 @@ window.popup * {
 }
 
 #backlight:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ──────────────────────────────────────────────────────────────┤ battery ├───
@@ -534,7 +534,7 @@ window.popup * {
 }
 
 #battery:hover {
-  color: @color1
+  color: @color6
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
