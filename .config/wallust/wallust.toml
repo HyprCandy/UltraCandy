@@ -23,7 +23,7 @@ color_space = "labmixed"
 # harddark - harddark16 - harddarkcomp - harddarkcomp16
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
-palette = "dark"
+palette = "ansidark"
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
@@ -47,3 +47,6 @@ hypr.target = '~/.config/hypr/colors-wallust.conf'
 
 waybar.template = 'waybar.css'
 waybar.target = '~/.config/waybar/colors-wallust.css'
+
+rofi.template = 'rofi.rasi'
+rofi.target = '~/.config/rofi/rofi.rasi'
