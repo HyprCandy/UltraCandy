@@ -76,7 +76,7 @@
                 },
                 {
                     "label": "",
-                    "command": "bash -c $HOME/.config/hyprcandy/scripts/wlogout.sh"
+                    "command": "bash $HOME/.config/hyprcandy/scripts/wlogout.sh"
                 }
             ]
         }
