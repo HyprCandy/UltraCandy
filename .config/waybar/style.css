@@ -61,6 +61,7 @@ tooltip label {
 #custom-update,
 #window,
 #tray,
+#custom-notification,
 #power-profiles-daemon,
 #pulseaudio,
 #backlight,
@@ -459,6 +460,22 @@ window.popup {
 
 window.popup * {
   font-size: 10px;
+}
+
+/* ───────────────────────────────────────────────────────┤ SywaNC ├───
+*/
+
+#custom-notification {
+  color: @primary;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 8px;
+}
+
+#custom-notification:hover {
+  color: @color6
 }
 
 /* ─────────────────────────────────────────────────┤ power-profiles ├───
