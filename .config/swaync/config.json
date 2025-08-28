@@ -63,20 +63,20 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "",
-                    "command": "hyprlock"
+                    "label": "",
+                    "command": "spotify"
                 },
                 {
-                    "label": "󰝟",
-                    "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+                    "label": "",
+                    "command": "equibop"
                 },
                 {
-                    "label": "󰂯",
-                    "command": "blueman-manager"
+                    "label": "󰹑",
+                    "command": "bash -c $HOME/.config/hypr/scripts/screenshot.sh"
                 },
                 {
-                    "label": "",
-                    "command": "bash -c $HOME/.config/hyprcandy/scripts/wlogout.sh"
+                    "label": "",
+                    "command": "bash -c $HOME/.config/swaync/recorder.sh"
                 }
             ]
         }
