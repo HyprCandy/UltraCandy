@@ -48,5 +48,8 @@ hypr.target = '~/.config/hypr/colors-wallust.conf'
 waybar.template = 'waybar.css'
 waybar.target = '~/.config/waybar/colors-wallust.css'
 
+swaync.template = 'waybar.css'
+swaync.target = '~/.config/swaync/colors-wallust.css'
+
 rofi.template = 'rofi.rasi'
 rofi.target = '~/.config/rofi/rofi.rasi'
