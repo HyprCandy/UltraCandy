@@ -73,7 +73,7 @@ button {
 }
 
 .widget-volume scale highlight {
-    background: @color6;
+    background: @color4;
     border-radius: 4px;
 }
 
@@ -83,6 +83,6 @@ button {
 }
 
 .widget-backlight scale highlight {
-    background: @color6;
+    background: @color4;
     border-radius: 4px;
 }
