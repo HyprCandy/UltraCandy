@@ -28,7 +28,7 @@ window#waybar > box {
   margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20px;
-  padding: 4.5px;
+  padding: 3.5px;
   border: 2px solid @inverse_primary;
 }
 
@@ -50,9 +50,6 @@ tooltip label {
 #custom-theme,
 #mpris,
 #custom-cava,
-#custom-keybinds,
-#custom-weather,
-#custom-player,
 #custom-distro,
 #idle_inhibitor,
 #clock,
@@ -221,20 +218,13 @@ tooltip label {
 
 /* ──────────────────────────────────────────────────────────┤ keybinds ├───
 */
-#custom-paddc {
-  padding-right: 20px;
-}
-
-#custom-left2 {
-  color: @on_primary_fixed_variant;
-  background: @transparent;
-  padding-left: 3px;
-}
-
 #custom-keybinds {
   color: @primary;
-  background: @on_primary_fixed_variant;
-  padding: 0 0 0 1px;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 5px;
+  padding-right: 3px;
 }
 
 #custom-keybinds:hover {
@@ -251,8 +241,11 @@ tooltip label {
 
 #custom-weather {
   color: @primary;
-  background: @on_primary;
-  padding: 0 0 0 1px;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 4px;
+  padding-right: 3px;
 }
 
 #custom-weather:hover {
@@ -269,12 +262,11 @@ tooltip label {
 
 #custom-player {
   color: @primary;
-  background: @scrim;
-}
-
-#custom-leftin1 {
-  color: @scrim;
-  margin-bottom: -1px;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 2px;
 }
 
 #custom-player:hover {
@@ -316,13 +308,13 @@ tooltip label {
 /* ─────────────────────────────────────────────────────────────────┤ time ├───
 */
 #custom-rightin1 {
-  color: @scrim;
+  color: @on_primary;
   margin-bottom: -1px;
 }
 
 #idle_inhibitor {
   color: @primary;
-  background: @scrim;
+  background: @on_primary;
   padding: 0 0 0 7px;
 }
 
@@ -332,7 +324,7 @@ tooltip label {
 
 #clock.time {
   color: @primary;
-  background: @scrim;
+  background: @on_primary;
   margin-left: -2px;
   padding: 0 3px 0 0;
 }
@@ -342,8 +334,24 @@ tooltip label {
   background: @on_primary;
 }
 
+#custom-right5 {
+  color: @on_primary;
+  background: @transparent;
+  margin-right: 25px;
+}
+
 /* ─────────────────────────────────────────────────────────────────┤ date ├───
 */
+#custom-paddc {
+  padding-right: 20px;
+}
+
+#custom-left2 {
+  color: @on_primary;
+  background: @transparent;
+  padding-left: 3px;
+}
+
 #clock.date {
   color: @primary;
   background: @on_primary;
@@ -351,6 +359,11 @@ tooltip label {
 
 #clock.date:hover {
   color: @color4
+}
+
+#custom-leftin1 {
+  color: @on_primary;
+  margin-bottom: -1px;
 }
 
 #custom-right4 {
@@ -362,8 +375,11 @@ tooltip label {
 */
 #custom-wifi {
   color: @primary;
-  background: @on_primary_fixed_variant;
-  padding: 0 8px 0 5px;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 5px;
+  padding-right: 9px;
 }
 
 #custom-wifi:hover {
@@ -374,8 +390,11 @@ tooltip label {
 */
 #bluetooth {
   color: @primary;
-  background: @on_primary_fixed_variant;
-  padding-right: 5px;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 #bluetooth:hover {
@@ -386,17 +405,15 @@ tooltip label {
 */
 #custom-update {
   color: @primary;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
   padding-right: 8px;
-  background: @on_primary_fixed_variant;
 }
 
 #custom-update:hover {
   color: @color4
-}
-
-#custom-right5 {
-  color: @on_primary_fixed_variant;
-  background: @transparent;
 }
 
 /* ────────────────────────────────────────────────────────────┤ window ├───
@@ -532,7 +549,7 @@ window.popup * {
   color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
-  margin-right: 6px;
+  margin-right: 4px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 6px;
@@ -565,13 +582,13 @@ window.popup * {
 #custom-power {
   color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  border: 1.5px solid @primary_fixed_dim;
-  margin-left: 0px;
+  border: 1.5px solid @scrim;
+  margin-left: 1px;
   border-radius: 30px;
-  padding-left: 8px;
-  padding-right: 4px;
-  padding-top: 1.5px;
-  padding-bottom: 1.5px;
+  padding-left: 5px;
+  padding-right: 1px;
+  padding-top: 1px;
+  padding-bottom: 2px;
 }
 
 #custom-power:hover {
