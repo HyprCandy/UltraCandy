@@ -26,15 +26,16 @@
     //"rofi",
     "custom/paddc",
     "custom/left2",
-    "custom/keybinds",
+    
     //"custom/temperature",   // temperature
 
-    "custom/left3",
-    "custom/weather",
+    //"custom/left3",
+    
     //"memory",               // memory
 
-    "custom/left4",
-    "custom/player",
+    //"custom/left4",
+    
+    "clock#date",           // date
     //"cpu",                  // cpu
     "keybinds",		    // keybinds
     "custom/leftin1",
@@ -46,14 +47,7 @@
     "custom/rightin1",
     "idle_inhibitor",       // idle inhibitor
     "clock#time",           // time
-    "custom/right3",
-
-    "clock#date",           // date
-    "custom/right4",
-
-    "custom/wifi",          // wi-fi
-    "bluetooth",            // bluetooth
-    "custom/update",        // system update
+    //"custom/right3",
     "custom/right5"
   ],
 
@@ -61,14 +55,14 @@
     "hyprland/window",
     "tray",       	    // system tray
     "custom/notification",         // swaync
+    "custom/keybinds",
+    "custom/weather",
+    "custom/player",
+    "custom/update",        // system update
     "power-profiles-daemon",        // power profiles
-
-    "pulseaudio",           // output device
-
-    "backlight",            // brightness
-
+    "bluetooth",            // bluetooth
+    "custom/wifi",          // wi-fi
     "battery",              // battery
-
     "custom/power"          // power button
   ],
 
@@ -143,7 +137,7 @@
     "tooltip": true,
     "tooltip-format": "Keybinds",
     "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/keybindings.sh",
-    "min-length": 7,
+    "min-length": 1,
     "max-length": 7
   },
   
@@ -154,7 +148,7 @@
     "tooltip": true,
     "tooltip-format": "Weather",
     "on-click": "~/.ultracandy/GJS/toggle-weather-widget.sh",
-    "min-length": 7,
+    "min-length": 1,
     "max-length": 7
   },
 
@@ -165,7 +159,7 @@
     "tooltip": true,
     "tooltip-format": "Media Player",
     "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
-    "min-length": 7,
+    "min-length": 1,
     "max-length": 7
   },
 
