@@ -8,6 +8,9 @@
 @define-color warning_fg_color rgba(0, 0, 0, 0.8);
 @define-color error_bg_color @red_4;
 @define-color error_fg_color white;
+@define-color accent_color @primary;
+@define-color accent_fg_color @on_primary;
+@define-color accent_bg_color @primary;
 @define-color window_bg_color @on_secondary;
 @define-color window_fg_color white;
 @define-color view_bg_color @on_secondary;
