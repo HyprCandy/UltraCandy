@@ -97,7 +97,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ───────────────────────────────────────────────────────────┤ workspaces ├───
@@ -148,7 +148,7 @@ tooltip label {
 }
 
 #workspaces button.active:hover {
-  color: @color4;
+  color: @color4
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -160,7 +160,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @color4;
+  color: @color4
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -182,7 +182,7 @@ tooltip label {
 }
 
 #mpris:hover {
-  color: @color4;
+  background: linear-gradient(0deg, @inverse_primary, @scrim);
 }
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
@@ -227,7 +227,7 @@ tooltip label {
 }
 
 #custom-keybinds:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ─────────────────────────────────────────────────────────┤ weather ├───
@@ -248,7 +248,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ──────────────────────────────────────────────────────────────────┤ media ├───
@@ -269,7 +269,7 @@ tooltip label {
 }
 
 #custom-player:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ──────────────────────────────────────────────────────────┤ distro icon ├───
@@ -382,7 +382,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
@@ -397,7 +397,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ────────────────────────────────────────────────────────┤ system update ├───
@@ -412,7 +412,7 @@ tooltip label {
 }
 
 #custom-update:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ────────────────────────────────────────────────────────────┤ window ├───
@@ -491,7 +491,7 @@ window.popup * {
 }
 
 #custom-notification:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ─────────────────────────────────────────────────┤ power-profiles ├───
@@ -506,7 +506,7 @@ window.popup * {
 }
 
 #power-profiles-daemon:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ────────────────────────────────────────────────────────┤ output device ├───
@@ -522,7 +522,7 @@ window.popup * {
 }
 
 #pulseaudio:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ───────────────────────────────────────────────────────────┤ brightness ├───
@@ -538,7 +538,7 @@ window.popup * {
 }
 
 #backlight:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ──────────────────────────────────────────────────────────────┤ battery ├───
@@ -567,7 +567,7 @@ window.popup * {
 }
 
 #battery:hover {
-  color: @color4
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ─────────────────────────────────────────────────────────┤ power button ├───
