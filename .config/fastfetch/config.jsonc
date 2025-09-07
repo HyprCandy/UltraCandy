@@ -15,21 +15,21 @@
   },
     "modules": [
         {
-            "key": "╭───────────╮╭────────────────────────────────────────────────╮",
+            "key": "╭───────────╮╭───────────────────────────────────────────────────╮",
             "type": "custom"
         },
         {
-            "key": "│ {#38} user    {#keys}││ ",
+            "key": "│ {#32} user    {#keys}││ ",
             "type": "title",
             "format": "User  {user-name}  Root  {host-name}"
         },
         {
-            "key": "│ {#38}󰇄 device  {#keys}││ ",
+            "key": "│ {#32}󰇄 device  {#keys}││ ",
             "type": "host",
             "format": "{5} {2}"
         },
         {
-            "key": "│ {#33}{icon} distro  {#keys}││ ",
+            "key": "│ {#35}{icon} distro  {#keys}││ ",
             "type": "os"
         },
         {
@@ -37,76 +37,76 @@
             "type": "kernel"
         },
         {
-            "key": "│ {#35}󱫐 wm      {#keys}││ ",
+            "key": "│ {#33}󱫐 wm      {#keys}││ ",
             "type": "wm"
         },
         {
-            "key": "│ {#35} cursor  {#keys}││ ",
+            "key": "│ {#36} cursor  {#keys}││ ",
             "type": "cursor"
         },
         {
-            "key": "│ {#36}󰀻 icons   {#keys}││ ",
+            "key": "│ {#39}󰀻 icons   {#keys}││ ",
             "type": "icons"
         },
         {
-            "key": "│ {#32} term    {#keys}││ ",
+            "key": "│ {#31} term    {#keys}││ ",
             "type": "terminal"
         },
         {
-            "key": "│ {#32} shell   {#keys}││ ",
+            "key": "│ {#31} shell   {#keys}││ ",
             "type": "shell"
         },
         {
-            "key": "│ {#36}󰏗 packages{#keys}││ ",
+            "key": "│ {#39}󰏗 packages{#keys}││ ",
             "type": "packages"
         },
         {
-            "key": "│ {#35}󰉉 disk    {#keys}││ ",
+            "key": "│ {#36}󰉉 disk    {#keys}││ ",
             "type": "disk"
         },
         {
-            "key": "│ {#34}󰍛 memory  {#keys}││ ",
+            "key": "│ {#33}󰍛 memory  {#keys}││ ",
             "type": "memory"
         },
         {
-            "key": "│ {#34}󰓡 swap    {#keys}││ ",
+            "key": "│ {#33}󰓡 swap    {#keys}││ ",
             "type": "swap"
         },
         {
-            "key": "│ {#33}󰅐 os age  {#keys}││ ",
+            "key": "│ {#34}󰅐 os age  {#keys}││ ",
             "type": "disk",
             "folders": "/",
             "format": "{days} days"
         },
         {
-            "key": "│ {#33}󰅐 uptime  {#keys}││ ",
+            "key": "│ {#34}󰅐 uptime  {#keys}││ ",
             "type": "uptime"
         },
         {
-            "key": "│ {#38}󰇺 cpu     {#keys}││ ",
+            "key": "│ {#35}󰇺 cpu     {#keys}││ ",
             "type": "cpu",
             "showPeCoreCount": true
         },
-        /*{
+        {
             "key": "│ {#32}󰇺 gpu     {#keys}││ ",
             "type": "gpu",
             "format": "{1} {2}"
-        },*/
+        },
         {
-            "key": "╰───────────╯╰────────────────────────────────────────────────╯",
+            "key": "╰───────────╯╰───────────────────────────────────────────────────╯",
             "type": "custom"
         },
         {
-            "key": "╭───────────╮╭────────────────────────────────────────────────╮",
+            "key": "╭───────────╮╭───────────────────────────────────────────────────╮",
             "type": "custom"
         },
         {
-            "key": "│ {#39} colors  {#keys}││                ",
+            "key": "│ {#39} colors  {#keys}││                   ",
             "type": "colors",
             "symbol": "circle"
         },
         {
-            "key": "╰───────────╯╰────────────────────────────────────────────────╯",
+            "key": "╰───────────╯╰───────────────────────────────────────────────────╯",
             "type": "custom"
         },
     ]
