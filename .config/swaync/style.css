@@ -1,9 +1,8 @@
 /* Colors */
 
 @import 'colors.css';
-@import 'colors-wallust.css';
 @define-color background @blur_background;
-@define-color groupbackground linear-gradient(45deg, @source_color 0%, @scrim 100%);
+@define-color groupbackground @blur_background; /*linear-gradient(45deg, @source_color 0%, @scrim 100%);*/
 @define-color buttoncolor @primary;
 @define-color bordercolor @inverse_primary;
 @define-color fontcolor @on_surface;
@@ -23,6 +22,11 @@ button {
     border: 0px;
     min-width: 35px;
     background: @buttoncolor;
+    color: @on_secondary;
+}
+
+button:hover {
+    background: @primary_fixed_dim;
     color: @on_secondary;
 }
 
@@ -73,8 +77,8 @@ button {
 }
 
 .widget-volume scale highlight {
-    background: @color4;
     border-radius: 4px;
+    background: @source_color;
 }
 
 /* Backlight widget slider styling */
@@ -83,6 +87,6 @@ button {
 }
 
 .widget-backlight scale highlight {
-    background: @color4;
     border-radius: 4px;
+    background: @source_color;
 }
