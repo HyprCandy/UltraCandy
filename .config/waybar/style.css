@@ -22,22 +22,22 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: none;
+  background: @blur_background;
   margin-top: 4.5px;
   margin-left: 8.5px;
   margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20px;
   padding: 3.5px;
-  border: 0px solid @inverse_primary;
+  border: 2px solid @inverse_primary;
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
 */
 tooltip {
   background: @on_primary;
-  border: 1.5px solid @color4;
-  border-radius: 8px;
+  border: 1.5px solid @primary_fixed_dim;
+  border-radius: 4px;
 }
 
 tooltip label {
@@ -123,7 +123,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @color4;
+  color: @source_color;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -148,7 +148,7 @@ tooltip label {
 }
 
 #workspaces button.active:hover {
-  color: @color4
+  color: @primary_fixed_dim;
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -160,7 +160,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @color4
+  color: @primary_fixed_dim;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -173,7 +173,7 @@ tooltip label {
 /* ───────────────────────────────────────────────────────────┤ media info ├───
 */
 #mpris {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 0px;
   padding-left: 8px;
@@ -189,7 +189,7 @@ tooltip label {
 */
 
 #custom-cava {
-  color: @color4;
+  color: @source_color;
   background: transparent;
   border-radius: 20px;
   margin-left: 6px;
@@ -218,7 +218,7 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────┤ keybinds ├───
 */
 #custom-keybinds {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -239,7 +239,7 @@ tooltip label {
 }
 
 #custom-weather {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -260,7 +260,7 @@ tooltip label {
 }
 
 #custom-player {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -283,7 +283,7 @@ tooltip label {
 }
 
 #custom-distro {
-  color: @color4;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 4px;
@@ -301,7 +301,7 @@ tooltip label {
 }
 
 #custom-distro:hover {
-  color: @primary;
+  color: @source_color;
 }
 
 /* ─────────────────────────────────────────────────────────────────┤ time ├───
@@ -312,17 +312,17 @@ tooltip label {
 }
 
 #idle_inhibitor {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: @on_primary;
   padding: 0 0 0 7px;
 }
 
 #idle_inhibitor:hover {
-  color: @color4
+  color: @source_color;
 }
 
 #clock.time {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: @on_primary;
   margin-left: -2px;
   padding: 0 3px 0 0;
@@ -352,12 +352,12 @@ tooltip label {
 }
 
 #clock.date {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: @on_primary;
 }
 
 #clock.date:hover {
-  color: @color4
+  color: @source_color;
 }
 
 #custom-leftin1 {
@@ -373,7 +373,7 @@ tooltip label {
 /* ────────────────────────────────────────────────────────────────┤ wi-fi ├───
 */
 #custom-wifi {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -388,7 +388,7 @@ tooltip label {
 /* ────────────────────────────────────────────────────────────┤ bluetooth ├───
 */
 #bluetooth {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -403,7 +403,7 @@ tooltip label {
 /* ────────────────────────────────────────────────────────┤ system update ├───
 */
 #custom-update {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -426,8 +426,9 @@ tooltip label {
 /* ───────────────────────────────────────────────────────────┤ tray ├───
 */
 #tray {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-right: 6px;
   border-radius: 30px;
   padding-left: 4px;
   padding-right: 4px;
@@ -438,7 +439,7 @@ tooltip label {
 
 /* Tray popover windows */
 popover {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: @on_primary;
   border: 1.5px solid @source_color;
   border-radius: 10px;
@@ -450,7 +451,7 @@ popover {
 /* Tray popover labels and text */
 popover label,
 popover menuitem {
-  color: @primary;
+  color: @primary_fixed_dim;
   font-size: 10px;
   padding: 3px 6px;
   min-height: 20px;
@@ -482,9 +483,8 @@ window.popup * {
 */
 
 #custom-notification {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  margin-left: 6px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 8px;
@@ -497,7 +497,7 @@ window.popup * {
 /* ─────────────────────────────────────────────────┤ power-profiles ├───
 */
 #power-profiles-daemon {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -513,7 +513,7 @@ window.popup * {
 */
 
 #pulseaudio {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -529,7 +529,7 @@ window.popup * {
 */
 
 #backlight {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 4px;
   border-radius: 30px;
@@ -545,7 +545,7 @@ window.popup * {
 */
 
 #battery {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   margin-right: 4px;
@@ -579,24 +579,24 @@ window.popup * {
 }
 
 #custom-power {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border: 1.5px solid @scrim;
   margin-left: 1px;
   border-radius: 30px;
   padding-left: 5px;
   padding-right: 1px;
-  padding-top: 0px;
-  padding-bottom: 3px;
+  padding-top: 1px;
+  padding-bottom: 2px;
 }
 
 #custom-power:hover {
   /*color: @on_primary;
   background: @primary_fixed_dim;
   border: 1.5px solid @on_primary;*/
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim);
-  border: 1.5px solid @primary_fixed_dim;
+  border: 1.5px solid @scrim;
   border-radius: 30px;
   padding-left: 5px;
   padding-right: 1px;
