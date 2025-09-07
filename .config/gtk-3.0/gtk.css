@@ -473,6 +473,6 @@ placessidebar .top-bar headerbar {
     background-color: @on_secondary 85%; }
   
   window {
-    background-color: @blur_background8 10%; }
+    background-color: @blur_background 10%; }
 
 /*# sourceMappingURL=gtk-dark.css.map */
