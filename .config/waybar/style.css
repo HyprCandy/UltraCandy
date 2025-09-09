@@ -16,7 +16,7 @@
 window#waybar {
   background: none;
   /*border: 0px solid @on_primary_fixed_variant; @primary_fixed_dim;*/
-  border-radius: 20px;
+  border-radius: 20.0px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ background ├───
@@ -24,10 +24,10 @@ window#waybar {
 window#waybar > box {
   background: @blur_background;
   margin-top: 4.5px;
-  margin-left: 8.5px;
-  margin-right: 8.5px;
+  margin-left: 10.0px;
+  margin-right: 10.0px;
   margin-bottom: 0px;
-  border-radius: 20px;
+  border-radius: 20.0px;
   padding: 3.5px;
   border: 2px solid @inverse_primary;
 }
@@ -148,7 +148,7 @@ tooltip label {
 }
 
 #workspaces button.active:hover {
-  color: @primary_fixed_dim;
+  color: @source_color;
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -160,7 +160,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @primary_fixed_dim;
+  color: @source_color;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -581,7 +581,7 @@ window.popup * {
 #custom-power {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  border: 1.5px solid @scrim;
+  border: 1.5px solid @on_primary;
   margin-left: 1px;
   border-radius: 30px;
   padding-left: 5px;
@@ -596,7 +596,7 @@ window.popup * {
   border: 1.5px solid @on_primary;*/
   color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim);
-  border: 1.5px solid @scrim;
+  border: 1.5px solid @on_primary;
   border-radius: 30px;
   padding-left: 5px;
   padding-right: 1px;
