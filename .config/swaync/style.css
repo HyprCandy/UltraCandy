@@ -14,7 +14,8 @@
 /* Control Center */
 
 .control-center {
-    border: 3px solid @bordercolor;
+    background: @blur_background;
+	border: 3px solid @bordercolor;
     padding: 10px;
 }
 
