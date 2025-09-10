@@ -11,11 +11,11 @@
     font-family: "C059 Bold";
 }
 
-/* Control Center */
+/* Control Center - Default (unfocused) state */
 
 .control-center {
-    background: @blur_background;
-	border: 3px solid @bordercolor;
+    background: @background; /* Your current unfocused color */
+    border: 3px solid @bordercolor;
     padding: 10px;
 }
 
@@ -42,16 +42,25 @@ button:hover {
 /* Notification */
 
 .notification {
+    background: @background;
     border: 3px solid @bordercolor;
-	border-radius: 10px;
+    border-radius: 10px;
     padding:10px;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
-    color: #ffffff;
-    background: transparent;
+    background: @on_primary;
 }
+
+.notification-group:active,
+.notification-group:selected,
+.notification-group:focus,
+.notification-group:hover {
+    background: transparent; /* Replace with desired color */
+}
+
+/* Button */
 
 .close-button {
     background: @bordercolor;
@@ -65,7 +74,7 @@ button:hover {
 }
 
 .close-button:hover {
-    background: #ffffff;
+    background: @primary_fixed_dim;
 }
 
 .notification-group .notification-group-close-button .close-button {
