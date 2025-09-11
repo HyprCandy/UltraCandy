@@ -4,7 +4,7 @@ version_check = false
 [templates.hyprland]
 input_path = '~/.config/matugen/templates/hyprland-colors.conf'
 output_path = '~/.config/hypr/colors.conf'
-post_hook = 'hyprctl reload'
+#post_hook = 'hyprctl reload'
 
 [templates.waybar]
 input_path = '~/.config/matugen/templates/waybar.css'
@@ -13,6 +13,10 @@ output_path = '~/.config/waybar/colors.css'
 [templates.swaync]
 input_path = '~/.config/matugen/templates/swaync.css'
 output_path = '~/.config/swaync/colors.css'
+
+[templates.eww]
+input_path = '~/.config/matugen/templates/colors.scss'
+output_path = '~/.config/eww/sleektop/colors.scss'
 
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi-colors.rasi'
