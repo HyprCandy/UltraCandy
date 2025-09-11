@@ -200,9 +200,8 @@
       "default": "",
     },
     "tooltip": true,
-    "tooltip-format": "Left-click: Candy-Settings\nRight-click: Eww-widget",
+    "tooltip-format": "Candy-Settings",
     "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    "on-click-right": "~/.config/eww/sleektop/launch-sleektop"
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
