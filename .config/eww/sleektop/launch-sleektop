@@ -1,0 +1,18 @@
+#!/bin/bash
+
+CFG="$HOME/.config/eww/sleektop"
+
+# Check if the process is running
+if pgrep -f "eww --config $CFG daemon" > /dev/null; then
+    # If running kill the running eww daemon
+    pkill -f "eww --config $CFG daemon"
+
+else
+    # Start the Eww daemon using the correct config directory
+    eww --config "$CFG" daemon
+    # Give the daemon time to fully start
+    sleep 0.5
+    # Open desired widgets
+    eww --config "$CFG" open-many  left_window
+fi
+

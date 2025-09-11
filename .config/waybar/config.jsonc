@@ -158,7 +158,7 @@
   "custom/player": {
     "format": "󰝚 ",
     "tooltip": true,
-    "tooltip-format": "Media Player",
+    "tooltip-format": "Media-Player",
     "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
     "min-length": 1,
     "max-length": 7
@@ -200,8 +200,9 @@
       "default": "",
     },
     "tooltip": true,
-    "tooltip-format": "Candy-Settings",
-    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh"
+    "tooltip-format": "Left-click: Candy-Settings\nRight-click: Eww-widget",
+    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
+    "on-click-right": "~/.config/eww/sleektop/launch-sleektop"
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
