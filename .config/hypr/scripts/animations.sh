@@ -84,9 +84,6 @@ update_animation() {
         exit 1
     fi
     
-    # Create backup
-    cp "$CUSTOM_CONF" "$CUSTOM_CONF.bak.$(date +%s)"
-    
     # Update the animation source line (line 57)
     sed -i '57s|source = ~/.config/hypr/conf/animations/.*|source = ~/.config/hypr/conf/animations/'"$selected_file"'|' "$CUSTOM_CONF"
     
