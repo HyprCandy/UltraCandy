@@ -14,10 +14,6 @@ output_path = '~/.config/waybar/colors.css'
 input_path = '~/.config/matugen/templates/swaync.css'
 output_path = '~/.config/swaync/colors.css'
 
-[templates.eww]
-input_path = '~/.config/matugen/templates/colors.scss'
-output_path = '~/.config/eww/sleektop/colors.scss'
-
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi-colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'
