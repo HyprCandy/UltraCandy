@@ -31,7 +31,7 @@
     "widgets": [
         "dnd",
         "buttons-grid",
-        //"mpris",
+        "mpris",
         "volume",
         "backlight",
         "title",
