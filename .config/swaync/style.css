@@ -3,7 +3,7 @@
 @import 'colors.css';
 @define-color background @blur_background;
 @define-color groupbackground @blur_background; /*linear-gradient(45deg, @source_color 0%, @scrim 100%);*/
-@define-color buttoncolor @primary;
+@define-color buttoncolor @primary_fixed_dim;
 @define-color bordercolor @inverse_primary;
 @define-color fontcolor @on_surface;
 
@@ -27,7 +27,7 @@ button {
 }
 
 button:hover {
-    background: @primary_fixed_dim;
+    background: @primary;
     color: @on_secondary;
 }
 
@@ -74,7 +74,7 @@ button:hover {
 }
 
 .close-button:hover {
-    background: @primary_fixed_dim;
+    background: @primary;
 }
 
 .notification-group .notification-group-close-button .close-button {
@@ -83,7 +83,7 @@ button:hover {
 
 /* Volume widget slider styling */
 .widget-volume scale slider {
-    background: @primary;
+    background: @primary_fixed_dim;
 }
 
 .widget-volume scale highlight {
@@ -93,7 +93,7 @@ button:hover {
 
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
-    background: @primary;
+    background: @primary_fixed_dim;
 }
 
 .widget-backlight scale highlight {
