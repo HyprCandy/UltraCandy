@@ -24,8 +24,8 @@ window#waybar {
 window#waybar > box {
   background: @blur_background;
   margin-top: 4.5px;
-  margin-left: 10.0px;
-  margin-right: 10.0px;
+  margin-left: 8.5px;
+  margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20.0px;
   padding: 3.5px;
@@ -48,6 +48,7 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────────┤ general ├───
 */
 #custom-theme,
+#workspaces,
 #mpris,
 #custom-cava,
 #custom-distro,
@@ -123,28 +124,28 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @source_color;
+  color: @on_primary;
   transition: none;
   border-radius: 8px;
   margin: 2px;
-  padding: 0 5px;
+  padding: 0 1px;
 }
 
 #workspaces button:hover {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: transparent;
   text-shadow: none;
   margin: 2px;
-  padding: 0 5px;
+  padding: 0 1px;
 }
 
 #workspaces button.active {
   /*color: @on_primary;
   background: @primary_fixed_dim;*/
-  color: @primary;
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim);
   margin: 2px;
-  padding: 0 5px;
+  padding: 1px 2px 0 0;
 }
 
 #workspaces button.active:hover {
@@ -153,10 +154,10 @@ tooltip label {
 
 /* Occupied workspace (persistent with windows but not focused) */
 #workspaces button.persistent:not(.active):not(.empty) {
-  color: @primary;
+  color: @primary_fixed_dim;
   background: transparent;
   margin: 2px;
-  padding: 0 5px;
+  padding: 0 1px;
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
@@ -167,7 +168,7 @@ tooltip label {
 #workspaces button.urgent {
   color: @critical;
   margin: 2px;
-  padding: 0 5px;
+  padding: 0 1px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ media info ├───
@@ -181,9 +182,9 @@ tooltip label {
   border-radius: 20px;
 }
 
-#mpris:hover {
-  background: linear-gradient(0deg, @inverse_primary, @scrim);
-}
+/*#mpris:hover {
+  color: @source_color;
+}*/
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
 */
