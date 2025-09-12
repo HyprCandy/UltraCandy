@@ -4,7 +4,7 @@ version_check = false
 [templates.hyprland]
 input_path = '~/.config/matugen/templates/hyprland-colors.conf'
 output_path = '~/.config/hypr/colors.conf'
-#post_hook = 'hyprctl reload'
+post_hook = 'hyprctl reload'
 
 [templates.waybar]
 input_path = '~/.config/matugen/templates/waybar.css'
