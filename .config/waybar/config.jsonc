@@ -91,9 +91,9 @@
   },
   "format": "{icon}",
   "format-icons": {
-    "active": "",
-    "empty": "",
-    "persistent": "󱕦"
+    "active": "󰫢",
+    "empty": "",
+    "persistent": ""
   },
 },
 
