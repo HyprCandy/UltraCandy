@@ -39,7 +39,7 @@ ANIMATIONS=(
     "silent.conf|Silent minimal animations"
     "standard.conf|Standard Hyprland animations"
     "theme.conf|Theme-based animations"
-    "vertical.conf|Vertical workspace movement on swipe"
+    "vertical.conf|Vertical workspace switching"
 )
 
 # Function to get current animation
