@@ -135,7 +135,7 @@
   "custom/rofi": {
     "format": "󰍜 ",
     "tooltip": true,
-    "tooltip-format": "rofi",
+    "tooltip-format": "Rofi-menus",
     "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
     "min-length": 1,
     "max-length": 7
