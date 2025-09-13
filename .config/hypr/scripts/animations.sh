@@ -28,7 +28,7 @@ ANIMATIONS=(
     "end4.conf|End4 animation preset"
     "fast.conf|Fast and snappy animations"
     "high.conf|High performance animations"
-    "ja.conf|Japanese inspired animations"
+    "ja.conf|Smooth transitions"
     "LimeFrenzy.conf|Lime Frenzy energetic style"
     "me-1.conf|Custom ME variant 1"
     "me-2.conf|Custom ME variant 2"
