@@ -65,7 +65,7 @@
             "type": "disk"
         },
         {
-            "key": "│ {#33}󰍛 memory  {#keys}││ ",
+            "key": "│ {#33} memory  {#keys}││ ",
             "type": "memory"
         },
         {
@@ -83,14 +83,14 @@
             "type": "uptime"
         },
         {
-            "key": "│ {#35}󰇺 cpu     {#keys}││ ",
+            "key": "│ {#35}󰍛 cpu     {#keys}││ ",
             "type": "cpu",
             "showPeCoreCount": true
         },
         {
             "key": "│ {#32}󰇺 gpu     {#keys}││ ",
             "type": "gpu",
-            "format": "{1} {2}"
+            "format": "{1}  Driver : {3}"
         },
         {
             "key": "╰───────────╯╰───────────────────────────────────────────────────╯",
@@ -101,7 +101,7 @@
             "type": "custom"
         },
         {
-            "key": "│ {#39} colors  {#keys}││                   ",
+            "key": "│ {#39} colors  {#keys}││                 ",
             "type": "colors",
             "symbol": "circle"
         },
