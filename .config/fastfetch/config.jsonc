@@ -6,7 +6,7 @@
     "height": 15,
     "width": 35,*/
       "padding": {
-      "top": 6, //change this value to 3
+      "top": 6, //change this value to 3 when changing to png images and uncoomment the following lines
       /*"left": 0,
       "right": 1*/
       }
