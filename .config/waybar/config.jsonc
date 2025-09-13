@@ -37,7 +37,7 @@
     
     "clock#date",           // date
     //"cpu",                  // cpu
-    "keybinds",		    // keybinds
+    //"rofi",		    // rofi
     "custom/leftin1",
 
     "custom/left5",
@@ -55,7 +55,7 @@
     "hyprland/window",
     "tray",       	    // system tray
     "custom/notification",         // swaync
-    "custom/keybinds",
+    "custom/rofi",
     "custom/weather",
     "custom/player",
     "custom/update",        // system update
@@ -130,13 +130,13 @@
     "max-length": 50
   },
   
-  // ────────────────────────────────────────────────────────┤ keybinds ├───
+  // ────────────────────────────────────────────────────────┤ rofi ├───
 
-  "custom/keybinds": {
-    "format": " ",
+  "custom/rofi": {
+    "format": "󰍜 ",
     "tooltip": true,
-    "tooltip-format": "Keybinds",
-    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/keybindings.sh",
+    "tooltip-format": "rofi",
+    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
     "min-length": 1,
     "max-length": 7
   },
