@@ -216,18 +216,18 @@ tooltip label {
     opacity: 0.6;
 }
 
-/* ──────────────────────────────────────────────────────────┤ keybinds ├───
+/* ──────────────────────────────────────────────────────────┤ rofi ├───
 */
-#custom-keybinds {
+#custom-rofi {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
-  padding-left: 5px;
-  padding-right: 3px;
+  padding-left: 7px;
+  padding-right: 1px;
 }
 
-#custom-keybinds:hover {
+#custom-rofi:hover {
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
