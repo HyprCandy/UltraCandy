@@ -47,7 +47,7 @@
 /* More customizations */
 
 windowcontrols > button > image { /* GTK4 */
-  color: transparent;
+  color: @inverse_primary;
   min-width: 1px;
   min-height: 1px;
   border-radius: 100%;
@@ -68,13 +68,14 @@ button.titlebutton { /* GTK3 */
 
 button.titlebutton.close,
 windowcontrols > button.close > image {
-  background-color: @primary_fixed_dim;
+  color: @inverse_primary;
+  background-color: transparent;
   border: none;
 }
 
 button.titlebutton.close:hover,
 windowcontrols > button.close:hover > image {
-  color: @background;
+  color: @outline;
   opacity: 0.5;
 }
 
