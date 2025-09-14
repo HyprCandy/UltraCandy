@@ -68,13 +68,14 @@ button.titlebutton { /* GTK3 */
 
 button.titlebutton.close,
 windowcontrols > button.close > image {
+  color: @inverse_primary;
   background-color: transparent;
   border: none;
 }
 
 button.titlebutton.close:hover,
 windowcontrols > button.close:hover > image {
-  color: @outline;
+  color: white;
   opacity: 0.5;
 }
 
@@ -279,14 +280,14 @@ tooltip {
   box-shadow: none;
   text-shadow: 0 1px black; }
   tooltip.background {
-    background-color: @on_secondary;
+    background-color: @on_primary;
     background-clip: padding-box;
     border: 1px solid rgba(255, 255, 255, 0.1); }
   tooltip decoration {
-    background-color: @on_secondary; }
+    background-color: @on_primary; }
   tooltip * {
     padding: 2px;
-    background-color: @on_secondary;
+    background-color: @on_primary;
     color: white; }
     
     columnview.view,
