@@ -63,7 +63,7 @@ button:hover {
 /* Button */
 
 .close-button {
-    background: @bordercolor;
+    background: @inverse_primary;
     text-shadow: none;
     padding: 0;
     border-radius: 15px;
