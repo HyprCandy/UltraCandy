@@ -36,7 +36,7 @@ window#waybar > box {
 */
 tooltip {
   background: @on_primary;
-  border: 1.5px solid @primary_fixed_dim;
+  border: 1.5px solid @inverse_primary;
   border-radius: 4px;
 }
 
