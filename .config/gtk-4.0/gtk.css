@@ -377,14 +377,14 @@ treeview.view {
       background-color: #1b1d22; }
   columnview.view > header > button,
   treeview.view > header > button {
-    color: #babeca;
+    color: @inverse_primary;
     background-color: @on_secondary;
     font-weight: bold;
     text-shadow: none;
     box-shadow: none; }
     columnview.view > header > button:hover,
     treeview.view > header > button:hover {
-      color: #bfc3ce;
+      color: white;
       box-shadow: none;
       transition: none; }
     columnview.view > header > button:active,
