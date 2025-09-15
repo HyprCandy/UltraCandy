@@ -255,9 +255,9 @@ popover.menu {
     border-radius: 15px; }
     popover.menu modelbutton:selected, popover.menu.background > contents .view row:selected, popover.menu.background > contents iconview row:selected {
       color: #C3C7D1;
-      background-color: @on_secondary; }
+      background-color: @inverse_primary; }
     popover.menu modelbutton:selected:active, popover.menu.background > contents .view row:selected:active, popover.menu.background > contents iconview row:selected:active {
-      background-color: @on_secondary; }
+      background-color: @inverse_primary; }
   popover.menu label.title {
     font-weight: bold;
     padding: 4px 32px; }
