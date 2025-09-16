@@ -124,7 +124,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @on_primary;
+  color: @primary_container;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -327,6 +327,10 @@ tooltip label {
   background: @on_primary;
   margin-left: -2px;
   padding: 0 3px 0 0;
+}
+
+#clock.time:hover {
+  color: @source_color;
 }
 
 #custom-right3 {
