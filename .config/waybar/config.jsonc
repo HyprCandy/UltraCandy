@@ -216,17 +216,19 @@
 
     "tooltip-format-activated": "Caffeine Mode On",
     "tooltip-format-deactivated": "Caffeine Mode Off",
-    "start-activated": false
+    "start-activated": true
   },
 
   // ───────────────────────────────────────────────────────────────┤ time ├───
 
   "clock#time": {
     "format": "{:%H:%M}",
-    "tooltip": false,
-    // "tooltip-format": "Standard Time: {:%I:%M %p}",
+    "tooltip": true,
+    //"tooltip-format": "Standard Time: {:%I:%M %p}",
+    "tooltip-format": "Launch tty-clock",
     "min-length": 6,
-    "max-length": 6
+    "max-length": 6,
+    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/tty-clock.sh",
   },
 
   // ───────────────────────────────────────────────────────────────┤ date ├───
