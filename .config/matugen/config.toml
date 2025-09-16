@@ -39,27 +39,29 @@ output_path = '~/.config/gtk-3.0/colors.css'
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/gtk-4.0/colors.css'
 
-[templates.nautilus]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.config/nautilus/colors.css'
-
-[templates.qt5ct]
-input_path = '~/.config/matugen/templates/darker.conf'
-output_path = '~/.config/qt5ct/colors/matugen.conf'
-
-[templates.qt6ct]
-input_path = '~/.config/matugen/templates/darker.conf'
-output_path = '~/.config/qt6ct/colors/matugen.conf'
-
 [templates.nwgdock]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/nwg-dock-hyprland/colors.css'
+post_hook = 'bash -c "~/.config/nwg-dock-hyprland/launch.sh" > /dev/null 2>&1 &'
 
-[templates.pywalfox]
-input_path = '~/.config/matugen/templates/pywalfox-colors.json'
-output_path = '~/.cache/wal/colors.json'
-post_hook = 'pywalfox update'
+[templates.cava]
+input_path = '~/.config/matugen/templates/config'
+output_path = '~/.config/cava/config'
+post_hook = 'pkill -SIGUSR1 cava'
 
 [templates.sequences]
 input_path = '~/.config/matugen/templates/sequences'
 output_path = '~/.cache/wal/sequences'
+
+#[templates.pywalfox]
+#input_path = '~/.config/matugen/templates/pywalfox-colors.json'
+#output_path = '~/.cache/wal/colors.json'
+#post_hook = 'pywalfox update'
+
+#[templates.qt5ct]
+#input_path = '~/.config/matugen/templates/darker.conf'
+#output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+#[templates.qt6ct]
+#input_path = '~/.config/matugen/templates/darker.conf'
+#output_path = '~/.config/qt6ct/colors/matugen.conf'
