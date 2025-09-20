@@ -228,7 +228,7 @@
     "tooltip-format": "Launch tty-clock",
     "min-length": 6,
     "max-length": 6,
-    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/tty-clock.sh",
+    "on-click": "bash ~/.config/hypr/scripts/tty-clock.sh",
   },
 
   // ───────────────────────────────────────────────────────────────┤ date ├───
