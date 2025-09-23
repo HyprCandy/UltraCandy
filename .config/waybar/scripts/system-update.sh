@@ -35,7 +35,9 @@ if [ "$1" == "up" ]; then
   trap 'pkill -RTMIN+20 waybar' EXIT
   command="
     $0 upgrade
+    ${aur_helper} --noconfirm -R hyprland-plugin-hyprexpo
     ${aur_helper} -Syu
+    ${aur_helper} --noconfirm -S hyprland-plugin-hyprexpo
     if pkg_installed flatpak; then flatpak update; fi
     printf '\n'
     read -n 1 -p 'Press any key to continue...'
