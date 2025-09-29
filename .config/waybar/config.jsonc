@@ -240,7 +240,7 @@
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
-      "on-click-right": "mode",
+      "on-click": "mode",
 
       "format": {
         "months": 
@@ -253,10 +253,10 @@
     },
 
     "actions": {
-      "on-click-right": "mode"
+      "on-click": "mode"
     },
     
-    "on-click": "gnome-calendar",
+    "on-click-right": "gnome-calendar",
 
     "min-length": 8,
     "max-length": 8
