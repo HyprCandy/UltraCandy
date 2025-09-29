@@ -253,9 +253,10 @@
     },
 
     "actions": {
-      "on-click": "mode",
       "on-click-right": "mode"
     },
+    
+    "on-click": "gnome-calendar",
 
     "min-length": 8,
     "max-length": 8
