@@ -417,7 +417,8 @@
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
-    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh"
+    "on-click-right": "~/.ultracandy/GJS/toggle-system-monitor.sh",
+    "on-click-right": "gnome-system-monitor"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
