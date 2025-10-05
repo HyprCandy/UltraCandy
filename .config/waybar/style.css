@@ -289,7 +289,7 @@ tooltip label {
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 5px;
-  padding-right: 8.5px;
+  padding-right: 1px;
 }
 
 #custom-right2 {
