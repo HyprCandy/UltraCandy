@@ -25,7 +25,7 @@
   "modules-center": [
     //"rofi",
     "custom/paddc",
-    "custom/left2",
+    //"custom/left2",
     
     //"custom/temperature",   // temperature
 
@@ -38,23 +38,23 @@
     "clock#date",           // date
     //"cpu",                  // cpu
     //"rofi",		    // rofi
-    "custom/leftin1",
+    //"custom/leftin1",
 
     "custom/left5",
     "custom/distro",        // distro icon
     "custom/right2",
 
-    "custom/rightin1",
-    "idle_inhibitor",       // idle inhibitor
-    "clock#time",           // time
+    //"custom/rightin1",
+    "clock#time"           // time
     //"custom/right3",
-    "custom/right5"
+    //"custom/right5"
   ],
 
   "modules-right": [
     "hyprland/window",
     "tray",       	    // system tray
     "custom/notification",         // swaync
+    "idle_inhibitor",       // idle inhibitor
     "custom/rofi",
     "custom/weather",
     "custom/player",
@@ -222,12 +222,12 @@
   // ───────────────────────────────────────────────────────────────┤ time ├───
 
   "clock#time": {
-    "format": "{:%H:%M}",
+    "format": "󰅐 {:%H:%M}",
     "tooltip": true,
     //"tooltip-format": "Standard Time: {:%I:%M %p}",
     "tooltip-format": "Launch tty-clock",
     "min-length": 6,
-    "max-length": 6,
+    "max-length": 7,
     "on-click": "bash ~/.config/hypr/scripts/tty-clock.sh",
   },
 
@@ -258,8 +258,8 @@
     
     "on-click-right": "gnome-calendar",
 
-    "min-length": 8,
-    "max-length": 8
+    "min-length": 1,
+    "max-length": 7
   },
 
   // ──────────────────────────────────────────────────────────────┤ wi-fi ├───
