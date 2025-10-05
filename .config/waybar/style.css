@@ -22,14 +22,14 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: @blur_background;
+  background: none;
   margin-top: 4.5px;
   margin-left: 8.5px;
   margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20.0px;
   padding: 3.5px;
-  border: 2px solid @inverse_primary;
+  border: 0px solid @inverse_primary;
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
@@ -287,6 +287,8 @@ tooltip label {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
+  margin-left: 0px;
+  margin-right: 0px;
   padding-left: 4px;
   padding-right: 9px;
   padding-top: 0px;
@@ -305,6 +307,21 @@ tooltip label {
   color: @source_color;
 }
 
+/* ───────────────────────────────────────────────────────┤ idle_inhibitor ├───
+*/
+#idle_inhibitor {
+  color: @primary_fixed_dim;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 1px;
+}
+
+#idle_inhibitor:hover {
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
+}
+
 /* ─────────────────────────────────────────────────────────────────┤ time ├───
 */
 #custom-rightin1 {
@@ -312,25 +329,18 @@ tooltip label {
   margin-bottom: -1px;
 }
 
-#idle_inhibitor {
-  color: @primary_fixed_dim;
-  background: @on_primary;
-  padding: 0 0 0 7px;
-}
-
-#idle_inhibitor:hover {
-  color: @source_color;
-}
-
 #clock.time {
   color: @primary_fixed_dim;
-  background: @on_primary;
-  margin-left: -2px;
-  padding: 0 3px 0 0;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 0px;
+  margin-right: 35px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 #clock.time:hover {
-  color: @source_color;
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 #custom-right3 {
@@ -358,11 +368,16 @@ tooltip label {
 
 #clock.date {
   color: @primary_fixed_dim;
-  background: @on_primary;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-left: 6px;
+  margin-right: 0px;
+  border-radius: 30px;
+  padding-left: 7px;
+  padding-right: 6px;
 }
 
 #clock.date:hover {
-  color: @source_color;
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 #custom-leftin1 {
