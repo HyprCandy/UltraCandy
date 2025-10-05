@@ -22,14 +22,14 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: none;
+  background: @blur_background;
   margin-top: 4.5px;
   margin-left: 8.5px;
   margin-right: 8.5px;
   margin-bottom: 0px;
   border-radius: 20.0px;
   padding: 3.5px;
-  border: 0px solid @inverse_primary;
+  border: 2px solid @inverse_primary;
 }
 
 /* ─────────────────────────────────────────────────────────────┤ tooltips ├───
@@ -284,15 +284,12 @@ tooltip label {
 }
 
 #custom-distro {
+  font-size: 14px;
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 4px;
-  padding-right: 9px;
-  padding-top: 0px;
-  padding-bottom: 1px;
+  padding-left: 5.5px;
+  padding-right: 8.5px;
 }
 
 #custom-right2 {
@@ -304,7 +301,7 @@ tooltip label {
 }
 
 #custom-distro:hover {
-  color: @source_color;
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ───────────────────────────────────────────────────────┤ idle_inhibitor ├───
@@ -672,15 +669,4 @@ tooltip label,
 #custom-leftin2,
 #custom-rightin1 {
   font-size: 15.5px;
-}
-
-/* ──────────────────────────────────────────────────────────┤ distro icon ├───
-*/
-#custom-distro {
-  font-size: 14.6px;
-}
-
-#custom-left5,
-#custom-right2 {
-  font-size: 15.68px;
 }
