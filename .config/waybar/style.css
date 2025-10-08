@@ -182,9 +182,9 @@ tooltip label {
   border-radius: 20px;
 }
 
-/*#mpris:hover {
-  color: @source_color;
-}*/
+#mpris:hover {
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
+}
 
 /* ──────────────────────────────────────────────────────────────┤ cava ├───
 */
