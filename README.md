@@ -54,24 +54,22 @@ Just a few of the possible system colors and automatic sddm background applicati
 UltraCandy with waybar option plus settings app
 
 Matugen Content theme
-<img width="1366" height="768" alt="screenshot_26092025_141152" src="https://github.com/user-attachments/assets/d3ac5567-5594-4eda-9f53-27420ea50627" />
-<img width="1366" height="768" alt="screenshot_26092025_141541" src="https://github.com/user-attachments/assets/2adc066e-1da5-4b2e-906d-f6c277a085f7" />
-<img width="1366" height="768" alt="screenshot_12092025_130239" src="https://github.com/user-attachments/assets/c1a07c8c-604a-4daf-b79c-4fff1b15e340" />
-<img width="1366" height="768" alt="screenshot_12092025_124445" src="https://github.com/user-attachments/assets/0bcdb765-4406-496a-930f-64e9576e4aad" />
-<img width="1366" height="768" alt="screenshot_12092025_124153" src="https://github.com/user-attachments/assets/1d8b0ab8-281a-48a8-ab6e-a039e8682c8c" />
-<img width="1366" height="768" alt="screenshot_14092025_232431" src="https://github.com/user-attachments/assets/d09ee3c9-bd31-4bd6-af60-1f0c256e5b93" />
+<img width="1366" height="768" alt="screenshot_06102025_122324" src="https://github.com/user-attachments/assets/a9ccb721-b345-4694-82c7-2824b03c641e" />
+<img width="1366" height="768" alt="screenshot_06102025_124539" src="https://github.com/user-attachments/assets/3201778f-c58f-4842-ac3f-d14cea27f2ca" />
+<img width="1366" height="768" alt="screenshot_06102025_123743" src="https://github.com/user-attachments/assets/233065b1-8b99-452a-b63b-4f8dc78c323b" />
+<img width="1366" height="768" alt="screenshot_06102025_122727" src="https://github.com/user-attachments/assets/01da8296-a676-40ca-927b-3a8c79d03101" />
+<img width="1366" height="768" alt="screenshot_06102025_123134" src="https://github.com/user-attachments/assets/4b420e2d-e666-4b14-9646-484aeb71e218" />
 
 Light mode using "Matugen-Fidelity" applies a lightertone to to every QT6 and GTK3/4 window plus various borders
 [NOTE] Rofi-menus and floating windows maintain a dark border color for better contrast from bright backgrounds or light themed windows
-![WhatsApp Image 2025-09-15 at 21 06 57 (1)](https://github.com/user-attachments/assets/fca9cb07-51fd-4d11-b5d8-9f6847522382)
-![WhatsApp Image 2025-09-15 at 21 06 58](https://github.com/user-attachments/assets/88731ed5-519f-468e-93a5-84bd012b5868)
-![WhatsApp Image 2025-09-15 at 21 06 58 (1)](https://github.com/user-attachments/assets/aa31700a-13e5-4413-a1b0-65a280bbce1e)
-![WhatsApp Image 2025-09-15 at 21 06 58 (2)](https://github.com/user-attachments/assets/e7dc38be-ca38-422c-87f2-074d1c0b7f2d)
+<img width="1366" height="768" alt="screenshot_06102025_125715" src="https://github.com/user-attachments/assets/73cf567b-01be-4c84-b92a-f994ea89c7c8" />
+<img width="1366" height="768" alt="screenshot_06102025_130126" src="https://github.com/user-attachments/assets/fdd0c264-83a9-4dfc-84f7-ae73923e7485" />
+<img width="1366" height="768" alt="screenshot_06102025_125959" src="https://github.com/user-attachments/assets/84a02980-eadd-403a-814e-1de2f5f6082a" />
 
 
 Dark mode using "Matugen-Monochrome" theme apply's an onyx/graphite theme to every QT6 and GTK3/4 window on all backgrounds
-<img width="1366" height="768" alt="screenshot_14092025_232227" src="https://github.com/user-attachments/assets/25ad6e80-3c9b-4dd4-af22-ed6a2c8e891b" />
-<img width="1366" height="768" alt="screenshot_14092025_232316" src="https://github.com/user-attachments/assets/f4dd5461-394c-4879-b1a9-2ac080f64cc5" />
+<img width="1366" height="768" alt="screenshot_06102025_130548" src="https://github.com/user-attachments/assets/138d1803-b061-4239-bcd8-292a44f33994" />
+<img width="1366" height="768" alt="screenshot_06102025_130642" src="https://github.com/user-attachments/assets/439792ce-4dc6-4206-96f6-39e8546bd4bc" />
 
 
 UltraCandy with hyprpanel option plus settings app
