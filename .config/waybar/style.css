@@ -124,7 +124,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @primary_container;
+  color: @primary_fixed_dim;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -132,7 +132,7 @@ tooltip label {
 }
 
 #workspaces button:hover {
-  color: @primary_fixed_dim;
+  color: @primary_container;
   background: transparent;
   text-shadow: none;
   margin: 2px;
@@ -143,13 +143,17 @@ tooltip label {
   /*color: @on_primary;
   background: @primary_fixed_dim;*/
   color: @primary_fixed_dim;
-  background: linear-gradient(0deg, @inverse_primary, @scrim);
+  background: transparent;
   margin: 2px;
-  padding: 1px 2px 0 0;
+  margin-right: 0px;
+  padding-left: 4px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 #workspaces button.active:hover {
-  color: @source_color;
+  color: @primary_container;
 }
 
 /* Occupied workspace (persistent with windows but not focused) */
@@ -161,7 +165,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
-  color: @source_color;
+  color: @primary_container;
 }
 
 /* Urgent workspace (has urgent/notification windows) */
@@ -565,7 +569,6 @@ window.popup * {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
-  margin-right: 4px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 6px;
@@ -598,13 +601,10 @@ window.popup * {
 #custom-power {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  border: 1.5px solid @on_primary;
-  margin-left: 1px;
+  margin-left: 6px;
   border-radius: 30px;
   padding-left: 5px;
-  padding-right: 1px;
-  padding-top: 1px;
-  padding-bottom: 2px;
+  padding-right: 8px;
 }
 
 #custom-power:hover {
@@ -613,12 +613,10 @@ window.popup * {
   border: 1.5px solid @on_primary;*/
   color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim);
-  border: 1.5px solid @on_primary;
+  margin-left: 6px;
   border-radius: 30px;
   padding-left: 5px;
-  padding-right: 1px;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-right: 8px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ font sizes ├───
