@@ -196,7 +196,7 @@
   "custom/distro": {
     "format": "{icon}",
     "format-icons": {
-      "default": "󰣇 ",
+      "default": " ",
     },
     "tooltip": true,
     "tooltip-format": "Candy-Settings",
