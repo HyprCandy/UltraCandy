@@ -83,8 +83,12 @@ UltraCandy with hyprpanel option plus settings app
 
 ## Workspaces Overview
 • Replaced *hyprexpo* wth *hyprexpo-plus*.
-• New version has; current workspace highlighting, workspace cycling and selection with arrow keys and Return button, workspace selection with submap keybinds such as digits 1-10 for workspaces 1-0 and SHIFT+1-0 for workspaces 11-20 and a-z for workspaces 21-46
+
+• New version has; current workspace highlighting, workspace 
+cycling and selection with arrow keys and Return button, workspace selection with submap keybinds such as digits 1-10 for workspaces 1-0 and SHIFT+1-0 for workspaces 11-20 and a-z for workspaces 21-46
+
 • Launch with SUPER+SPACE
+
 • Submap keys can be edited in the plugins section (before 'userprefs' at the end) of the custom.conf file in ~/.config/hyprcustom
 <img width="1366" height="768" alt="screenshot_11102025_001520" src="https://github.com/user-attachments/assets/19642c12-300e-4311-a5e3-cc55be1a7722" />
 
