@@ -36,8 +36,9 @@ if [ "$1" == "up" ]; then
   command="
     $0 upgrade 
     ${aur_helper} -Syu
-    hyprpm update -f
+    hyprpm update
     hyprpm reload
+    hyprctl reload
     if pkg_installed flatpak; then flatpak update; fi
     printf '\n'
     read -n 1 -p 'Press any key to continue...'
