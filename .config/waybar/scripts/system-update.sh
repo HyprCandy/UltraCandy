@@ -87,16 +87,3 @@ if [ $total_updates -eq 0 ]; then
 else
   echo "{\"text\":\"\", \"tooltip\":\"${tooltip//\"/\\\"}\"}"
 fi
-
-print_warning "A reboot is recommended after system updates for changes to take effect properly."
-    echo
-    echo -e "${YELLOW}Would you like to reboot now? (n/Y)${NC}"
-    read -r reboot_choice
-    case "$reboot_choice" in
-        [nN][oO]|[nN])
-            print_status "Reboot skipped. Please reboot manually when convenient and note that some processes won't function properly until you reboot."
-            ;;
-        *)
-            print_status "Rebooting system..."
-            ;;
-    esac
