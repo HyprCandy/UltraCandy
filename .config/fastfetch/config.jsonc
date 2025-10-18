@@ -6,7 +6,7 @@
     "height": 15,
     "width": 35,
       "padding": {
-      "top": 3, //change this value to 6 when changing to ascii art and coomment the 'left' and 'right' lines
+      "top": 2, //change this value to 6 when changing to ascii art and coomment the 'left' and 'right' lines
       "left": 0,
       "right": 1
       }
@@ -20,76 +20,76 @@
             "type": "custom"
         },
         {
-            "key": "│ {#31} user    {#keys}││ ",
+            "key": "│ {#31} user    {#keys}││ ",
             "type": "title",
-            "format": "User  {user-name}  Root  {host-name}"
+            "format": "User  {user-name}  Root  {host-name}"
         },
         {
-            "key": "│ {#39}󰇄 device  {#keys}││ ",
+            "key": "│ {#39}󰇄 device  {#keys}││ ",
             "type": "host",
             "format": "{5} {2}"
         },
         {
-            "key": "│ {#36}{icon} distro  {#keys}││ ",
+            "key": "│ {#36}{icon} distro  {#keys}││ ",
             "type": "os"
         },
         {
-            "key": "│ {#32} kernel  {#keys}││ ",
+            "key": "│ {#32} kernel  {#keys}││ ",
             "type": "kernel"
         },
         {
-            "key": "│ {#35}󱫐 wm      {#keys}││ ",
+            "key": "│ {#35}󱫐 wm      {#keys}││ ",
             "type": "wm"
         },
         /*{
-            "key": "│ {#36} cursor  {#keys}││ ",
+            "key": "│ {#36} cursor  {#keys}││ ",
             "type": "cursor"
         },
         {
-            "key": "│ {#39}󰀻 icons   {#keys}││ ",
+            "key": "│ {#39}󰀻 icons   {#keys}││ ",
             "type": "icons"
         },*/
         {
-            "key": "│ {#34} term    {#keys}││ ",
+            "key": "│ {#34} term    {#keys}││ ",
             "type": "terminal"
         },
         {
-            "key": "│ {#33} shell   {#keys}││ ",
+            "key": "│ {#33} shell   {#keys}││ ",
             "type": "shell"
         },
         /*{
-            "key": "│ {#39}󰏗 packages{#keys}││ ",
+            "key": "│ {#39}󰏗 packages{#keys}││ ",
             "type": "packages"
         },*/
         {
-            "key": "│ {#32}󰉉 disk    {#keys}││ ",
+            "key": "│ {#32}󰉉 disk    {#keys}││ ",
             "type": "disk"
         },
         {
-            "key": "│ {#33} memory  {#keys}││ ",
+            "key": "│ {#33} memory  {#keys}││ ",
             "type": "memory"
         },
         {
-            "key": "│ {#34}󰓡 swap    {#keys}││ ",
+            "key": "│ {#34}󰓡 swap    {#keys}││ ",
             "type": "swap"
         },
         {
-            "key": "│ {#35}󰅐 os age  {#keys}││ ",
+            "key": "│ {#35}󰅐 os age  {#keys}││ ",
             "type": "disk",
             "folders": "/",
             "format": "{days} days"
         },
         {
-            "key": "│ {#36}󰅐 uptime  {#keys}││ ",
+            "key": "│ {#36}󰅐 uptime  {#keys}││ ",
             "type": "uptime"
         },
         {
-            "key": "│ {#39}󰍛 cpu     {#keys}││ ",
+            "key": "│ {#39}󰍛 cpu     {#keys}││ ",
             "type": "cpu",
             "showPeCoreCount": true
         },
         {
-            "key": "│ {#31}󰇺 gpu     {#keys}││ ",
+            "key": "│ {#31}󰇺 gpu     {#keys}││ ",
             "type": "gpu",
             "format": "{2} {3}"
         },
@@ -103,8 +103,9 @@
         },
         {
             "key": "│ {#39} colors  {#keys}││                 ",
-            "type": "colors",
-            "symbol": "circle"
+            "type": "custom",
+            "size": 12,
+            "format": "\u001b[90m \u001b[31m \u001b[32m \u001b[33m \u001b[34m \u001b[35m \u001b[36m \u001b[39m"
         },
         {
             "key": "╰───────────╯╰───────────────────────────────────────────────────╯",

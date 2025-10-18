@@ -469,11 +469,3 @@ placessidebar .top-bar headerbar {
 
   .content-pane {
     background-color: @on_secondary; }
-  
-  .background, .background:backdrop, .view, iconview, .view:backdrop, iconview:backdrop {
-    background-color: @on_secondary 85%; }
-  
-  /*window {
-    background-color: @blur_background 10%; }
-
-# sourceMappingURL=gtk-dark.css.map */

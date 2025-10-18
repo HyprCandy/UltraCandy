@@ -47,7 +47,7 @@ get_current_animation() {
     if [[ -f "$CUSTOM_CONF" ]]; then
         grep "^source = ~/.config/hypr/conf/animations/" "$CUSTOM_CONF" | cut -d'/' -f6
     else
-        echo "silent.conf"
+        echo "vertical.conf"
     fi
 }
 

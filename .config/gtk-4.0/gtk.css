@@ -13,11 +13,11 @@
 @define-color accent_bg_color @primary;
 @define-color window_bg_color @on_secondary;
 @define-color window_fg_color white;
-@define-color view_bg_color @on_secondary;
+@define-color view_bg_color @on_secondry;
 @define-color view_fg_color white;
-@define-color headerbar_bg_color @on_secondary;
+@define-color headerbar_bg_color @on_secondry;
 @define-color headerbar_fg_color white;
-@define-color headerbar_border_color white;
+@define-color headerbar_border_color @inverse_primary;
 @define-color headerbar_backdrop_color @window_bg_color;
 @define-color headerbar_shade_color rgba(0, 0, 6, 0.36);
 @define-color headerbar_darker_shade_color rgba(0, 0, 12, 0.9);
@@ -475,5 +475,3 @@ placessidebar .top-bar headerbar {
   
   window {
     background-color: @on_secondary; }
-
-/*# sourceMappingURL=gtk-dark.css.map */

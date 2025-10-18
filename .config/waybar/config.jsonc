@@ -2,7 +2,7 @@
   // ─────────────────────────────────────────────────────────────┤ header ├───
 
   "layer": "top",
-  "position": "top",
+  "position": "bottom",
   "mode": "dock",
   "reload_style_on_change": true,
   "gtk-layer-shell": true,  // for waybar to be on top of other windows
@@ -55,9 +55,9 @@
     "tray",       	    // system tray
     "custom/notification",         // swaync
     "idle_inhibitor",       // idle inhibitor
-    "custom/rofi",
-    "custom/weather",
-    "custom/player",
+    //"custom/rofi",
+    //"custom/weather",
+    //"custom/player",
     "custom/update",        // system update
     "power-profiles-daemon",        // power profiles
     "bluetooth",            // bluetooth
@@ -199,8 +199,9 @@
       "default": " ",
     },
     "tooltip": true,
-    "tooltip-format": "Candy-Settings",
+    "tooltip-format": "Left-click: Extra-Settings\nRight-click: Hyprland-Settings",
     "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
+    "on-click-right": "~/.ultracandy/GJS/toggle-hyprland-settings.sh",
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
@@ -333,11 +334,11 @@
   
   // ───────────────────────────────────────────────────────────┤ SwayNC ├───
   "custom/notification": {
-    "tooltip-format": "Left-click: Notifications\nRight-click: Do not disturb",
+    "tooltip-format": "Left-click: Control-Center\nRight-click: Do not disturb",
     "format": "{icon}",
     "format-icons": {
       "notification": "󰅸",
-      "none": "󰂜",
+      "none": "󰝹",
       "dnd-notification": "󱅫",
       "dnd-none": "󰂠",
       "inhibited-notification": "󰅸",
@@ -411,8 +412,8 @@
     "format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-charging": " {capacity}%",
 
-    "tooltip-format": "Discharging: {time}",
-    "tooltip-format-charging": "Charging: {time}",
+    "tooltip-format": "Discharging: {time}\nLeft-click: System-Monitor-Widget\nRight-click: Gnome-System-Monitor-App",
+    "tooltip-format-charging": "Charging: {time}\nLeft-click: System-Monitor-Widget\nRight-click: Gnome-System-Monitor-App",
     "interval": 1,
     "min-length": 6,
     "max-length": 6,

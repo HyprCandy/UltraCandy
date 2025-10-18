@@ -2,7 +2,7 @@
 
 @import 'colors.css';
 @define-color background @blur_background;
-@define-color groupbackground @blur_background; /*linear-gradient(45deg, @source_color 0%, @scrim 100%);*/
+@define-color groupbackground @blur_background; /*linear-gradient(45deg, @bordercolor 0%, @scrim 100%);*/
 @define-color buttoncolor @primary_fixed_dim;
 @define-color bordercolor @inverse_primary;
 @define-color fontcolor @on_surface;
@@ -21,7 +21,9 @@
 
 button {
     border: 0px;
-    min-width: 35px;
+    border-radius: 10px;
+    min-height: 20px;
+    min-width: 20px;
     background: @buttoncolor;
     color: @on_secondary;
 }
@@ -37,6 +39,8 @@ button:hover {
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
     margin:5px;
+    min-height: 20px;
+    min-width: 15px;
 }
 
 /* Notification */
@@ -69,8 +73,8 @@ button:hover {
     border-radius: 15px;
     margin-top: 9px;
     margin-right: 10px;
-    min-width: 24px;
-    min-height: 24px;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .close-button:hover {
@@ -78,6 +82,7 @@ button:hover {
 }
 
 .notification-group .notification-group-close-button .close-button {
+    font-size: 8px;
     margin: 15px 22px;
 }
 
@@ -88,7 +93,7 @@ button:hover {
 
 .widget-volume scale highlight {
     border-radius: 4px;
-    background: @source_color;
+    background: @bordercolor;
 }
 
 /* Backlight widget slider styling */
@@ -98,5 +103,9 @@ button:hover {
 
 .widget-backlight scale highlight {
     border-radius: 4px;
-    background: @source_color;
+    background: @bordercolor;
+}
+
+.widget-buttons-grid {
+    font-size: x-small;
 }

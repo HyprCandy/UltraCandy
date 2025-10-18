@@ -16,19 +16,19 @@
 window#waybar {
   background: none;
   /*border: 0px solid @on_primary_fixed_variant; @primary_fixed_dim;*/
-  border-radius: 20.0px;
+  border-radius: 8.0px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
   background: @blur_background;
-  margin-top: 4.5px;
-  margin-left: 8.5px;
-  margin-right: 8.5px;
-  margin-bottom: 0px;
-  border-radius: 20.0px;
-  padding: 3.5px;
+  margin-top: 0.0px;
+  margin-left: 250.0px;
+  margin-right: 250.0px;
+  margin-bottom: 6.0px;
+  border-radius: 8.0px;
+  padding: 6.0px;
   border: 2px solid @inverse_primary;
 }
 

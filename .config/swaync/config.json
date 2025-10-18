@@ -7,13 +7,13 @@
     "layer-shell": true,
     "cssPriority": "user",
     "control-center-margin-top": 8,
-    "control-center-margin-bottom": 0,
+    "control-center-margin-bottom": 8,
     "control-center-margin-right": 6,
-    "control-center-margin-left": 0,
+    "control-center-margin-left": 6,
     "notification-2fa-action": true,
     "notification-inline-replies": false,
     "notification-icon-size": 24,
-    "notification-body-image-height": 100,
+    "notification-body-image-height": 160,
     "notification-body-image-width": 100,
     "notification-window-width": 300,
     "timeout": 6,
@@ -31,7 +31,6 @@
     "widgets": [
         "dnd",
         "buttons-grid",
-        "mpris",
         "volume",
         "backlight",
         "title",
@@ -41,7 +40,7 @@
         "title": {
             "text": "Notifications",
             "clear-all-button": true,
-            "button-text": "Clear"
+            "button-text": "󰩺"
         },
         "dnd": {
             "text": "Do Not Disturb"
@@ -49,10 +48,6 @@
         "label": {
             "max-lines": 1,
             "text": "Notification"
-        },
-        "mpris": {
-            "image-size": 50,
-            "image-radius": 0
         },
         "volume": {
             "label": "󰕾"
@@ -63,20 +58,24 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "",
-                    "command": "spotify"
-                },
-                {
-                    "label": "",
-                    "command": "equibop"
-                },
-                {
                     "label": "󰹑",
                     "command": "bash -c $HOME/.config/hypr/scripts/screenshot.sh"
                 },
                 {
                     "label": "",
                     "command": "bash -c $HOME/.config/swaync/recorder.sh"
+                },
+                {
+                    "label": "󰝚",
+                    "command": "bash -c $HOME/.ultracandy/GJS/toggle-media-player.sh"
+                },
+                {
+                    "label": " ",
+                    "command": "gnome-weather"
+                },
+                {
+                    "label": "󰍜",
+                    "command": "bash -c $HOME/.config/hypr/scripts/rofi-menus.sh"
                 }
             ]
         }
