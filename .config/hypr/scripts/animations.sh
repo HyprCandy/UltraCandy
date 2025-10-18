@@ -15,7 +15,7 @@
 
 # Configuration
 ROFI_CONFIG="$HOME/.config/rofi/config-compact.rasi"
-CUSTOM_CONF="$HOME/.config/hyprcustom/custom.conf"
+CUSTOM_CONF="$HOME/.config/hypr/hyprviz.conf"
 ANIMATIONS_DIR="$HOME/.config/hypr/conf/animations"
 
 # Animation options with descriptions
