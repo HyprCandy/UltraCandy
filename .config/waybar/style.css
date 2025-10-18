@@ -24,8 +24,8 @@ window#waybar {
 window#waybar > box {
   background: @blur_background;
   margin-top: 0.0px;
-  margin-left: 250.0px;
-  margin-right: 250.0px;
+  margin-left: 6.0px;
+  margin-right: 6.0px;
   margin-bottom: 6.0px;
   border-radius: 8.0px;
   padding: 6.0px;
