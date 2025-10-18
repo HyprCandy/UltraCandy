@@ -2,9 +2,9 @@
 
 window.background {
     background-color: @blur_background;
-	border-radius: 20px;
+	border-radius: 8px;
 	border-style: solid;
-	border-width: 1px;
+	border-width: 2px;
 	border-color: @inverse_primary; /*@primary_fixed_dim;*/
 }
 
