@@ -58,7 +58,7 @@ button:focus {
 button:hover {
     background-color: @on_primary;
 	opacity: 0.95;
-    color: @scrim;
+    color: @primary_fixed_dim;
     background-size: 25%;
     margin: 30px;
     border-radius: 80px;
