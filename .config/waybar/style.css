@@ -28,7 +28,7 @@ window#waybar > box {
   margin-right: 7.0px;
   margin-bottom: 0.0px;
   border-radius: 6.0px;
-  padding: 6.0px;
+  padding: 4.0px;
   border: 2px solid @inverse_primary;
 }
 
