@@ -5,7 +5,11 @@ Connect: [Discord Server](https://bit.ly/Candy-Discord-Server) / [Reddit](https:
 ➡[UltraCandy](https://github.com/HyprCandy/UltraCandy.git)⬅ is a Hyprland configuration cohesively themed entirely through [matugen](https://github.com/InioX/matugen.git) with extra quality of life features.
 
 
-## Features: 
+## Features:
+• Integration with the Hyprviz Hyprland settings app for all Hyprland related settings.
+
+• Custom UC control center to easily modify extra settings waybar if waybar option is chosen, hyprland windows,the dock, launch hyprpicker, adjust opacty, change dock start icon,enable/disable xray mode  and hyprsunset/hyprshade. (I like to wsitch to islands mode for dark backgrounds and the blurred bar for lighter backgrounds).
+
 • Extensive rofi menus for wifi, bluetooth, application finder and rofi-utilities launcher for: updates, reinstalling, animation-switcher menu, keybinds menu, clipboard menu, emoji-picker menu, glyph-picker menu
 
 • Light and Dark mode through matugen along with other matugen themeing options 
@@ -13,8 +17,6 @@ Connect: [Discord Server](https://bit.ly/Candy-Discord-Server) / [Reddit](https:
 • Hyprexpo-plus overview and hyprbars plugin integration
 
 • Automatic idle-inhbitor activated when waybar/hyprpanel is toggled off whenever you want extra screen space since you won't be able to activate it through waybar's/hyprpanel's idle-inhibitor button. This is great for lighter resource usage as well while still being able to keep your device awake.
-
-• Custom control center to easily modify waybar if waybar option is chosen, hyprland windows,the dock, launch hyprpicker, adjust opacty, change dock start icon,enable/disable xray mode  and hyprsunset/hyprshade. (I like to wsitch to islands mode for dark backgrounds and the blurred bar for lighter backgrounds).
 
 • Custom media-player, weather widget and system-monitor widget
 
@@ -55,20 +57,19 @@ Just a few of the possible system colors and automatic sddm background applicati
 
 UltraCandy with waybar option plus settings app
 
-Most recent screenshots with hyprbars plugin and hyprexpo-plus overwiew plugin integration
+Most recent screenshots with hyprbars plugin and hyprexpo-plus overwiew plugin integration plus updates settings apps
+
 <img width="1366" height="768" alt="screenshot_20102025_114707" src="https://github.com/user-attachments/assets/a784edd1-b4de-4c5c-ba11-0acbad195546" />
 <img width="1366" height="768" alt="screenshot_20102025_114946" src="https://github.com/user-attachments/assets/f5e7bc6a-63ec-4d01-8cd1-b918acda0200" />
-<img width="1366" height="768" alt="screenshot_20102025_115225" src="https://github.com/user-attachments/assets/f6a7882c-a5e5-4665-af98-b3ebc2d423ec" />
+<img width="1366" height="768" alt="screenshot_21102025_234327" src="https://github.com/user-attachments/assets/6d1033f7-e779-430d-b3f5-04c866bfb9e9" />
 <img width="1366" height="768" alt="screenshot_20102025_115629" src="https://github.com/user-attachments/assets/026c597f-6ba6-4a6c-b39a-567498b0430b" />
+<img width="1366" height="768" alt="screenshot_21102025_232817" src="https://github.com/user-attachments/assets/270f7dd0-7c5c-4995-9bba-032d73fb904a" />
+<img width="1366" height="768" alt="screenshot_21102025_232846" src="https://github.com/user-attachments/assets/29ae2d4f-aa92-497e-87a0-ec10c9799e6a" />
 
-Matugen Content theme with current waybar setup
+Older screenchots
+
 <img width="1366" height="768" alt="screenshot_13102025_050902" src="https://github.com/user-attachments/assets/17bd99e5-21d7-4961-a532-aff8b2b35737" />
 <img width="1366" height="768" alt="screenshot_13102025_051227" src="https://github.com/user-attachments/assets/f68c7534-eec0-4195-8712-4572a79a9290" />
-<img width="1366" height="768" alt="screenshot_13102025_051021" src="https://github.com/user-attachments/assets/f33a7d57-1df4-447f-9c0f-22506453298e" />
-
-Light mode using "Matugen-Fidelity" applies a lightertone to to every QT6 and GTK3/4 window plus various borders
-[NOTE] Rofi-menus and floating windows maintain a dark border color for better contrast from bright backgrounds or light themed windows
-<img width="1366" height="768" alt="screenshot_06102025_125715" src="https://github.com/user-attachments/assets/73cf567b-01be-4c84-b92a-f994ea89c7c8" />
 <img width="1366" height="768" alt="screenshot_06102025_130126" src="https://github.com/user-attachments/assets/fdd0c264-83a9-4dfc-84f7-ae73923e7485" />
 <img width="1366" height="768" alt="screenshot_06102025_125959" src="https://github.com/user-attachments/assets/84a02980-eadd-403a-814e-1de2f5f6082a" />
 
@@ -108,7 +109,7 @@ cycling and selection with arrow keys and Return button, workspace selection wit
 
 
 ## Hyprlock
-<img width="1366" height="768" alt="screenshot_01092025_235826" src="https://github.com/user-attachments/assets/73fec12f-1fbf-48cd-a082-04fa3618b39a" />
+<img width="1366" height="768" alt="screenshot_21102025_233423" src="https://github.com/user-attachments/assets/cf3197dc-abeb-4dff-8dc9-1185bf31127a" />
 
 
 ## Rofi Menus
