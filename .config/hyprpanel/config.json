@@ -42,7 +42,7 @@
   "theme.bar.buttons.padding_x": "0.4rem",
   "theme.bar.buttons.radius": "3em",
   "theme.bar.dropdownGap": "2.9em",
-  "bar.launcher.icon": "󰣇",
+  "bar.launcher.icon": "",
   "bar.launcher.autoDetectIcon": false,
   "theme.bar.buttons.dashboard.enableBorder": false,
   "theme.bar.buttons.workspaces.enableBorder": false,
