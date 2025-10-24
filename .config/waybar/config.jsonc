@@ -145,7 +145,7 @@
 
   "custom/weather": {
     "exec": "bash -c ~/.config/waybar/scripts/waybar-weather.sh",
-    "interval": 3,
+    "interval": 600,
     "format": "{}",
     "tooltip": true,
     "tooltip-format": "Left-click: Weather-app\nRight-click: Weather-widget",
