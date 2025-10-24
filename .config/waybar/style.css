@@ -248,8 +248,8 @@ tooltip label {
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
-  padding-left: 4px;
-  padding-right: 3px;
+  padding-left: 6px;
+  padding-right: 5px;
 }
 
 #custom-weather:hover {
