@@ -148,9 +148,11 @@
     "interval": 600,
     "format": "{}",
     "tooltip": true,
-    "tooltip-format": "Left-click: Weather-app\nRight-click: Weather-widget",
-    "on-click-right": " ~/.ultracandy/GJS/toggle-weather-widget.sh",
+    "tooltip-format": "Left-click: Weather-app\nRight-click: Weather-widget\nScroll-up/down: °C/°F",
     "on-click": "gnome-weather",
+    "on-click-right": " ~/.ultracandy/GJS/toggle-weather-widget.sh",
+    "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
+    "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 1,
     "max-length": 30
   },
