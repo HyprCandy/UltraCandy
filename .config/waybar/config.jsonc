@@ -417,12 +417,12 @@
     "format-charging": " {capacity}%",
 
     "tooltip-format": "Discharging: {time}\nLeft-click: System-Monitor-Widget\nRight-click: Gnome-System-Monitor-App",
-    "tooltip-format-charging": "Charging: {time}\nLeft-click: System-Monitor-Widget\nRight-click: Gnome-System-Monitor-App",
+    "tooltip-format-charging": "Charging: {time}\nLeft-click: Gnome-System-Monitor-App\nRight-click: System-Monitor-Widget",
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
-    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh",
-    "on-click-right": "gnome-system-monitor"
+    "on-click": "gnome-system-monitor",
+    "on-click-right": "~/.ultracandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
