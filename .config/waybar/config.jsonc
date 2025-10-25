@@ -239,29 +239,9 @@
 
   "clock#date": {
     "format": "󰸗 {:%m-%d}",
-    "tooltip-format": "<tt>{calendar}</tt>",
-
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "on-click-right": "mode",
-
-      "format": {
-        "months": 
-          "<span color='#b7bdf8'><b>{}</b></span>",
-        "weekdays": 
-          "<span color='#a5adcb' font='7'>{}</span>",
-        "today": 
-          "<span color='#ed8796'><b>{}</b></span>"
-      }
-    },
-
-    "actions": {
-      "on-click-right": "mode"
-    },
-    
+    "tooltip": true,
+    "tooltip-format": "Left-click: Calendar-App",
     "on-click": "gnome-calendar",
-
     "min-length": 1,
     "max-length": 7
   },
