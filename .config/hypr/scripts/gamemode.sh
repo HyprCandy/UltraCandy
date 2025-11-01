@@ -12,5 +12,5 @@ else
         keyword decoration:active_opacity 1;\
         keyword decoration:inactive_opacity 1" 
     touch $HOME/.config/hyprcandy/settings/gamemode-enabled
-    notify-send "Game-mode" "Actived" -t 2000
+    notify-send "Game-mode" "Activated" -t 2000
 fi
