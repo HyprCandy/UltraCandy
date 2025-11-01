@@ -22,7 +22,7 @@ window#waybar {
 /* ───────────────────────────────────────────────────────────┤ background ├───
 */
 window#waybar > box {
-  background: @blur_background;
+  background: @on_primary_fixed_variant;
   margin-top: 4.5px;
   margin-left: 7.0px;
   margin-right: 7.0px;
