@@ -1,8 +1,8 @@
 /* Colors */
 
 @import 'colors.css';
-@define-color background @on_primary_fixed_variant;
-@define-color groupbackground @on_primary_fixed_variant; /*linear-gradient(45deg, @bordercolor 0%, @scrim 100%);*/
+@define-color background @blur_background;
+@define-color groupbackground @blur_background; /*linear-gradient(45deg, @bordercolor 0%, @scrim 100%);*/
 @define-color buttoncolor @primary_fixed_dim;
 @define-color bordercolor @inverse_primary;
 @define-color fontcolor @on_surface;
