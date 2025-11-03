@@ -30,3 +30,12 @@ if [ -f "$FLAG_FILE" ]; then
     [ -x "$SCRIPT" ] || { echo "0" > "$STATE_FILE"; SCRIPT="${DOCK_SCRIPTS[0]}"; }
     nohup "$SCRIPT" >/dev/null 2>&1 &
 fi
+
+#4.  LOGIN MODE (exec-once) – always spawn
+if [[ "$1" == "--restore" ]]; then
+    # always start on the edge saved in STATE_FILE
+    SCRIPT="${DOCK_SCRIPTS[$CURRENT_POS]}"
+    [ -x "$SCRIPT" ] || { echo "0" > "$STATE_FILE"; SCRIPT="${DOCK_SCRIPTS[0]}"; }
+    nohup "$SCRIPT" >/dev/null 2>&1 &
+    exit 0
+fi
