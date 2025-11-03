@@ -39,3 +39,5 @@ if [[ "$1" == "--restore" ]]; then
     nohup "$SCRIPT" >/dev/null 2>&1 &
     exit 0
 fi
+
+#Dock will launch on login and use position tracking when toggled
