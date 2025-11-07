@@ -42,7 +42,7 @@ output_path = '~/.config/gtk-4.0/colors.css'
 [templates.nwgdock]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/nwg-dock-hyprland/colors.css'
-post_hook = 'bash -c "~/.config/nwg-dock-hyprland/launch.sh" > /dev/null 2>&1 &'
+post_hook = 'bash -c "~/.config/hyprcandy/scripts/toggle-dock.sh" > /dev/null 2>&1 &'
 
 [templates.cava]
 input_path = '~/.config/matugen/templates/config'
