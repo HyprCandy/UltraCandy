@@ -40,4 +40,17 @@ if [[ "$1" == "--restore" ]]; then
     exit 0
 fi
 
+#5. Update dock colors or just reload dock
+if [[ "$1" == "--reload" ]]; then
+    "$PRESET_HIDDEN" >/dev/null 2>&1     # your preset script (just in case)
+    touch "$FLAG_FILE"
+    exit 0
+    if [ -f "$FLAG_FILE" ]; then
+        rm "$FLAG_FILE"
+        SCRIPT="${DOCK_SCRIPTS[$CURRENT_POS]}"
+        [ -x "$SCRIPT" ] || { echo "0" > "$STATE_FILE"; SCRIPT="${DOCK_SCRIPTS[0]}"; }
+        nohup "$SCRIPT" >/dev/null 2>&1 &
+    fi
+fi
+
 #Dock will launch on login and use position tracking when toggled
