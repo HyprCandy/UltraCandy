@@ -194,7 +194,7 @@ tooltip label {
 */
 
 #custom-cava {
-  color: @inverse_primary;
+  color: @source_color;
   background: transparent;
   border-radius: 20px;
   margin-left: 6px;
