@@ -44,7 +44,7 @@ fi
 if [[ "$1" == "--reload" ]]; then
     "$PRESET_HIDDEN" >/dev/null 2>&1     # your preset script (just in case)
     touch "$FLAG_FILE"
-    sleep 0.3
+    sleep 1
     if [ -f "$FLAG_FILE" ]; then
         rm "$FLAG_FILE"
         SCRIPT="${DOCK_SCRIPTS[$CURRENT_POS]}"
