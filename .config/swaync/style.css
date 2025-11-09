@@ -16,7 +16,7 @@
 .control-center {
     background: @background; /* Your current unfocused color */
     border: 3px solid @bordercolor;
-    padding: 10px;
+    padding: 0;
 }
 
 .widget {
@@ -26,9 +26,9 @@
 
 button {
     border: 0px;
-    border-radius: 10px;
-    min-height: 20px;
-    min-width: 20px;
+    border-radius: 8px;
+    min-height: 10px;
+    min-width: 5px;
     background: @buttoncolor;
     color: @on_secondary;
 }
@@ -43,9 +43,9 @@ button:hover {
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
-    margin:5px;
-    min-height: 20px;
-    min-width: 15px;
+    margin: 8px;
+    min-height: 10px;
+    min-width: 5px;
 }
 
 /* Notification */
@@ -95,6 +95,8 @@ button:hover {
 /* Volume widget slider styling */
 .widget-volume scale slider {
     background: @primary_fixed_dim;
+    padding: 0;
+    margin: 1px;
     margin-top: 0.5px;
     margin-bottom: 0.5px;
 }
@@ -107,6 +109,8 @@ button:hover {
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
     background: @primary_fixed_dim;
+    padding: 0;
+    margin: 1px;
     margin-top: 0.5px;
     margin-bottom: 0.5px;
 }
