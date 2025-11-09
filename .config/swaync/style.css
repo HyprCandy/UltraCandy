@@ -70,14 +70,6 @@ button:hover {
     background: transparent; /* Replace with desired color */
 }
 
-/* dnd widget */
-.widget-dnd {
-    background: transparent;
-    border: 1px solid transparent;
-    font-size: large;
-    color: @surface_container;
-}
-
 /* Button */
 
 .close-button {
