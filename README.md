@@ -59,7 +59,10 @@ Just a few of the possible system colors and automatic sddm background applicati
 
 UltraCandy with waybar option plus settings app
 
-Most recent screenshots with hyprbars plugin and hyprexpo-plus overwiew plugin integration plus updates settings apps
+<img width="1366" height="768" alt="screenshot_09112025_234131" src="https://github.com/user-attachments/assets/b62c2d0b-8893-470c-990f-9f76cc2b4b41" />
+<img width="1366" height="768" alt="screenshot_10112025_000858" src="https://github.com/user-attachments/assets/80d3ecd1-3f21-4b77-8cfc-909c3aa57247" />
+
+Most recent screenshots with optional hyprbars plugin and hyprexpo-plus overwiew plugin enabled/uncommented in configs plus updates settings apps
 
 <img width="1366" height="768" alt="screenshot_25102025_163437" src="https://github.com/user-attachments/assets/58eb1e0f-2640-4119-9dce-d1e8d48f0ef6" />
 <img width="1366" height="768" alt="screenshot_20102025_114707" src="https://github.com/user-attachments/assets/a784edd1-b4de-4c5c-ba11-0acbad195546" />
