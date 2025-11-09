@@ -227,8 +227,8 @@ tooltip label {
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
-  padding-left: 7px;
-  padding-right: 1px;
+  padding-left: 6px;
+  padding-right: 8px;
 }
 
 #custom-rofi:hover {
