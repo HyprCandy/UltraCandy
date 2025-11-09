@@ -133,7 +133,7 @@
   // ────────────────────────────────────────────────────────┤ rofi ├───
 
   "custom/rofi": {
-    "format": "󰍜 ",
+    "format": "󰝹",
     "tooltip": true,
     "tooltip-format": "Utilities",
     "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
@@ -322,7 +322,7 @@
     "format": "{icon}",
     "format-icons": {
       "notification": "󰅸",
-      "none": "󰝹",
+      "none": "󰎟",
       "dnd-notification": "󱅫",
       "dnd-none": "󰂠",
       "inhibited-notification": "󰅸",
