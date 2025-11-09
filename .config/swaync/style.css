@@ -75,7 +75,7 @@ button:hover {
     background: transparent;
     border: 1px solid transparent;
     font-size: large;
-    color: @inverse_primary;
+    color: @surface_container;
 }
 
 /* Button */
