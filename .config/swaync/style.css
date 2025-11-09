@@ -19,6 +19,11 @@
     padding: 10px;
 }
 
+.widget {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
 button {
     border: 0px;
     border-radius: 10px;
@@ -46,6 +51,7 @@ button:hover {
 /* Notification */
 
 .notification {
+    color: @primary_fixed_dim;
     background: @background;
     border: 3px solid @bordercolor;
     border-radius: 10px;
@@ -62,6 +68,14 @@ button:hover {
 .notification-group:focus,
 .notification-group:hover {
     background: transparent; /* Replace with desired color */
+}
+
+/* dnd widget */
+.widget-dnd {
+    background: transparent;
+    border: 1px solid transparent;
+    font-size: large;
+    color: @inverse_primary;
 }
 
 /* Button */
@@ -89,6 +103,8 @@ button:hover {
 /* Volume widget slider styling */
 .widget-volume scale slider {
     background: @primary_fixed_dim;
+    margin-top: 0.5px;
+    margin-bottom: 0.5px;
 }
 
 .widget-volume scale highlight {
@@ -99,6 +115,8 @@ button:hover {
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
     background: @primary_fixed_dim;
+    margin-top: 0.5px;
+    margin-bottom: 0.5px;
 }
 
 .widget-backlight scale highlight {
