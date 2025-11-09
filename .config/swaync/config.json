@@ -29,21 +29,21 @@
     "hide-on-action": true,
     "script-fail-notify": true,
     "widgets": [
-        "dnd",
         "buttons-grid",
         "volume",
         "backlight",
         "title",
+        "dnd",
         "notifications"
     ],
     "widget-config": {
         "title": {
-            "text": "Notifications",
+            "text": "󰎟",
             "clear-all-button": true,
             "button-text": "󰩺"
         },
         "dnd": {
-            "text": "Do Not Disturb"
+            "text": "󰂠"
         },
         "label": {
             "max-lines": 1,
