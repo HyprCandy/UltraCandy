@@ -32,8 +32,8 @@
         "buttons-grid",
         "volume",
         "backlight",
-        "title",
         "dnd",
+        "title",
         "notifications"
     ],
     "widget-config": {
