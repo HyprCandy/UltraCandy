@@ -74,7 +74,7 @@
                     "command": "bash -c $HOME/.ultracandy/GJS/toggle-media-player.sh"
                 },
                 {
-                    "label": "󰕿",
+                    "label": "󰖁",
                     "command": "bash $HOME/.config/waybar/scripts/volume-control.sh -o m"
                 }
             ]
