@@ -67,7 +67,7 @@
                 },
                 {
                     "label": "󰂯",
-                    "command": "blueman-manager"
+                    "command": "bash -c $HOME/.config/waybar/scripts/bluetooth-menu.sh"
                 },
                 {
                     "label": "󰝚",
