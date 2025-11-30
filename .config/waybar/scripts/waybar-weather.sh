@@ -63,10 +63,10 @@ fi
 # -----------------------------------------------------------------------------
 # 3. Validation
 # -----------------------------------------------------------------------------
-if [ ! -s "$WEATHER_CACHE_FILE" ]; then
-    echo "{\"text\": \"...\", \"tooltip\": \"Weather unavailable\"}"
-    exit 0
-fi
+#if [ ! -s "$WEATHER_CACHE_FILE" ]; then
+#    echo "{\"text\": \"...\", \"tooltip\": \"Weather unavailable\"}"
+#    exit 0
+#fi
 
 # -----------------------------------------------------------------------------
 # 4. Process Data with Day/Night Logic
