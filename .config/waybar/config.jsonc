@@ -14,7 +14,7 @@
     //"custom/left1",
 
     "hyprland/workspaces",  // workspaces
-    //"custom/weather",
+    "custom/weather",
     //"custom/right1",
 
     "custom/paddw",
@@ -144,13 +144,14 @@
   // ────────────────────────────────────────────────────────┤ weather ├───
 
   "custom/weather": {
-    "exec": "bash -c ~/.config/waybar/scripts/waybar-weather.sh",
-    "interval": 600,
+    "exec": "~/.config/waybar/scripts/waybar-weather.sh",
+    "return-type": "json",
     "format": "{}",
     "tooltip": true,
-    "tooltip-format": "Left-click: Weather-app\nRight-click: Weather-widget\nScroll-up/down: °C/°F",
+    "interval": 1800,
+    "signal": 8,
     "on-click": "gnome-weather",
-    "on-click-right": " ~/.ultracandy/GJS/toggle-weather-widget.sh",
+    //"on-click-right": "~/.ultracandy/GJS/toggle-weather-widget.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 1,
