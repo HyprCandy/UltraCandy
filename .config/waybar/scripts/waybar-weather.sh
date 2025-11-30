@@ -148,7 +148,7 @@ jq --arg unit "$CURRENT_UNIT" --arg time "$CURRENT_TIME" -rc '
 
     {
         "text": "\($data.temp)\($data.unit) \(get_icon($current.weatherCode; $is_night))",
-        "tooltip": "<b>\($current.weatherDesc[0].value)</b>\nLocation: \($area.areaName[0].value)\nSunrise: \($astro.sunrise)\nSunset: \($astro.sunset)\nFeels like: \($data.feel)\($data.unit)\nHumidity: \($current.humidity)%\nWind: \($data.speed) \($data.wind)\n------------------------\nScroll-Up : °C\nScroll-Down : °F\nLeft-Click : Weather-App",
+        "tooltip": "<b>\($current.weatherDesc[0].value)</b>\nLocation: \($area.areaName[0].value)\nSunrise: \($astro.sunrise)\nSunset: \($astro.sunset)\nFeels like: \($data.feel)\($data.unit)\nHumidity: \($current.humidity)%\nWind: \($data.speed) \($data.wind)\n-------------------\nScroll-Up : °C\nScroll-Down : °F\nClick : Weather-App",
         "class": "weather",
         "alt": $current.weatherDesc[0].value
     }
