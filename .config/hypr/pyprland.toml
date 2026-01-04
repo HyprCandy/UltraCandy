@@ -4,6 +4,5 @@ plugins = [
 ]
 [scratchpads.term]
 animation = "fromTop"
-size = "800 x 500"
 command = "kitty --class=kitty-scratchpad"
 class = "kitty-scratchpad"
