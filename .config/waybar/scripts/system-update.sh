@@ -65,6 +65,7 @@ if [ "$1" == "up" ]; then
   command="
     $0 upgrade 
     ${aur_helper} -Syu
+    ${aur_helper} --rebuildall $(pacman -Qm)
     hyprpm update
     hyprpm reload
     hyprctl reload
