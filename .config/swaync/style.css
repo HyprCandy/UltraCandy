@@ -123,3 +123,7 @@ button:hover {
 .widget-buttons-grid {
     font-size: x-small;
 }
+
+* {
+    font-size: 15px;
+}
