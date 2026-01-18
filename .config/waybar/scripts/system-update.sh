@@ -37,6 +37,28 @@ get_aur_helper() {
 get_aur_helper
 export -f pkg_installed
 
+clean_cache() {
+    echo
+    print_warning "Clearing the cache frees disk space but requires redownloading if you need to downgrade later."
+    echo -e "${YELLOW}Would you like to clear the package cache? (n/Y)${NC}"
+    read -r clean_choice
+    case "$clean_choice" in
+        [nN][oO]|[nN])
+            print_status "Cache cleaning skipped."
+            ;;
+        *)
+            print_status "Cleaning pacman cache..."
+            # -Sc removes packages not currently installed, and old versions of installed packages
+            sudo pacman -Sc
+            
+            if [ -n "$aur_helper" ]; then
+                print_status "Cleaning $aur_helper cache..."
+                $aur_helper -Sc
+            fi
+            ;;
+    esac
+}
+
 prompt_reboot() {
     echo
     print_warning "A reboot is recommended to ensure all changes take effect properly."
@@ -88,6 +110,7 @@ if [ "$1" == "up" ]; then
     hyprpm reload
     hyprctl reload
     if pkg_installed flatpak; then flatpak update; fi
+    clean_cache
     prompt_reboot
     "
   kitty --title "   System Update" sh -c "${command}"
