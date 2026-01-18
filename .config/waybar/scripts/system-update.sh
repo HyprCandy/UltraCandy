@@ -37,6 +37,7 @@ get_aur_helper() {
 get_aur_helper
 export -f pkg_installed
 
+# EDITED: New function to handle cache cleaning
 clean_cache() {
     echo
     print_warning "Clearing the cache frees disk space but requires redownloading if you need to downgrade later."
@@ -81,11 +82,10 @@ if [ "$1" == "up" ]; then
   trap 'pkill -RTMIN+20 waybar' EXIT
   
   # Export functions and variables so they're available in the subshell
-  export -f prompt_reboot print_warning print_status
-  export YELLOW NC
+  # EDITED: Added clean_cache to exports
+  export -f prompt_reboot print_warning print_status clean_cache
+  export YELLOW NC aur_helper
   
-  # EDITED: Added logic to use 'rebuild-detector' if installed.
-  # This finds broken packages dynamically and rebuilds ONLY them.
   command="
     $0 upgrade 
     ${aur_helper} -Syu
@@ -110,7 +110,10 @@ if [ "$1" == "up" ]; then
     hyprpm reload
     hyprctl reload
     if pkg_installed flatpak; then flatpak update; fi
+    
+    # EDITED: Trigger the cache cleaner before reboot prompt
     clean_cache
+    
     prompt_reboot
     "
   kitty --title "   System Update" sh -c "${command}"
