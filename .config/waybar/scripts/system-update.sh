@@ -62,9 +62,28 @@ if [ "$1" == "up" ]; then
   export -f prompt_reboot print_warning print_status
   export YELLOW NC
   
+  # EDITED: Added logic to use 'rebuild-detector' if installed.
+  # This finds broken packages dynamically and rebuilds ONLY them.
   command="
     $0 upgrade 
-    ${aur_helper} -Syu --rebuildall $(pacman -Qm)
+    ${aur_helper} -Syu
+    
+    # Check for packages that need rebuilding (requires 'rebuild-detector')
+    if command -v checkrebuild >/dev/null; then
+        echo
+        print_status \"Checking for packages requiring a rebuild...\"
+        # Filter for 'foreign' (AUR) packages that checkrebuild identifies as broken
+        broken_pkgs=\$(checkrebuild | grep '^foreign' | awk '{print \$2}')
+        
+        if [ -n \"\$broken_pkgs\" ]; then
+            print_warning \"Found broken packages: \$broken_pkgs\"
+            print_status \"Rebuilding them now...\"
+            ${aur_helper} -S --rebuild \$broken_pkgs
+        else
+            print_status \"No packages require rebuilding.\"
+        fi
+    fi
+
     hyprpm update
     hyprpm reload
     hyprctl reload
