@@ -6,5 +6,5 @@ if pgrep -f "media-main.js" > /dev/null; then
     killall gjs ~/.ultracandy/GJS/media-main.js
 else
     # If not running, start it
-    gjs ~/.ultracandy/GJS/media-main.js &
+    gjs ~/.ultracandy/GJS/media-main.js 2>/dev/null
 fi
