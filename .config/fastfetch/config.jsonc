@@ -38,7 +38,7 @@
             "type": "kernel"
         },
         {
-            "key": "│ {#38}󱫐 wm      {#keys}││ ",
+            "key": "│ {#37}󱫐 wm      {#keys}││ ",
             "type": "wm"
         },
         /*{
@@ -74,7 +74,7 @@
             "type": "swap"
         },
         {
-            "key": "│ {#38}󰅐 os age  {#keys}││ ",
+            "key": "│ {#37}󰅐 os age  {#keys}││ ",
             "type": "disk",
             "folders": "/",
             "format": "{days} days"
