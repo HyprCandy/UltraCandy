@@ -10,5 +10,5 @@ if pgrep -f "tty-clock -s -c" > /dev/null; then
 else
     # If not running, start it
     kitty --app-id="clock" \
-    	-e bash -c "tty-clock -s -c"
+    	-e bash -c "tty-clock -s -c" &
 fi
