@@ -34,11 +34,11 @@
             "type": "os"
         },
         {
-            "key": "│ {#32} kernel  {#keys}││ ",
+            "key": "│ {#37} kernel  {#keys}││ ",
             "type": "kernel"
         },
         {
-            "key": "│ {#37}󱫐 wm      {#keys}││ ",
+            "key": "│ {#32}󱫐 wm      {#keys}││ ",
             "type": "wm"
         },
         /*{
@@ -62,7 +62,7 @@
             "type": "packages"
         },*/
         {
-            "key": "│ {#32}󰉉 disk    {#keys}││ ",
+            "key": "│ {#37}󰉉 disk    {#keys}││ ",
             "type": "disk"
         },
         {
@@ -74,7 +74,7 @@
             "type": "swap"
         },
         {
-            "key": "│ {#37}󰅐 os age  {#keys}││ ",
+            "key": "│ {#32}󰅐 os age  {#keys}││ ",
             "type": "disk",
             "folders": "/",
             "format": "{days} days"
@@ -102,7 +102,7 @@
             "type": "custom"
         },
         {
-            "key": "│ {#37} colors  {#keys}││                ",
+            "key": "│ {#32} colors  {#keys}││                ",
             "type": "custom",
             "size": 12,
             "format": "\u001b[90m \u001b[31m \u001b[32m \u001b[33m \u001b[37m \u001b[34m \u001b[35m \u001b[36m \u001b[39m"
