@@ -221,7 +221,7 @@
 
     "tooltip-format-activated": "Caffeine Mode On",
     "tooltip-format-deactivated": "Caffeine Mode Off",
-    "start-activated": true
+    "start-activated": false
   },
 
   // ───────────────────────────────────────────────────────────────┤ time ├───
