@@ -46,6 +46,11 @@ fi
 # -----------------------------------------------------------------------------
 # 2. Fetch Weather Data (if cache expired)
 # -----------------------------------------------------------------------------
+CACHE_WAS_MISSING=false
+if [ ! -f "$WEATHER_CACHE_FILE" ]; then
+    CACHE_WAS_MISSING=true
+fi
+
 if [ ! -f "$WEATHER_CACHE_FILE" ] || [ "$(( $(date +%s) - $(stat -c %Y "$WEATHER_CACHE_FILE") ))" -ge "$WEATHER_MAX_AGE" ]; then
     # Fetch weather for the detected location
     SAFE_LOCATION=$(echo "$LOCATION" | sed 's/ /+/g')
@@ -55,6 +60,11 @@ if [ ! -f "$WEATHER_CACHE_FILE" ] || [ "$(( $(date +%s) - $(stat -c %Y "$WEATHER
     # Verify JSON before overwriting the main cache
     if [ $? -eq 0 ] && jq -e . "${WEATHER_CACHE_FILE}.tmp" >/dev/null 2>&1; then
         mv "${WEATHER_CACHE_FILE}.tmp" "$WEATHER_CACHE_FILE"
+        
+        # If this was initial fetch, update waybar immediately
+        if [ "$CACHE_WAS_MISSING" = true ]; then
+            pkill -SIGRTMIN+8 waybar
+        fi
     else
         rm -f "${WEATHER_CACHE_FILE}.tmp"
     fi
@@ -71,6 +81,12 @@ fi
 # -----------------------------------------------------------------------------
 # 4. Process Data with Day/Night Logic
 # -----------------------------------------------------------------------------
+# If cache still doesn't exist, show placeholder (will retry in next interval)
+if [ ! -f "$WEATHER_CACHE_FILE" ]; then
+    echo '{"text": "...", "tooltip": "Loading weather data..."}'
+    exit 0
+fi
+
 CURRENT_UNIT=$(cat "$UNIT_STATE_FILE" 2>/dev/null || echo "metric")
 CURRENT_TIME=$(date +"%H:%M")
 
