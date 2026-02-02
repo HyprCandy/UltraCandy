@@ -51,8 +51,7 @@ if [ ! -f "$WEATHER_CACHE_FILE" ]; then
     CACHE_WAS_MISSING=true
 fi
 
-sleep 10
-
+fetch_weather() {
 if [ ! -f "$WEATHER_CACHE_FILE" ] || [ "$(( $(date +%s) - $(stat -c %Y "$WEATHER_CACHE_FILE") ))" -ge "$WEATHER_MAX_AGE" ]; then
     # Fetch weather for the detected location
     SAFE_LOCATION=$(echo "$LOCATION" | sed 's/ /+/g')
@@ -71,6 +70,14 @@ if [ ! -f "$WEATHER_CACHE_FILE" ] || [ "$(( $(date +%s) - $(stat -c %Y "$WEATHER
         rm -f "${WEATHER_CACHE_FILE}.tmp"
     fi
 fi
+}
+
+fetch_weather
+
+if [ ! -f "$WEATHER_CACHE_FILE" ]; then
+   sleep 15
+   fetch_weather
+fi
 
 # -----------------------------------------------------------------------------
 # 3. Validation
@@ -86,23 +93,6 @@ fi
 # If cache still doesn't exist, show placeholder (will retry in next interval)
 if [ ! -f "$WEATHER_CACHE_FILE" ]; then
     echo '{"text": "...", "tooltip": "Loading weather data..."}'
-fi
-
-sleep 5
-
-if [ ! -f "$WEATHER_CACHE_FILE" ]; then
-    # Force immediate fetch
-    SAFE_LOCATION=$(echo "$LOCATION" | sed 's/ /+/g')
-    curl -s -f --max-time 10 "https://wttr.in/${SAFE_LOCATION}?format=j1" > "${WEATHER_CACHE_FILE}.tmp"
-    
-    if [ $? -eq 0 ] && jq -e . "${WEATHER_CACHE_FILE}.tmp" >/dev/null 2>&1; then
-        mv "${WEATHER_CACHE_FILE}.tmp" "$WEATHER_CACHE_FILE"
-        # Update waybar immediately with new data
-        pkill -SIGRTMIN+8 waybar
-    else
-        rm -f "${WEATHER_CACHE_FILE}.tmp"
-        exit 0
-    fi
 fi
 
 CURRENT_UNIT=$(cat "$UNIT_STATE_FILE" 2>/dev/null || echo "metric")
