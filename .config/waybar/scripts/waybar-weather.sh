@@ -51,6 +51,8 @@ if [ ! -f "$WEATHER_CACHE_FILE" ]; then
     CACHE_WAS_MISSING=true
 fi
 
+sleep 5
+
 fetch_weather() {
 if [ ! -f "$WEATHER_CACHE_FILE" ] || [ "$(( $(date +%s) - $(stat -c %Y "$WEATHER_CACHE_FILE") ))" -ge "$WEATHER_MAX_AGE" ]; then
     # Fetch weather for the detected location
