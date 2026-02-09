@@ -141,7 +141,7 @@
     "format": "󰝹",
     "tooltip": true,
     "tooltip-format": "Utilities",
-    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
+    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh >/dev/null 2>&1 &",
     "min-length": 1,
     "max-length": 7
   },
