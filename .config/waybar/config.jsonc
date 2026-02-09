@@ -416,9 +416,9 @@
   "custom/power": {
     "format": "",
     "tooltip": true,
-    "tooltip-format": "Left-click: wlogout\nRight-click: rofi-logout",
-    "on-click": "~/.config/waybar/scripts/wlogout.sh",
-    "on-click-right": "~/.config/waybar/scripts/power-menu.sh"
+    "tooltip-format": "Left-click: rofi-logout\nRight-click: wlogout",
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "on-click-right": "~/.config/waybar/scripts/wlogout.sh"
   },
 
   // ────────────────────────────────────────────────────────────┤ padding ├───
