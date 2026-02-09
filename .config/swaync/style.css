@@ -60,7 +60,7 @@ button:hover {
 
 .notification-default-action:hover,
 .notification-action:hover {
-    background: @on_primary;
+    background: @inverse_primary;
 }
 
 .notification-group:active,
