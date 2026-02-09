@@ -212,7 +212,7 @@ popover.menu {
     popover.menu box.circular-buttons button.circular.image-button.model {
       padding: 11px; }
       popover.menu box.circular-buttons button.circular.image-button.model:focus {
-        background-color: @primary;
+        background-color: @on_secondary;
         border-color: #2a2d37; }
   popover.menu > arrow, popover.menu.background > contents {
     background-color: @background;
