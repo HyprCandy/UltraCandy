@@ -48,6 +48,10 @@ input_path = '~/.config/matugen/templates/config'
 output_path = '~/.config/cava/config'
 post_hook = 'pkill -SIGUSR1 cava'
 
+[templates.quickshell]
+input_path = '~/.config/matugen/templates/Appearance.colors.qml'
+output_path = '~/.config/quickshell/overview/common/Appearance.colors.qml'
+
 [templates.sequences]
 input_path = '~/.config/matugen/templates/sequences'
 output_path = '~/.cache/wal/sequences'
