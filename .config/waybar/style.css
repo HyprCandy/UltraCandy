@@ -53,6 +53,7 @@ tooltip label {
 #mpris,
 #custom-cava-left,
 #custom-cava-right,
+#custom-space,
 #custom-distro,
 #idle_inhibitor,
 #clock,
@@ -325,11 +326,6 @@ tooltip label {
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
-#custom-right3 {
-  color: @scrim;
-  background: @on_primary;
-}
-
 #custom-right5 {
   color: @on_primary;
   background: @transparent;
@@ -364,6 +360,14 @@ tooltip label {
 
 #custom-cava-right.cava-silent {
     opacity: 0.6;
+}
+
+/* ──────────────────────────────────────────────────────────┤ space ├───
+*/
+
+#custom-space {
+  background: @blurbackground;
+  margin-right: 16px;
 }
 
 /* ──────────────────────────────────────────────────────────┤ rofi ├───
