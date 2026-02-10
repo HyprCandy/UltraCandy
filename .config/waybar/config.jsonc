@@ -48,8 +48,8 @@
 
     //"custom/rightin1",
     "clock#time",           // time
-    "custom/cava-right"           // cava visualizer
-    //"custom/right3",
+    "custom/cava-right",           // cava visualizer
+    "custom/space"
     //"custom/right5"
   ],
 
@@ -158,6 +158,14 @@
     "tooltip": false,
     "min-length": 0,
     "max-length": 50
+  },
+  
+  // ────────────────────────────────────────────────────────┤ space ├───
+  
+  "custom/space": {
+    "format": " ",
+    "min-length": 1,
+    "max-length": 7
   },
   
   // ────────────────────────────────────────────────────────┤ rofi ├───
