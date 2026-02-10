@@ -6,6 +6,7 @@
 @define-color buttoncolor @primary_fixed_dim;
 @define-color bordercolor @inverse_primary;
 @define-color fontcolor @on_surface;
+@define-color text-color @primary;
 
 * {
     font-family: "C059 Bold";
@@ -14,8 +15,9 @@
 /* Control Center - Default (unfocused) state */
 
 .control-center {
+    border: 2px solid @bordercolor;
+    border-radius: 16.0px;
     background: @background; /* Your current unfocused color */
-    border: 3px solid @bordercolor;
     padding: 0;
 }
 
@@ -27,14 +29,14 @@
 button {
     border: 0px;
     border-radius: 8px;
-    min-width: 4px;
-    min-height: 6px;
-    background: @buttoncolor;
-    color: @on_secondary;
+    min-width: 8px;
+    min-height: 10px;
+    background: @bordercolor;
+    color: @buttoncolor;
 }
 
 button:hover {
-    background: @primary;
+    background: @buttoncolor;
     color: @on_secondary;
 }
 
@@ -49,9 +51,8 @@ button:hover {
 }
 
 /* Notification */
-
 .notification {
-    color: @primary_fixed_dim;
+    color: @buttoncolor;
     background: @background;
     border: 3px solid @bordercolor;
     border-radius: 10px;
@@ -60,7 +61,7 @@ button:hover {
 
 .notification-default-action:hover,
 .notification-action:hover {
-    background: @inverse_primary;
+    background: @bordercolor;
 }
 
 .notification-group:active,
@@ -84,7 +85,14 @@ button:hover {
 }
 
 .close-button:hover {
-    background: @primary;
+    background: @buttoncolor;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 15px;
+    margin-top: 9px;
+    margin-right: 10px;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .notification-group .notification-group-close-button .close-button {

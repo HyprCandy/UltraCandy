@@ -6,6 +6,6 @@ if pgrep -x "wf-recorder" > /dev/null; then
   notify-send "Recorder" "Stopped " -t 2000
 else
   notify-send "Recorder" "Started " -t 2000
-  sleep 0.5
+  sleep 0.1
   bash -c 'wf-recorder -g -a --audio=bluez_output.78_15_2D_0D_BD_B7.1.monitor -f "$HOME/Videos/Recordings/recording-$(date +%Y%m%d-%H%M%S).mp4" $(slurp)'
 fi

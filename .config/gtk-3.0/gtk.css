@@ -13,9 +13,9 @@
 @define-color accent_bg_color @primary;
 @define-color window_bg_color @on_secondary;
 @define-color window_fg_color white;
-@define-color view_bg_color @on_secondary;
+@define-color view_bg_color @window_bg_color;
 @define-color view_fg_color white;
-@define-color headerbar_bg_color @on_secondary;
+@define-color headerbar_bg_color @window_bg_color;
 @define-color headerbar_fg_color white;
 @define-color headerbar_border_color white;
 @define-color headerbar_backdrop_color @window_bg_color;

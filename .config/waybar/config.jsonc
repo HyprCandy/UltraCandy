@@ -14,13 +14,13 @@
     //"custom/left1",
 
     "hyprland/workspaces",  // workspaces
+    "custom/overview",
     "custom/weather",
     //"custom/right1",
 
     "custom/paddw",
     //"custom/right1",
-    "mpris",               // media info
-    "custom/cava"           // cava visualizer
+    "mpris"               // media info
   ],
 
   "modules-center": [
@@ -36,6 +36,7 @@
 
     //"custom/left4",
     
+    "custom/cava-left",           // cava visualizer
     "clock#date",           // date
     //"cpu",                  // cpu
     //"rofi",		    // rofi
@@ -46,7 +47,8 @@
     "custom/right2",
 
     //"custom/rightin1",
-    "clock#time"           // time
+    "clock#time",           // time
+    "custom/cava-right"           // cava visualizer
     //"custom/right3",
     //"custom/right5"
   ],
@@ -102,6 +104,17 @@
   },
 },
 
+  // ────────────────────────────────────────────────────────┤ overview ├───
+
+  "custom/overview": {
+    "format": "󰋶",
+    "tooltip": true,
+    "tooltip-format": "Launch Workspace Overview",
+    "on-click": "qs ipc -c overview call overview toggle",
+    "min-length": 1,
+    "max-length": 7
+  },
+
   // ─────────────────────────────────────────────────────────┤ media info ├───
 
   "mpris": {
@@ -125,7 +138,19 @@
   
   // ──────────────────────────────────────────────────────────────┤ cava ├───
 
-  "custom/cava": {
+  "custom/cava-left": {
+    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --hide-when-inactive",
+    "return-type": "json",
+    "format": "{}",
+    "restart-interval": 0,
+    "tooltip": false,
+    "min-length": 0,
+    "max-length": 50
+  },
+  
+  // ──────────────────────────────────────────────────────────────┤ cava ├───
+
+  "custom/cava-right": {
     "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --hide-when-inactive",
     "return-type": "json",
     "format": "{}",
@@ -138,7 +163,7 @@
   // ────────────────────────────────────────────────────────┤ rofi ├───
 
   "custom/rofi": {
-    "format": "󰝹",
+    "format": "󱙪",
     "tooltip": true,
     "tooltip-format": "Utilities",
     "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
@@ -319,7 +344,9 @@
 
   "tray": {
     "icon-size": 12,
-    "spacing": 6
+    "spacing": 6,
+    "show-passive-items": true,
+    "reverse-direction": false
   },
   
   // ───────────────────────────────────────────────────────────┤ SwayNC ├───
@@ -328,7 +355,7 @@
     "format": "{icon}",
     "format-icons": {
       "notification": "󰅸",
-      "none": "󰎟",
+      "none": "",
       "dnd-notification": "󱅫",
       "dnd-none": "󰂠",
       "inhibited-notification": "󰅸",
