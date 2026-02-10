@@ -8,7 +8,7 @@ kitty --class="floating-installer" \
       --override=initial_window_height=600 \
       -e bash -c "
 rm -rf ~/ultracandyinstall
-git clone https://github.com/HyprCandy/ultracandyinstall.git && 
+git clone --depth 1 https://github.com/HyprCandy/ultracandyinstall.git && 
 cd ultracandyinstall && 
 bash UltraCandy_installer.sh
 "
