@@ -5,7 +5,7 @@
 #  ___) | (__| | |  __/  __/ | | \__ \ | | | (_) | |_
 # |____/ \___|_|  \___|\___|_| |_|___/_| |_|\___/ \__|
 #
-# Screenshot script with thumbnail notifications
+# Screenshot script
 
 # -----------------------------------------------------
 # Environment
