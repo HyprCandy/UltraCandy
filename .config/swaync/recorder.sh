@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+# Screen recorder
+
 if pgrep -x "wf-recorder" > /dev/null; then
   pkill -x wf-recorder 
   sleep 0.1
