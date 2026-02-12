@@ -19,6 +19,7 @@ import signal
 import atexit
 import json
 import shlex
+import re
 from pathlib import Path
 
 
@@ -149,13 +150,14 @@ class CavaConfig:
 
 
 class MediaDetector:
-    """Detect if media is playing using playerctl or other methods"""
+    """Detect if media is playing using playerctl, PipeWire, or PulseAudio"""
     
     def __init__(self):
         self.last_check = 0
-        self.check_interval = 2  # Check every 2 seconds
+        self.check_interval = 0.5  # Check more frequently (every 0.5 seconds)
         self.cached_status = False
         self.playerctl_available = self._check_playerctl_available()
+        self.audio_system = self._detect_audio_system()
     
     def _check_playerctl_available(self):
         """Check if playerctl is available"""
@@ -168,27 +170,79 @@ class MediaDetector:
         except (subprocess.CalledProcessError, FileNotFoundError):
             return False
     
-    def _check_media_playerctl(self):
-        """Check if media is playing using playerctl"""
+    def _detect_audio_system(self):
+        """Detect whether system uses PipeWire or PulseAudio"""
         try:
-            result = subprocess.run(['playerctl', 'status'], 
+            result = subprocess.run(['pactl', 'info'], 
                                   capture_output=True, 
                                   text=True, 
                                   timeout=1)
-            status = result.stdout.strip().lower()
-            return status == 'playing'
+            if 'PipeWire' in result.stdout:
+                return 'pipewire'
+            return 'pulseaudio'
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+            return 'unknown'
+    
+    def _check_media_playerctl(self):
+        """Check if media is playing using playerctl - most reliable method"""
+        try:
+            # Check all players
+            result = subprocess.run(['playerctl', '-a', 'status'], 
+                                  capture_output=True, 
+                                  text=True, 
+                                  timeout=1)
+            # If any player is playing, return True
+            statuses = result.stdout.strip().lower().split('\n')
+            return 'playing' in statuses
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
             return False
     
-    def _check_media_pulseaudio(self):
+    def _check_audio_activity_pipewire(self):
+        """Check if audio is active using PipeWire (pw-cli or wpctl)"""
+        try:
+            # Try wpctl first (more modern)
+            result = subprocess.run(['wpctl', 'status'], 
+                                  capture_output=True, 
+                                  text=True, 
+                                  timeout=1)
+            # Look for active sinks/sources with RUNNING state
+            lines = result.stdout.split('\n')
+            for line in lines:
+                if 'RUNNING' in line:
+                    return True
+            return False
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+            try:
+                # Fallback to pw-cli
+                result = subprocess.run(['pw-cli', 'list-objects'], 
+                                      capture_output=True, 
+                                      text=True, 
+                                      timeout=1)
+                # Check for active streams
+                return 'state = "running"' in result.stdout.lower()
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+                return False
+    
+    def _check_audio_activity_pulseaudio(self):
         """Check if any audio streams are active using pactl"""
         try:
             result = subprocess.run(['pactl', 'list', 'sink-inputs'], 
                                   capture_output=True, 
                                   text=True, 
-                                  timeout=2)
-            # If there are sink inputs, audio is likely playing
-            return 'Sink Input #' in result.stdout
+                                  timeout=1)
+            # Check for active sink inputs with RUNNING state
+            if 'Sink Input #' not in result.stdout:
+                return False
+            # Look for corked (paused) state - if all are corked, nothing is playing
+            lines = result.stdout.split('\n')
+            has_running = False
+            for i, line in enumerate(lines):
+                if 'State:' in line:
+                    if 'RUNNING' in line:
+                        has_running = True
+                    elif 'CORKED' in line:
+                        continue
+            return has_running
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
             return False
     
@@ -200,15 +254,94 @@ class MediaDetector:
         if not force_check and current_time - self.last_check < self.check_interval:
             return self.cached_status
         
-        # Try playerctl first if available
+        # Try playerctl first if available (most reliable)
         if self.playerctl_available:
             self.cached_status = self._check_media_playerctl()
         else:
-            # Fallback to pulseaudio check
-            self.cached_status = self._check_media_pulseaudio()
+            # Fallback to audio system detection
+            if self.audio_system == 'pipewire':
+                self.cached_status = self._check_audio_activity_pipewire()
+            else:
+                self.cached_status = self._check_audio_activity_pulseaudio()
         
         self.last_check = current_time
         return self.cached_status
+
+
+class CSSColorUpdater:
+    """Update Waybar CSS colors dynamically for cava modules"""
+    
+    def __init__(self, css_file_path=None):
+        if css_file_path is None:
+            config_home = os.path.expanduser(os.getenv("XDG_CONFIG_HOME", "~/.config"))
+            self.css_file_path = os.path.join(config_home, "waybar", "style.css")
+        else:
+            self.css_file_path = os.path.expanduser(css_file_path)
+        
+        self.current_state = None  # Track current state to avoid redundant updates
+        self.last_update = 0
+        self.update_interval = 0.3  # Minimum time between updates
+    
+    def _update_css_color(self, make_transparent):
+        """Update the CSS file to set cava colors to transparent or restore them"""
+        if not os.path.exists(self.css_file_path):
+            print(f"Warning: CSS file not found: {self.css_file_path}", file=sys.stderr)
+            return False
+        
+        try:
+            # Read the current CSS file
+            with open(self.css_file_path, 'r') as f:
+                content = f.read()
+            
+            # Define the patterns for cava-left and cava-right blocks
+            # We need to match the blocks and update only the color property
+            if make_transparent:
+                # Change @primary_container to transparent in cava blocks
+                # Pattern: matches "color: @primary_container;" within #custom-cava-left or #custom-cava-right blocks
+                import re
+                
+                # Match #custom-cava-left block and replace its color
+                pattern_left = r'(#custom-cava-left\s*\{[^}]*?color:\s*)@primary_container(\s*;)'
+                content = re.sub(pattern_left, r'\1transparent\2', content)
+                
+                # Match #custom-cava-right block and replace its color
+                pattern_right = r'(#custom-cava-right\s*\{[^}]*?color:\s*)@primary_container(\s*;)'
+                content = re.sub(pattern_right, r'\1transparent\2', content)
+            else:
+                # Restore transparent back to @primary_container in cava blocks
+                import re
+                
+                # Match #custom-cava-left block and restore its color
+                pattern_left = r'(#custom-cava-left\s*\{[^}]*?color:\s*)transparent(\s*;)'
+                content = re.sub(pattern_left, r'\1@primary_container\2', content)
+                
+                # Match #custom-cava-right block and restore its color
+                pattern_right = r'(#custom-cava-right\s*\{[^}]*?color:\s*)transparent(\s*;)'
+                content = re.sub(pattern_right, r'\1@primary_container\2', content)
+            
+            # Write the updated content back
+            with open(self.css_file_path, 'w') as f:
+                f.write(content)
+            
+            return True
+            
+        except Exception as e:
+            print(f"Error updating CSS: {e}", file=sys.stderr)
+            return False
+    
+    def update_for_media_state(self, is_playing):
+        """Update CSS based on media playing state"""
+        current_time = time.time()
+        
+        # Avoid redundant updates
+        if self.current_state == is_playing and current_time - self.last_update < self.update_interval:
+            return
+        
+        make_transparent = not is_playing
+        if self._update_css_color(make_transparent):
+            self.current_state = is_playing
+            self.last_update = current_time
+
 
 
 class CavaDataParser:
@@ -776,6 +909,7 @@ class CavaClient:
         self.socket_file = os.path.join(self.runtime_dir, "hyde", "cava.sock")
         self.parser = CavaDataParser()
         self.media_detector = MediaDetector()
+        self.css_updater = None  # Will be initialized if transparent_when_inactive is True
 
     def _auto_start_manager_if_needed(self, bars=16, range_val=15):
         """Automatically start manager if not running"""
@@ -800,11 +934,17 @@ class CavaClient:
         range_val=15,
         json_output=False,
         hide_when_inactive=False,
+        transparent_when_inactive=False,
     ):
         """Start the cava client with enhanced hiding functionality"""
         if not self._auto_start_manager_if_needed(bars, range_val):
             print("Error: Could not start cava manager", file=sys.stderr)
             sys.exit(1)
+        
+        # Initialize CSS updater if transparent_when_inactive is enabled
+        if transparent_when_inactive:
+            self.css_updater = CSSColorUpdater()
+            print("CSS color updater initialized", file=sys.stderr)
 
         start_time = time.time()
         while not os.path.exists(self.socket_file):
@@ -821,7 +961,7 @@ class CavaClient:
 
             # Track state for hiding functionality
             last_media_check = 0
-            media_check_interval = 2  # Check media status every 2 seconds
+            media_check_interval = 0.5 if transparent_when_inactive else 2  # Check more frequently with CSS updates
             consecutive_silent_count = 0
             silent_threshold = 10  # Hide after 10 consecutive silent readings
             is_hidden = False
@@ -829,6 +969,10 @@ class CavaClient:
 
             # Initial media check and standby output
             is_media_playing = self.media_detector.is_media_playing(force_check=True)
+            
+            # Update CSS colors based on initial media state
+            if transparent_when_inactive and self.css_updater:
+                self.css_updater.update_for_media_state(is_media_playing)
             
             if not is_media_playing and hide_when_inactive:
                 # If no media is playing and hide_when_inactive is True, output empty and hide
@@ -861,13 +1005,17 @@ class CavaClient:
             while True:
                 current_time = time.time()
                 
-                # Periodically check media status if hide_when_inactive is enabled
-                if hide_when_inactive and current_time - last_media_check > media_check_interval:
+                # Periodically check media status
+                if (hide_when_inactive or transparent_when_inactive) and current_time - last_media_check > media_check_interval:
                     is_media_playing = self.media_detector.is_media_playing()
                     last_media_check = current_time
                     
+                    # Update CSS colors if transparent_when_inactive is enabled
+                    if transparent_when_inactive and self.css_updater:
+                        self.css_updater.update_for_media_state(is_media_playing)
+                    
                     # If media stopped and we're not hidden yet, hide immediately
-                    if not is_media_playing and not is_hidden:
+                    if hide_when_inactive and not is_media_playing and not is_hidden:
                         if json_output:
                             output = {"text": "", "class": "cava-hidden"}
                             print(json.dumps(output), flush=True)
@@ -900,14 +1048,18 @@ class CavaClient:
                             except ValueError:
                                 is_silent = True
                             
-                            # Handle hiding logic
-                            if hide_when_inactive:
+                            # Handle hiding logic or CSS updates
+                            if hide_when_inactive or transparent_when_inactive:
                                 # Check if media is still playing
                                 if current_time - last_media_check > media_check_interval:
                                     is_media_playing = self.media_detector.is_media_playing()
                                     last_media_check = current_time
+                                    
+                                    # Update CSS colors if transparent_when_inactive is enabled
+                                    if transparent_when_inactive and self.css_updater:
+                                        self.css_updater.update_for_media_state(is_media_playing)
                                 
-                                if not is_media_playing:
+                                if hide_when_inactive and not is_media_playing:
                                     # No media playing - hide immediately
                                     if not is_hidden:
                                         if json_output:
@@ -918,7 +1070,7 @@ class CavaClient:
                                         is_hidden = True
                                     continue
                                 
-                                elif is_silent:
+                                elif hide_when_inactive and is_silent:
                                     # Media is playing but audio is silent
                                     consecutive_silent_count += 1
                                     if consecutive_silent_count >= silent_threshold and not is_hidden:
@@ -946,7 +1098,7 @@ class CavaClient:
                                                 print(standby_output, flush=True)
                                     continue
                                 
-                                else:
+                                elif hide_when_inactive:
                                     # Audio activity detected - show and reset counters
                                     consecutive_silent_count = 0
                                     is_hidden = False
@@ -963,7 +1115,7 @@ class CavaClient:
                             if not should_suppress and not (hide_when_inactive and is_hidden):
                                 last_output_time = current_time
                                 if json_output:
-                                    css_class = "cava-active" if not is_silent else "cava-standby"
+                                    css_class = "cava-active" if not is_silent else "cava-silent"
                                     output = {
                                         "text": formatted,
                                         "tooltip": "Cava audio visualizer - active",
@@ -1070,6 +1222,11 @@ def create_client_parser(subparsers, name, help_text):
         action="store_true",
         help="Hide the visualizer when no media is playing or after extended silence"
     )
+    parser.add_argument(
+        "--transparent-when-inactive",
+        action="store_true",
+        help="Make bars transparent when silent instead of hiding (keeps module space)"
+    )
     if name == "waybar":
         parser.add_argument(
             "--json", action="store_true", help="Output JSON format for waybar tooltips"
@@ -1128,6 +1285,7 @@ def main():
 
         json_output = args.command == "waybar" and hasattr(args, "json") and args.json
         hide_when_inactive = hasattr(args, "hide_when_inactive") and args.hide_when_inactive
+        transparent_when_inactive = hasattr(args, "transparent_when_inactive") and args.transparent_when_inactive
 
         client = CavaClient()
         client.start(
@@ -1138,6 +1296,7 @@ def main():
             range_val=range_val,
             json_output=json_output,
             hide_when_inactive=hide_when_inactive,
+            transparent_when_inactive=transparent_when_inactive,
         )
 
     elif args.command == "status":
