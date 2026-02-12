@@ -139,7 +139,7 @@
   // ──────────────────────────────────────────────────────────────┤ cava ├───
 
   "custom/cava-left": {
-    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --hide-when-inactive",
+    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --transparent-when-inactive",
     "return-type": "json",
     "format": "{}",
     "restart-interval": 0,
@@ -151,7 +151,7 @@
   // ──────────────────────────────────────────────────────────────┤ cava ├───
 
   "custom/cava-right": {
-    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --hide-when-inactive",
+    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --transparent-when-inactive",
     "return-type": "json",
     "format": "{}",
     "restart-interval": 0,
