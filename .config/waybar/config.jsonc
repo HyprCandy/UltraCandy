@@ -56,14 +56,14 @@
   "modules-right": [
     "hyprland/window",
     "tray",       	    // system tray
+    "custom/update",        // system update
+    "custom/wifi",          // wi-fi
     "custom/notification",         // swaync
     "idle_inhibitor",       // idle inhibitor
     "custom/rofi",
     //"custom/player",
-    "custom/update",        // system update
     "power-profiles-daemon",        // power profiles
     //"bluetooth",            // bluetooth
-    "custom/wifi",          // wi-fi
     "battery",              // battery
     "custom/power"          // power button
   ],
@@ -183,13 +183,15 @@
 
   "custom/weather": {
     "exec": "~/.config/waybar/scripts/waybar-weather.sh",
+    //"exec": "~/.config/waybar/scripts/waybar-weather-astal.sh",
     "return-type": "json",
     "format": "{}",
+    "icon-size": 12,
     "tooltip": true,
     "interval": 600,
     "signal": 8,
     "on-click": "gnome-weather",
-    //"on-click-right": "~/.ultracandy/GJS/toggle-weather-widget.sh",
+    //"on-click": "~/.config/waybar/scripts/toggle-weather-dropdown.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 1,
