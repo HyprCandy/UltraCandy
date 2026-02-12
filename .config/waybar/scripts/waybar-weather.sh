@@ -51,8 +51,11 @@ else
     echo "$WEATHER_DATA" > "$WEATHER_CACHE_FILE"
 fi
 
+# Get current system time for day/night logic
+CURRENT_HOUR=$(date +%H)
+
 # Parse weather data with jq
-jq --arg unit "$CURRENT_UNIT" -rc '
+jq --arg unit "$CURRENT_UNIT" --argjson hour "$CURRENT_HOUR" -rc '
     # Weather icon mapping
     def get_icon(code; is_day):
         if (code == 1000) then (if is_day then "☀️" else "🌙" end)
@@ -70,6 +73,10 @@ jq --arg unit "$CURRENT_UNIT" -rc '
     .current as $current |
     .location as $location |
     
+    # Determine if it is day or night based on system hour (6 AM to 6 PM)
+    # This overrides the API provided is_day if needed, or provides a fallback
+    (($hour >= 6 and $hour < 18)) as $is_day_system |
+    
     (if $unit == "metric" then
         { temp: $current.temp_c, feel: $current.feelslike_c, unit: "°C", speed: "\($current.wind_kph) km/h" }
     else
@@ -77,7 +84,7 @@ jq --arg unit "$CURRENT_UNIT" -rc '
     end) as $data |
     
     {
-        "text": "\($data.temp | round)\($data.unit) \(get_icon($current.condition.code; $current.is_day))",
+        "text": "\($data.temp | round)\($data.unit) \(get_icon($current.condition.code; $is_day_system))",
         "tooltip": "<b>\($current.condition.text)</b>\nLocation: \($location.name), \($location.country)\nFeels like: \($data.feel | round)\($data.unit)\nHumidity: \($current.humidity)%\nWind: \($data.speed)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
         "class": "weather",
         "alt": $current.condition.text
