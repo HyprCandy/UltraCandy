@@ -460,7 +460,7 @@ class CavaDataParser:
     """Handle cava data parsing and formatting"""
 
     @staticmethod
-    def format_data(line, bar_chars="▁▂▃▄▅▆▇█", width=None, standby_mode="", padding=""):
+    def format_data(line, bar_chars="▁▂▃▄▅▆▇█", width=None, standby_mode="", padding="", reverse=False):
         """Format cava data with custom bar characters (list or string) and optional padding"""
         line = line.strip()
         if not line:
@@ -496,6 +496,10 @@ class CavaDataParser:
                     expanded_values.append(int(round(interpolated)))
 
             values = expanded_values
+
+        # Reverse the values if requested (for right-side visualization)
+        if reverse:
+            values = list(reversed(values))
 
         bar_length = len(bar_chars)
         result_parts = []  # Changed from result = "" to list for easier joining
@@ -1047,6 +1051,7 @@ class CavaClient:
         json_output=False,
         hide_when_inactive=False,
         transparent_when_inactive=False,
+        reverse=False,
     ):
         """Start the cava client with enhanced hiding functionality"""
         if not self._auto_start_manager_if_needed(bars, range_val):
@@ -1217,7 +1222,7 @@ class CavaClient:
 
                             # Format and display the audio data
                             formatted = self.parser.format_data(
-                                line, bar_chars, width, standby_mode
+                                line, bar_chars, width, standby_mode, "", reverse
                             )
                             
                             should_suppress = (
@@ -1290,8 +1295,16 @@ class CavaClient:
                 standby_mode = "\n"
             elif isinstance(standby_mode, str) and standby_mode.isdigit():
                 standby_mode = int(standby_mode)
+        
+        # Handle reverse flag for --left/--right
+        reverse = False
+        if hasattr(args, 'direction') and args.direction:
+            if args.direction == 'right':
+                reverse = True
+            elif args.direction == 'left':
+                reverse = False
 
-        return bar_chars, width, standby_mode
+        return bar_chars, width, standby_mode, reverse
 
 
 class CavaReloadClient:
@@ -1343,6 +1356,20 @@ def create_client_parser(subparsers, name, help_text):
         action="store_true",
         help="Make bars transparent when silent instead of hiding (keeps module space)"
     )
+    parser.add_argument(
+        "--left",
+        action="store_const",
+        const="left",
+        dest="direction",
+        help="Display bars in normal order (left to right, low to high frequencies)"
+    )
+    parser.add_argument(
+        "--right",
+        action="store_const",
+        const="right",
+        dest="direction",
+        help="Display bars in reversed order (right to left, high to low frequencies) - perfect for right-side modules"
+    )
     if name == "waybar":
         parser.add_argument(
             "--json", action="store_true", help="Output JSON format for waybar tooltips"
@@ -1392,7 +1419,7 @@ def main():
     elif args.command in ["waybar", "stdout", "hyprlock"]:
         cava_config = CavaConfig()
 
-        bar_chars, width, standby_mode = CavaClient.parse_command_config(
+        bar_chars, width, standby_mode, reverse = CavaClient.parse_command_config(
             cava_config, args.command, args
         )
 
@@ -1413,6 +1440,7 @@ def main():
             json_output=json_output,
             hide_when_inactive=hide_when_inactive,
             transparent_when_inactive=transparent_when_inactive,
+            reverse=reverse,
         )
 
     elif args.command == "status":
