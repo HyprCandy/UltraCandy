@@ -20,6 +20,8 @@ import atexit
 import json
 import shlex
 import re
+import fcntl
+import tempfile
 from pathlib import Path
 
 
@@ -269,7 +271,7 @@ class MediaDetector:
 
 
 class CSSColorUpdater:
-    """Update Waybar CSS colors dynamically for cava modules"""
+    """Update Waybar CSS colors dynamically for cava modules with atomic writes and file locking"""
     
     def __init__(self, css_file_path=None):
         if css_file_path is None:
@@ -278,56 +280,157 @@ class CSSColorUpdater:
         else:
             self.css_file_path = os.path.expanduser(css_file_path)
         
+        self.backup_path = self.css_file_path + ".cava_backup"
+        self.lock_path = self.css_file_path + ".lock"
         self.current_state = None  # Track current state to avoid redundant updates
         self.last_update = 0
         self.update_interval = 0.3  # Minimum time between updates
+        
+        # Create initial backup if it doesn't exist
+        if os.path.exists(self.css_file_path) and not os.path.exists(self.backup_path):
+            self._create_backup()
+    
+    def _create_backup(self):
+        """Create a backup of the original CSS file"""
+        try:
+            with open(self.css_file_path, 'r') as src:
+                content = src.read()
+            with open(self.backup_path, 'w') as dst:
+                dst.write(content)
+            print(f"Created CSS backup: {self.backup_path}", file=sys.stderr)
+        except Exception as e:
+            print(f"Warning: Could not create backup: {e}", file=sys.stderr)
+    
+    def _acquire_lock(self, lock_file, timeout=5):
+        """Acquire an exclusive lock on the file with timeout"""
+        start_time = time.time()
+        while True:
+            try:
+                fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return True
+            except IOError:
+                if time.time() - start_time > timeout:
+                    print("Warning: Could not acquire lock on CSS file", file=sys.stderr)
+                    return False
+                time.sleep(0.01)  # Wait 10ms before retry
+    
+    def _release_lock(self, lock_file):
+        """Release the lock on the file"""
+        try:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+        except Exception:
+            pass
     
     def _update_css_color(self, make_transparent):
-        """Update the CSS file to set cava colors to transparent or restore them"""
+        """Update the CSS file to set cava colors to transparent or restore them using atomic write"""
         if not os.path.exists(self.css_file_path):
             print(f"Warning: CSS file not found: {self.css_file_path}", file=sys.stderr)
             return False
         
+        lock_file = None
+        temp_fd = None
+        temp_path = None
+        
         try:
+            # Create/open lock file
+            lock_file = open(self.lock_path, 'w')
+            
+            # Acquire exclusive lock with timeout
+            if not self._acquire_lock(lock_file, timeout=5):
+                return False
+            
             # Read the current CSS file
             with open(self.css_file_path, 'r') as f:
                 content = f.read()
             
+            # Store original content for comparison
+            original_content = content
+            
             # Define the patterns for cava-left and cava-right blocks
-            # We need to match the blocks and update only the color property
             if make_transparent:
                 # Change @primary_container to transparent in cava blocks
-                # Pattern: matches "color: @primary_container;" within #custom-cava-left or #custom-cava-right blocks
-                import re
-                
-                # Match #custom-cava-left block and replace its color
                 pattern_left = r'(#custom-cava-left\s*\{[^}]*?color:\s*)@primary_container(\s*;)'
                 content = re.sub(pattern_left, r'\1transparent\2', content)
                 
-                # Match #custom-cava-right block and replace its color
                 pattern_right = r'(#custom-cava-right\s*\{[^}]*?color:\s*)@primary_container(\s*;)'
                 content = re.sub(pattern_right, r'\1transparent\2', content)
             else:
                 # Restore transparent back to @primary_container in cava blocks
-                import re
-                
-                # Match #custom-cava-left block and restore its color
                 pattern_left = r'(#custom-cava-left\s*\{[^}]*?color:\s*)transparent(\s*;)'
                 content = re.sub(pattern_left, r'\1@primary_container\2', content)
                 
-                # Match #custom-cava-right block and restore its color
                 pattern_right = r'(#custom-cava-right\s*\{[^}]*?color:\s*)transparent(\s*;)'
                 content = re.sub(pattern_right, r'\1@primary_container\2', content)
             
-            # Write the updated content back
-            with open(self.css_file_path, 'w') as f:
-                f.write(content)
+            # Check if any changes were actually made
+            if content == original_content:
+                # No changes needed, release lock and return
+                self._release_lock(lock_file)
+                lock_file.close()
+                return True
+            
+            # Atomic write: write to temporary file first
+            temp_fd, temp_path = tempfile.mkstemp(
+                dir=os.path.dirname(self.css_file_path),
+                prefix='.style_tmp_',
+                suffix='.css'
+            )
+            
+            # Write content to temp file
+            with os.fdopen(temp_fd, 'w') as temp_file:
+                temp_file.write(content)
+                temp_file.flush()
+                os.fsync(temp_file.fileno())  # Force write to disk
+            
+            # Get original file permissions
+            original_stat = os.stat(self.css_file_path)
+            os.chmod(temp_path, original_stat.st_mode)
+            
+            # Atomic rename (this is the critical atomic operation)
+            os.rename(temp_path, self.css_file_path)
+            temp_path = None  # Mark as successfully moved
+            
+            # Release lock
+            self._release_lock(lock_file)
+            lock_file.close()
             
             return True
             
         except Exception as e:
             print(f"Error updating CSS: {e}", file=sys.stderr)
+            
+            # Clean up temp file if it exists
+            if temp_path and os.path.exists(temp_path):
+                try:
+                    os.unlink(temp_path)
+                except Exception:
+                    pass
+            
             return False
+        
+        finally:
+            # Ensure lock is released
+            if lock_file:
+                try:
+                    self._release_lock(lock_file)
+                    lock_file.close()
+                except Exception:
+                    pass
+    
+    def restore_from_backup(self):
+        """Restore CSS from backup if it exists"""
+        if os.path.exists(self.backup_path):
+            try:
+                with open(self.backup_path, 'r') as src:
+                    content = src.read()
+                with open(self.css_file_path, 'w') as dst:
+                    dst.write(content)
+                print("CSS restored from backup", file=sys.stderr)
+                return True
+            except Exception as e:
+                print(f"Error restoring backup: {e}", file=sys.stderr)
+                return False
+        return False
     
     def update_for_media_state(self, is_playing):
         """Update CSS based on media playing state"""
@@ -341,6 +444,15 @@ class CSSColorUpdater:
         if self._update_css_color(make_transparent):
             self.current_state = is_playing
             self.last_update = current_time
+    
+    def cleanup(self):
+        """Cleanup: restore original colors when script exits"""
+        try:
+            # Restore to @primary_container on exit
+            self._update_css_color(make_transparent=False)
+            print("CSS colors restored on cleanup", file=sys.stderr)
+        except Exception as e:
+            print(f"Error during cleanup: {e}", file=sys.stderr)
 
 
 
@@ -1131,6 +1243,10 @@ class CavaClient:
         except KeyboardInterrupt:
             pass
         finally:
+            # Cleanup CSS colors before exit
+            if transparent_when_inactive and self.css_updater:
+                self.css_updater.cleanup()
+            
             try:
                 client_socket.close()
             except Exception:
