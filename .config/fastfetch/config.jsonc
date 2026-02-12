@@ -20,9 +20,9 @@
             "type": "custom"
         },
         {
-            "key": "│ {#31} user    {#keys}││ ",
+            "key": "│ {#31} admin    {#keys}││ ",
             "type": "title",
-            "format": "User  {user-name}  Root  {host-name}"
+            "format": " {host-name} "
         },
         {
             "key": "│ {#39}󰇄 device  {#keys}││ ",
