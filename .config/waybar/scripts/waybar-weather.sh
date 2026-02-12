@@ -7,7 +7,7 @@ WEATHER_API_KEY="bd6beb7dd25a42ec9b295232250504"
 UNIT_STATE_FILE="/tmp/waybar-weather-unit"
 WEATHER_CACHE_FILE="/tmp/astal-weather-cache.json"
 LOCATION_CACHE_FILE="/tmp/waybar-weather-location"
-CACHE_MAX_AGE=1800  # 30 minutes
+CACHE_MAX_AGE=600  # 10 minutes
 
 # Get current unit
 CURRENT_UNIT=$(cat "$UNIT_STATE_FILE" 2>/dev/null || echo "metric")
