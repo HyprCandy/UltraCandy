@@ -22,7 +22,7 @@
         {
             "key": "│ {#31} admin   {#keys}││ ",
             "type": "title",
-            "format": " {host-name} "
+            "format": "  {host-name} "
         },
         {
             "key": "│ {#39}󰇄 device  {#keys}││ ",
