@@ -8,6 +8,7 @@ configuration {
   hover-select:             true;
   me-select-entry:          "MousePrimary";
   me-accept-entry:          "!MousePrimary";
+  kb-cancel:	            "MousePrimary";
 }
 
 /* 
