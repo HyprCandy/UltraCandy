@@ -58,12 +58,12 @@
     "tray",       	    // system tray
     "custom/update",        // system update
     "custom/wifi",          // wi-fi
-    "custom/notification",         // swaync
-    "idle_inhibitor",       // idle inhibitor
-    "custom/rofi",
     //"custom/player",
     "power-profiles-daemon",        // power profiles
+    "idle_inhibitor",       // idle inhibitor
     //"bluetooth",            // bluetooth
+    "custom/rofi",
+    "custom/notification",         // swaync
     "battery",              // battery
     "custom/power"          // power button
   ],
