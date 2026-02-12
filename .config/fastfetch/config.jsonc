@@ -20,7 +20,7 @@
             "type": "custom"
         },
         {
-            "key": "│ {#31} admin    {#keys}││ ",
+            "key": "│ {#31} admin   {#keys}││ ",
             "type": "title",
             "format": " {host-name} "
         },
