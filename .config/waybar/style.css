@@ -375,7 +375,7 @@ tooltip label {
 #custom-rofi {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  margin-left: 6px;
+  margin-right: 6px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 8px;
@@ -432,7 +432,7 @@ tooltip label {
 #idle_inhibitor {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  margin-left: 6px;
+  margin-right: 6px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 1px;
@@ -560,7 +560,7 @@ window.popup menuitem {
 #power-profiles-daemon {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  margin-left: 6px;
+  margin-right: 6px;
   border-radius: 30px;
   padding-left: 6px;
   padding-right: 8px;
