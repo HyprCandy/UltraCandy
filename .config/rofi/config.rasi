@@ -23,7 +23,7 @@ configuration {
     scroll-method:              1;
     me-select-entry:            "";
     me-accept-entry:            "MousePrimary";
-    kb-cancel:			        "MousePrimary";
+    kb-cancel:			"MousePrimary";
     window-format:              "{w} · {c} ·{t}";
 }
 
