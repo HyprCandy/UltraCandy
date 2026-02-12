@@ -186,7 +186,7 @@
     "return-type": "json",
     "format": "{}",
     "tooltip": true,
-    "interval": 1800,
+    "interval": 600,
     "signal": 8,
     "on-click": "gnome-weather",
     //"on-click-right": "~/.ultracandy/GJS/toggle-weather-widget.sh",
