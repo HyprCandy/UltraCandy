@@ -132,7 +132,7 @@
 
     "tooltip-format": "Playing: {title} - {artist}",
     "tooltip-format-paused": "Paused: {title} - {artist}",
-    "min-length": 5,
+    "min-length": 15,
     "max-length": 25
   },
   
@@ -144,7 +144,7 @@
     "format": "{}",
     "restart-interval": 0,
     "tooltip": false,
-    "min-length": 0,
+    "min-length": 10,
     "max-length": 50
   },
   
@@ -156,7 +156,7 @@
     "format": "{}",
     "restart-interval": 0,
     "tooltip": false,
-    "min-length": 0,
+    "min-length": 10,
     "max-length": 50
   },
   
@@ -194,7 +194,7 @@
     //"on-click": "~/.config/waybar/scripts/toggle-weather-dropdown.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
-    "min-length": 1,
+    "min-length": 7,
     "max-length": 30
   },
 
@@ -271,7 +271,7 @@
     "tooltip": true,
     //"tooltip-format": "Standard Time: {:%I:%M %p}",
     "tooltip-format": "Launch tty-clock",
-    "min-length": 6,
+    "min-length": 7,
     "max-length": 7,
     "on-click": "bash ~/.config/hypr/scripts/tty-clock.sh",
   },
@@ -283,7 +283,7 @@
     "tooltip": true,
     "tooltip-format": "Left-click: Calendar-App",
     "on-click": "gnome-calendar",
-    "min-length": 1,
+    "min-length": 7,
     "max-length": 7
   },
 
