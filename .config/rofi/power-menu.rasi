@@ -29,7 +29,7 @@ configuration {
 /* Window */
 
 window {
-  location:                 northeast;
+  location:                 north;
   anchor:                   north;
   x-offset:                 -3px;
   y-offset:                 3px;
