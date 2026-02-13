@@ -25,7 +25,7 @@
 
   "modules-center": [
     //"rofi",
-    "custom/paddc",
+    //"custom/paddc",
     //"custom/left2",
     
     //"custom/temperature",   // temperature
@@ -42,14 +42,14 @@
     //"rofi",		    // rofi
     //"custom/leftin1",
 
-    "custom/left5",
+    //"custom/left5",
     "custom/distro",        // distro icon
-    "custom/right2",
+    //"custom/right2",
 
     //"custom/rightin1",
     "clock#time",           // time
-    "custom/cava-right",           // cava visualizer
-    "custom/space"
+    "custom/cava-right"           // cava visualizer
+    //"custom/space"
     //"custom/right5"
   ],
 
