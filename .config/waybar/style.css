@@ -201,7 +201,7 @@ tooltip label {
   margin-left: 0px;
   padding-left: 8px;
   padding-right: 4px;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 #mpris:hover {
@@ -212,9 +212,9 @@ tooltip label {
 */
 
 #custom-cava-left {
-  color: @primary_container;
+  color: transparent;
   background: transparent;
-  border-radius: 20px;
+  border-radius: 30px;
   margin-left: 0px;
   padding-left: 8px;
   padding-right: 8px;
@@ -291,6 +291,8 @@ tooltip label {
   border-radius: 30px;
   padding-left: 5px;
   padding-right: 0px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 #custom-right2 {
@@ -336,9 +338,9 @@ tooltip label {
 */
 
 #custom-cava-right {
-  color: @primary_container;
+  color: transparent;
   background: transparent;
-  border-radius: 20px;
+  border-radius: 30px;
   margin-left: 0px;
   padding-left: 8px;
   padding-right: 8px;
