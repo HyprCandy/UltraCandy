@@ -130,7 +130,7 @@
       "paused": "<span color='#b7bdf8'>\u200A\u200A󰏤\u2009\u2009</span>"
     },
 
-    "tooltip-format": "Playing: {title} - {artist}",
+    "tooltip-format": "Playing: {title} - {artist}\n\nLeft-click: Play/Pause\nRight-click: Next",
     "tooltip-format-paused": "Paused: {title} - {artist}",
     "min-length": 15,
     "max-length": 25
@@ -439,8 +439,8 @@
     "format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-charging": " {capacity}%",
 
-    "tooltip-format": "Discharging: {time}\nLeft-click: System-Monitor-Widget\nRight-click: Gnome-System-Monitor-App",
-    "tooltip-format-charging": "Charging: {time}\nLeft-click: Gnome-System-Monitor-App\nRight-click: System-Monitor-Widget",
+    "tooltip-format": "Discharging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
+    "tooltip-format-charging": "Charging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
