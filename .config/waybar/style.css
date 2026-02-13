@@ -24,8 +24,8 @@ window#waybar {
 window#waybar > box {
   background: @blur_background;
   margin-top: 4.5px;
-  margin-left: 7.0px;
-  margin-right: 7.0px;
+  margin-left: 4.5px;
+  margin-right: 4.5px;
   margin-bottom: 0.0px;
   border-radius: 20.0px;
   padding: 4.0px;
@@ -66,11 +66,7 @@ tooltip label {
 #power-profiles-daemon,
 #pulseaudio,
 #backlight,
-#battery {
-  opacity: 1;
-  color: @module-fg;
-  padding: 0 4px;
-}
+#battery,
 
 #custom-left1,
 #custom-left2,
@@ -212,7 +208,7 @@ tooltip label {
 */
 
 #custom-cava-left {
-  color: transparent;
+  color: @primary_container;
   background: transparent;
   border-radius: 30px;
   margin-left: 0px;
@@ -338,7 +334,7 @@ tooltip label {
 */
 
 #custom-cava-right {
-  color: transparent;
+  color: @primary_container;
   background: transparent;
   border-radius: 30px;
   margin-left: 0px;
@@ -493,8 +489,7 @@ tooltip label {
 */
 #window {
   border-radius: 20px;
-  margin-left: 8px;
-  margin-right: 2px;
+  margin-right: 6px;
 }
 
 /* ───────────────────────────────────────────────────────────┤ tray ├───
