@@ -151,6 +151,7 @@ button:hover {
 .widget-volume scale highlight {
     border-radius: 4px;
     background: linear-gradient(90deg, @on_secondary 0%, @bordercolor 100%, #9558e1 0%, #16121a 100%);
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
 /* Backlight widget slider styling */
@@ -167,6 +168,7 @@ button:hover {
 .widget-backlight scale highlight {
     border-radius: 4px;
     background: linear-gradient(90deg, @on_secondary 0%, @bordercolor 100%, #9558e1 0%, #16121a 100%);
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
 .widget-buttons-grid {
