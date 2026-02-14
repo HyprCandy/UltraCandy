@@ -50,7 +50,7 @@ clean_cache() {
         *)
             if [ -n "$aur_helper" ]; then
                 print_status "󰩺 Cleaning $aur_helper cache..."
-                $aur_helper -Sc
+                $aur_helper -Scc
                 print_status "󰸞 $aur_helper cache cleared."
             fi
             ;;
