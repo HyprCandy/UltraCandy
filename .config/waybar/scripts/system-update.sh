@@ -41,7 +41,7 @@ export -f pkg_installed
 clean_cache() {
     echo
     print_warning "Clearing the cache frees disk space but requires redownloading if you need to downgrade later."
-    echo -e "${YELLOW}Would you like to clear your $aur_helper package cache? (n/Y)${NC}"
+    echo -e "${YELLOW}󰸞 Would you like to clear your $aur_helper package cache? (n/Y)${NC}"
     read -r clean_choice
     case "$clean_choice" in
         [nN][oO]|[nN])
@@ -51,7 +51,7 @@ clean_cache() {
             if [ -n "$aur_helper" ]; then
                 print_status "󰩺 Cleaning $aur_helper cache..."
                 $aur_helper -Sc
-                print_status "󰸞 $aur_helper cache cleated."
+                print_status "󰸞 $aur_helper cache cleared."
             fi
             ;;
     esac
