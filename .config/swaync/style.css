@@ -189,12 +189,15 @@ button:hover {
   color: @primary;
   background: @bordercolor;
   border-radius: 16px;
-  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
+  box-shadow: 0 0 0 2px @on_secondary inset;
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
 }
 
 .widget-dnd > switch:hover {
   background: @background;
   border-radius: 16px;
+  box-shadow: 0 0 0 2px @on_secondary inset;
 }
 
 .widget-dnd > switch:checked {
@@ -206,22 +209,24 @@ button:hover {
 .widget-dnd > switch:checked:hover {
   background: @background;
   border-radius: 16px;
+  box-shadow: 0 0 0 2px @on_secondary inset;
 }
 
 .widget-dnd > switch slider {
   background: @buttoncolor;
-  border-radius: 16px;
-  border: 2px solid @buttoncolor;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  border-radius: 4px;
 }
 
 .widget-dnd > switch:hover slider {
-  border-radius: 16px;
-  border: 2px solid @buttoncolor;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  border-radius: 4px;
 }
 
 .widget-dnd > switch:checked slider {
   background: @buttoncolor;
-  border-radius: 16px;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  border-radius: 4px;
 }
 
 * {
