@@ -33,11 +33,15 @@ button {
     min-height: 10px;
     background: @bordercolor;
     color: @buttoncolor;
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
+    transition: all 0.2s ease;
+    opacity: 1;
 }
 
 button:hover {
     background: @buttoncolor;
     color: @on_secondary;
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
 .notification-group-header {
@@ -52,7 +56,7 @@ button:hover {
 
 /* Notification */
 .notification {
-    color: @buttoncolor;
+    color: @bordercolor;
     background: @background;
     border: 3px solid @bordercolor;
     border-radius: 10px;
@@ -62,6 +66,11 @@ button:hover {
 .notification-default-action:hover,
 .notification-action:hover {
     background: @bordercolor;
+}
+
+.notification-group-header {
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .notification-group:active,
@@ -74,8 +83,9 @@ button:hover {
 /* Button */
 
 .close-button {
-    background: @inverse_primary;
+    background: @on_secondary;
     text-shadow: none;
+    box-shadow: none;
     padding: 0;
     border-radius: 15px;
     margin-top: 9px;
@@ -85,8 +95,9 @@ button:hover {
 }
 
 .close-button:hover {
-    background: @buttoncolor;
+    background: @primary;
     text-shadow: none;
+    box-shadow: none;
     padding: 0;
     border-radius: 15px;
     margin-top: 9px;
@@ -95,16 +106,44 @@ button:hover {
     min-height: 20px;
 }
 
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+    background: @on_secondary;
+    text-shadow: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 15px;
+    margin-top: 9px;
+    margin-right: 7px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+    background: @primary;
+    text-shadow: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 15px;
+    margin-top: 9px;
+    margin-right: 7px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
 .notification-group .notification-group-close-button .close-button {
-    font-size: 8px;
+    font-size: medium;
     margin: 15px 22px;
 }
 
 /* Volume widget slider styling */
 .widget-volume scale slider {
-    background: @primary_fixed_dim;
+    background: @buttoncolor;
+    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+    border-radius: 4px;
     padding: 0;
-    margin: 1px;
+    margin: 0px;
     margin-top: 0.5px;
     margin-bottom: 0.5px;
 }
@@ -116,7 +155,9 @@ button:hover {
 
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
-    background: @primary_fixed_dim;
+    background: @buttoncolor;
+    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+    border-radius: 4px;
     padding: 0;
     margin: 1px;
     margin-top: 0.5px;
@@ -132,6 +173,55 @@ button:hover {
     font-size: x-small;
 }
 
+.widget-title {
+  margin-right: 20px;
+}
+
+/* === Do Not Disturb === */
+
+.widget-dnd {
+  margin-right: 18px;
+}
+
+.widget-dnd > switch {
+  color: @primary;
+  background: @bordercolor;
+  border-radius: 16px;
+  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
+}
+
+.widget-dnd > switch:hover {
+  background: @background;
+  border-radius: 16px;
+}
+
+.widget-dnd > switch:checked {
+  background: @on_secondary;
+  color: @buttoncolor;
+  border-radius: 16px;
+}
+
+.widget-dnd > switch:checked:hover {
+  background: @background;
+  border-radius: 16px;
+}
+
+.widget-dnd > switch slider {
+  background: @buttoncolor;
+  border-radius: 16px;
+  border: 2px solid @buttoncolor;
+}
+
+.widget-dnd > switch:hover slider {
+  border-radius: 16px;
+  border: 2px solid @buttoncolor;
+}
+
+.widget-dnd > switch:checked slider {
+  background: @buttoncolor;
+  border-radius: 16px;
+}
+
 * {
-    font-size: 13px;
+    font-size: medium;
 }
