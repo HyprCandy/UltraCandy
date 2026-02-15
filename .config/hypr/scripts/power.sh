@@ -41,7 +41,6 @@ if [[ "$1" == "exit" ]]; then
   terminate_clients
   sleep 0.5
   hyprctl dispatch exit
-  sleep 2
 fi
 
 if [[ "$1" == "lock" ]]; then
