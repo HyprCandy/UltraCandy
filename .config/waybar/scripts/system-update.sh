@@ -103,8 +103,6 @@ if [ "$1" == "up" ]; then
         fi
     fi
 
-    hyprpm update
-    hyprpm reload
     hyprctl reload
     if pkg_installed flatpak; then flatpak update; fi
     
