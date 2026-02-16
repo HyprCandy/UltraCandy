@@ -353,8 +353,8 @@
   // ──────────────────────────────────────────────────────────────┤ tray ├───
 
   "tray": {
-    "icon-size": 12,
-    "spacing": 6,
+    "icon-size": 15,
+    "spacing": 4,
     "show-passive-items": true,
     "reverse-direction": false
   },
