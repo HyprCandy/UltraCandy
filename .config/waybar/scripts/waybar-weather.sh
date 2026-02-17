@@ -119,14 +119,14 @@ jq --arg unit "$CURRENT_UNIT" \
         
         # Rain
         elif (code == 1183) then "󰖗"  # Light rain
-        elif (code == 1186) then "󰖗"  # Moderate rain at times
-        elif (code == 1189) then "󰖗"  # Moderate rain
-        elif (code == 1192) then "󰖓"  # Heavy rain at times
+        elif (code == 1186) then "󰖖"  # Moderate rain at times
+        elif (code == 1189) then "󰖖"  # Moderate rain
+        elif (code == 1192) then "󰙾"  # Heavy rain at times
         elif (code == 1195) then "󰙾"  # Heavy rain
         elif (code == 1198) then "󰙿"  # Light freezing rain
-        elif (code == 1201) then "󰖖"  # Moderate/heavy freezing rain
-        elif (code == 1243) then "󰖖"  # Moderate/heavy rain shower
-        elif (code == 1246) then "󰖖"  # Torrential rain shower
+        elif (code == 1201) then "󰙾"  # Moderate/heavy freezing rain
+        elif (code == 1243) then "󰙾"  # Moderate/heavy rain shower
+        elif (code == 1246) then "󰙾"  # Torrential rain shower
         
         # Snow/Sleet (includes rain+snow mix)
         elif (code == 1066) then "󰖘"  # Patchy snow possible
