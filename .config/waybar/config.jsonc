@@ -246,7 +246,7 @@
     "tooltip": true,
     "tooltip-format": "Left-click: Extra-Settings\nRight-click: Hyprland-Settings",
     "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    "on-click-right": "~/.ultracandy/GJS/toggle-hyprland-settings.sh",
+    "on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
