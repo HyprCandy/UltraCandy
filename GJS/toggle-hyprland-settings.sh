@@ -6,5 +6,5 @@ if pgrep -f "hyprviz" > /dev/null; then
     pkill -f hyprviz
 else
     # If not running, start it
-    hyprviz &
+    DRI_PRIME=1 hyprviz &
 fi
