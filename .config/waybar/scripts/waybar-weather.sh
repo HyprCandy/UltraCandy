@@ -186,7 +186,7 @@ jq --arg unit "$CURRENT_UNIT" \
     
     {
         "text": "\($data.temp | round)\($data.unit) \(get_icon($current.condition.code; $is_day_system))",
-        "tooltip": "󱇯 <b>\($current.condition.text)</b>\n Location: \($display_loc)\n󰔐 Feels like: \($data.feel | round)\($data.unit)\n󰖌 Humidity: \($current.humidity)%\n󰖝 Wind: \($data.speed)\n󰈈 Visibility: \($data.vis)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
+        "tooltip": " <b>\($current.condition.text)</b>\n Location: \($display_loc)\n󰔐 Feels like: \($data.feel | round)\($data.unit)\n󰖌 Humidity: \($current.humidity)%\n󰖝 Wind: \($data.speed)\n󰈈 Visibility: \($data.vis)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
         "class": "weather",
         "alt": $current.condition.text
     }
