@@ -251,7 +251,7 @@ takescreenshot() {
     fi
     
     # Take screenshot with grim
-    if ! grim -g "$geometry" "$temp_file" 2>>"$DEBUG_LOG"; then
+    if ! grim -c -g "$geometry" "$temp_file" 2>>"$DEBUG_LOG"; then
         notify_simple "Screenshot Error" "grim failed to capture"
         echo "grim failed" >> "$DEBUG_LOG"
         return 1
