@@ -8,7 +8,7 @@ UNIT_STATE_FILE="/tmp/waybar-weather-unit"
 WEATHER_CACHE_FILE="/tmp/astal-weather-cache.json"
 LOCATION_CACHE_FILE="/tmp/waybar-weather-location"
 IPINFO_CACHE_FILE="/tmp/waybar-weather-ipinfo.json"
-CACHE_MAX_AGE=60  # 1 minute
+CACHE_MAX_AGE=600  # 10 minutes
 LOCATION_MAX_AGE=3600  # 1 hour
 
 # Get current unit
