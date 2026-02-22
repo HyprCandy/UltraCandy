@@ -48,7 +48,7 @@ REGION=$(echo "$IPINFO" | jq -r '.region // ""')
 COUNTRY=$(echo "$IPINFO" | jq -r '.country // "Unknown"')
 
 # Display location: Simple "City, Country" format
-DISPLAY_LOCATION="$CITY, $COUNTRY"
+DISPLAY_LOCATION="$CITY" #,$COUNTRY
 
 # Use coordinates for weather query (most accurate - pinpoints exact location)
 # WeatherAPI will find the nearest weather station to these coordinates
@@ -186,7 +186,7 @@ jq --arg unit "$CURRENT_UNIT" \
     
     {
         "text": "\($data.temp | round)\($data.unit) \(get_icon($current.condition.code; $is_day_system))",
-        "tooltip": "<b>\($current.condition.text)</b>\nLocation: \($display_loc)\nFeels like: \($data.feel | round)\($data.unit)\nHumidity: \($current.humidity)%\nWind: \($data.speed)\nVisibility: \($data.vis)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
+        "tooltip": "󱇯 <b>\($current.condition.text)</b>\n Location: \($display_loc)\n󰔐 Feels like: \($data.feel | round)\($data.unit)\n󰖌 Humidity: \($current.humidity)%\n󰖝 Wind: \($data.speed)\n󰈈 Visibility: \($data.vis)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
         "class": "weather",
         "alt": $current.condition.text
     }
