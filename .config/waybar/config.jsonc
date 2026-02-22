@@ -188,7 +188,7 @@
     "format": "{}",
     "icon-size": 12,
     "tooltip": true,
-    "interval": 600,
+    "interval": 300,
     "signal": 8,
     "on-click": "gnome-weather",
     //"on-click": "~/.config/waybar/scripts/toggle-weather-dropdown.sh",
