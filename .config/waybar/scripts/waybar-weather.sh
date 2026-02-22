@@ -3,7 +3,7 @@
 # Waybar Weather Module - Accurate Location Detection
 # Uses WeatherAPI.com with precise coordinates from ipinfo
 
-WEATHER_API_KEY="bd6beb7dd25a42ec9b295232250504"
+WEATHER_API_KEY="6e0c9aecc1724698a13223115262202"
 UNIT_STATE_FILE="/tmp/waybar-weather-unit"
 WEATHER_CACHE_FILE="/tmp/astal-weather-cache.json"
 LOCATION_CACHE_FILE="/tmp/waybar-weather-location"
