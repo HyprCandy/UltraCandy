@@ -135,7 +135,7 @@ jq --arg unit "$CURRENT_UNIT" \
     
     {
         "text": "\($data.temp | round)\($data.unit) \($condition.icon)",
-        "tooltip": " <b>\($condition.text)</b>\n Location: \($display_loc)\n󰔐 Feels like: \($data.feel | round)\($data.unit)\n󰖌 Humidity: \($current.relative_humidity_2m)%\n󰖝 Wind: \($data.speed)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
+        "tooltip": "\($condition.icon) <b>\($condition.text)</b>\n Location: \($display_loc)\n󰔐 Feels like: \($data.feel | round)\($data.unit)\n󰖌 Humidity: \($current.relative_humidity_2m)%\n󰖝 Wind: \($data.speed)\n-------------------\nScroll-Up: °C\nScroll-Down: °F\nClick: Weather Menu",
         "class": "weather",
         "alt": $condition.text
     }
