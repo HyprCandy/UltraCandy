@@ -10,47 +10,18 @@
   // ──────────────────────────────────────────────────────────┤ positions ├───
 
   "modules-left": [
-    //"custom/theme",       // theme switcher
-    //"custom/left1",
-
     "hyprland/workspaces",  // workspaces
     "custom/overview",
     "custom/weather",
-    //"custom/right1",
-
-    "custom/paddw",
-    //"custom/right1",
     "mpris"               // media info
   ],
 
   "modules-center": [
-    //"rofi",
-    //"custom/paddc",
-    //"custom/left2",
-    
-    //"custom/temperature",   // temperature
-
-    //"custom/left3",
-    
-    //"memory",               // memory
-
-    //"custom/left4",
-    
     "custom/cava-left",           // cava visualizer
     "clock#date",           // date
-    //"cpu",                  // cpu
-    //"rofi",		    // rofi
-    //"custom/leftin1",
-
-    //"custom/left5",
     "custom/distro",        // distro icon
-    //"custom/right2",
-
-    //"custom/rightin1",
     "clock#time",           // time
     "custom/cava-right"           // cava visualizer
-    //"custom/space"
-    //"custom/right5"
   ],
 
   "modules-right": [
@@ -58,10 +29,8 @@
     "tray",       	    // system tray
     "custom/update",        // system update
     "custom/wifi",          // wi-fi
-    //"custom/player",
     "power-profiles-daemon",        // power profiles
     "idle_inhibitor",       // idle inhibitor
-    //"bluetooth",            // bluetooth
     "custom/rofi",
     "custom/notification",         // swaync
     "battery",              // battery
