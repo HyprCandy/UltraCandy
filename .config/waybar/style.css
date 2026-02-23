@@ -194,7 +194,7 @@ tooltip label {
 #mpris {
   color: @primary_fixed_dim;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
-  margin-left: 0px;
+  margin-left: 6px;
   padding-left: 8px;
   padding-right: 4px;
   border-radius: 30px;
