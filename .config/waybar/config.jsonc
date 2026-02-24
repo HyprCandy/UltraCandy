@@ -79,7 +79,7 @@
     "format": "󰋶",
     "tooltip": true,
     "tooltip-format": "Launch Workspace Overview",
-    "on-click": "qs ipc -c overview call overview toggle",
+    "on-click": "~/.config/hyprcandy/scripts/overview.sh",
     "min-length": 1,
     "max-length": 7
   },
