@@ -150,6 +150,6 @@ tooltip decoration {
 
 tooltip * {
   padding: 2px;
-  background- color: @on_primary;
+  background-color: @on_primary;
   color: white;
 }
