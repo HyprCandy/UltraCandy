@@ -97,6 +97,7 @@ tooltip label {
 }
 
 #custom-theme:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -123,7 +124,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @primary_container;
+  color: @secondary_container;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -131,6 +132,7 @@ tooltip label {
 }
 
 #workspaces button:hover {
+  color: @primary_fixed_dim;
   color: @primary_fixed_dim;
   background: transparent;
   text-shadow: none;
@@ -152,6 +154,7 @@ tooltip label {
 }
 
 #workspaces button.active:hover {
+  color: @primary_fixed_dim;
   color: @primary_container;
 }
 
@@ -164,6 +167,7 @@ tooltip label {
 }
 
 #workspaces button.persistent:not(.active):not(.empty):hover {
+  color: @primary_fixed_dim;
   color: @primary_container;
 }
 
@@ -177,7 +181,7 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────┤ overview ├───
 */
 #custom-overview {
-  color: @primary_fixed_dim;
+  color: @secondary_container;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -186,6 +190,7 @@ tooltip label {
 }
 
 #custom-overview:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -201,6 +206,7 @@ tooltip label {
 }
 
 #mpris:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -257,6 +263,7 @@ tooltip label {
 }
 
 #clock.date:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -282,7 +289,7 @@ tooltip label {
 
 #custom-distro {
   font-size: 14px;
-  color: @primary_fixed_dim;
+  color: @secondary_container;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 5px;
@@ -300,6 +307,7 @@ tooltip label {
 }
 
 #custom-distro:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -321,6 +329,7 @@ tooltip label {
 }
 
 #clock.time:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -380,6 +389,7 @@ tooltip label {
 }
 
 #custom-rofi:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -401,6 +411,7 @@ tooltip label {
 }
 
 #custom-weather:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -422,6 +433,7 @@ tooltip label {
 }
 
 #custom-player:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -437,6 +449,7 @@ tooltip label {
 }
 
 #idle_inhibitor:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -452,6 +465,7 @@ tooltip label {
 }
 
 #custom-wifi:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -467,6 +481,7 @@ tooltip label {
 }
 
 #bluetooth:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -482,6 +497,7 @@ tooltip label {
 }
 
 #custom-update:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -503,6 +519,11 @@ tooltip label {
   padding-right: 4px;
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+#tray:hover {
+  color: @primary_fixed_dim;
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
 /* ──────────────────────────────────────────────────────────┤ tray popovers ├───
@@ -551,6 +572,7 @@ window.popup menuitem {
 }
 
 #custom-notification:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -566,6 +588,7 @@ window.popup menuitem {
 }
 
 #power-profiles-daemon:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -582,6 +605,7 @@ window.popup menuitem {
 }
 
 #pulseaudio:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -598,6 +622,7 @@ window.popup menuitem {
 }
 
 #backlight:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -626,6 +651,7 @@ window.popup menuitem {
 }
 
 #battery:hover {
+  color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim)
 }
 
@@ -638,7 +664,7 @@ window.popup menuitem {
 }
 
 #custom-power {
-  color: @primary_fixed_dim;
+  color: @secondary_container;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -647,9 +673,6 @@ window.popup menuitem {
 }
 
 #custom-power:hover {
-  /*color: @on_primary;
-  background: @primary_fixed_dim;
-  border: 1.5px solid @on_primary;*/
   color: @primary_fixed_dim;
   background: linear-gradient(0deg, @inverse_primary, @scrim);
   margin-left: 6px;
