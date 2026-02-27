@@ -214,7 +214,7 @@ tooltip label {
 */
 
 #custom-cava-left {
-  color: @primary_container;
+  color: @secondary_container;
   background: transparent;
   border-radius: 30px;
   margin-left: 0px;
@@ -343,7 +343,7 @@ tooltip label {
 */
 
 #custom-cava-right {
-  color: @primary_container;
+  color: @secondary_container;
   background: transparent;
   border-radius: 30px;
   margin-left: 0px;
