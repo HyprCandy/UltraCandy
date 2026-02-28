@@ -1,517 +1,134 @@
-{
-  // ─────────────────────────────────────────────────────────────┤ header ├───
-
-  "layer": "top",
-  "position": "top",
-  "mode": "dock",
-  "reload_style_on_change": true,
-  "gtk-layer-shell": true,  // for waybar to be on top of other windows
-
-  // ──────────────────────────────────────────────────────────┤ positions ├───
-
-  "modules-left": [
-    "hyprland/workspaces",  // workspaces
-    "custom/overview",
-    "custom/weather",
-    "mpris"               // media info
-  ],
-
-  "modules-center": [
-    "custom/cava-left",           // cava visualizer
-    "clock#date",           // date
-    "custom/distro",        // distro icon
-    "clock#time",           // time
-    "custom/cava-right"           // cava visualizer
-  ],
-
-  "modules-right": [
-    "hyprland/window",
-    "tray",       	    // system tray
-    "custom/update",        // system update
-    "custom/wifi",          // wi-fi
-    "power-profiles-daemon",        // power profiles
-    "idle_inhibitor",       // idle inhibitor
-    "custom/rofi",
-    "custom/notification",         // swaync
-    "battery",              // battery
-    "custom/power"          // power button
-  ],
-
-  // ─────────────────────────────────────────────────────┤ theme switcher ├───
-
-  "custom/theme": {
-    "exec": "~/.config/waybar/scripts/current-theme.sh",
-    "return-type": "json",
-    "format": " 󰍜 ",
-    "on-click": "~/.config/waybar/scripts/theme-switcher.sh",
-    "min-length": 3,
-    "max-length": 3
-  },
-
-  // ─────────────────────────────────────────────────────────┤ workspaces ├───
-
-"hyprland/workspaces": {
-  "on-scroll-up": "hyprctl dispatch workspace -1",
-  "on-scroll-down": "hyprctl dispatch workspace +1",
-  "persistent-workspaces": {
-    "1": [],
-    "2": [],
-    "3": [],
-    "4": [],
-    "5": []
-  },
-  "format": "{icon}",
-  "format-icons": {
-    "6": "",
-    "7": "",
-    "8": "",
-    "9": "",
-    "10": "",
-    "active": " ",
-    "empty": "",
-    "persistent": ""
-  },
-},
-
-  // ────────────────────────────────────────────────────────┤ overview ├───
-
-  "custom/overview": {
-    "format": "󰋶",
-    "tooltip": true,
-    "tooltip-format": "Launch Workspace Overview",
-    "on-click": "~/.config/hyprcandy/scripts/overview.sh",
-    "min-length": 1,
-    "max-length": 7
-  },
-
-  // ─────────────────────────────────────────────────────────┤ media info ├───
-
-  "mpris": {
-    "format": "{player_icon} {title} - {artist}",
-    "format-paused": "{status_icon} {title} - {artist}",
-
-    "player-icons": {
-      "default": "󰝚 ",
-      "spotify": "<span foreground='#a6da95'>󰓇 </span>",
-      "firefox": "<span foreground='#ed8796'>󰗃 </span>"
-    },
-    "status-icons": {
-      "paused": "<span color='#b7bdf8'>\u200A\u200A󰏤\u2009\u2009</span>"
-    },
-
-    "tooltip-format": "Playing: {title} - {artist}\n\nLeft-click: Play/Pause\nRight-click: Next",
-    "tooltip-format-paused": "Paused: {title} - {artist}",
-    "min-length": 15,
-    "max-length": 25
-  },
-  
-  // ──────────────────────────────────────────────────────────────┤ cava ├───
-
-  "custom/cava-left": {
-    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --left --transparent-when-inactive",
-    "return-type": "json",
-    "format": "{}",
-    "restart-interval": 0,
-    "tooltip": false,
-    "min-length": 10,
-    "max-length": 50
-  },
-  
-  // ──────────────────────────────────────────────────────────────┤ cava ├───
-
-  "custom/cava-right": {
-    "exec": "python3 ~/.config/waybar/scripts/cava.py waybar --json --right --transparent-when-inactive",
-    "return-type": "json",
-    "format": "{}",
-    "restart-interval": 0,
-    "tooltip": false,
-    "min-length": 10,
-    "max-length": 50
-  },
-  
-  // ────────────────────────────────────────────────────────┤ space ├───
-  
-  "custom/space": {
-    "format": " ",
-    "min-length": 1,
-    "max-length": 7
-  },
-  
-  // ────────────────────────────────────────────────────────┤ rofi ├───
-
-  "custom/rofi": {
-    "format": "󱙪",
-    "tooltip": true,
-    "tooltip-format": "Utilities",
-    "on-click": "DRI_PRIME=1 ~/.config/hypr/scripts/rofi-menus.sh",
-    "min-length": 1,
-    "max-length": 7
-  },
-  
-  // ────────────────────────────────────────────────────────┤ weather ├───
-
-  "custom/weather": {
-    "exec": "~/.config/waybar/scripts/waybar-weather.sh",
-    //"exec": "~/.config/waybar/scripts/waybar-weather-astal.sh",
-    "return-type": "json",
-    "format": "{}",
-    "icon-size": 12,
-    "tooltip": true,
-    "interval": 300,
-    "signal": 8,
-    "on-click": "gnome-weather",
-    //"on-click": "~/.config/waybar/scripts/toggle-weather-dropdown.sh",
-    "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
-    "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
-    "min-length": 7,
-    "max-length": 30
-  },
-
-  // ────────────────────────────────────────────────────────┤ player ├───
-
-  "custom/player": {
-    "format": "󰝚 ",
-    "tooltip": true,
-    "tooltip-format": "Media-Player",
-    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
-    "min-length": 1,
-    "max-length": 7
-  },
-
-  // ─────────────────────────────────────────────────────────────┤ memory ├───
-
-  //"memory": {
-    //"states": {
-     // "warning": 75,
-     // "critical": 90
-   // },
-
-   // "format": "󰘚 {percentage}%",
-   // "format-critical": "󰀦 {percentage}%",
-   // "tooltip": false,
-    // "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
-   // "interval": 5,
-   // "min-length": 7,
-   // "max-length": 7
- // },
-
-  // ────────────────────────────────────────────────────────────────┤ cpu ├───
-
-  //"cpu": {
-   // "format": "󰍛 {usage}%",
-   // "tooltip": true,
-   // "interval": 5,
-   // "min-length": 6,
-   // "max-length": 6
- // },
-
-  // ──────────────────────────────────────────────────────────────┤ distro ├───
-
-  "custom/distro": {
-    "format": "{icon}",
-    "format-icons": {
-      "default": " ",
-    },
-    "tooltip": true,
-    "tooltip-format": "Left-click: Extra-Settings\nRight-click: Hyprland-Settings",
-    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    "on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
-  },
-
-  // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
-
-  "idle_inhibitor": {
-    "format": "{icon}",
-
-    "format-icons": {
-      "activated": "󰅶 ",
-      "deactivated": "󰾪 "
-    },
-
-    "tooltip-format-activated": "Caffeine Mode On",
-    "tooltip-format-deactivated": "Caffeine Mode Off",
-    "start-activated": false
-  },
-
-  // ───────────────────────────────────────────────────────────────┤ time ├───
-
-  "clock#time": {
-    "format": "󰅐 {:%H:%M}",
-    "tooltip": true,
-    //"tooltip-format": "Standard Time: {:%I:%M %p}",
-    "tooltip-format": "Launch tty-clock",
-    "min-length": 7,
-    "max-length": 7,
-    "on-click": "bash ~/.config/hypr/scripts/tty-clock.sh",
-  },
-
-  // ───────────────────────────────────────────────────────────────┤ date ├───
-
-  "clock#date": {
-    "format": "󰸗 {:%m-%d}",
-    "tooltip": true,
-    "tooltip-format": "Left-click: Calendar-App",
-    "on-click": "gnome-calendar",
-    "min-length": 7,
-    "max-length": 7
-  },
-
-  // ──────────────────────────────────────────────────────────────┤ wi-fi ├───
-
-  "custom/wifi": {
-    "exec": "~/.config/waybar/scripts/wifi-status.sh",
-    "return-type": "json",
-    "format": "{}",
-    "on-click": "~/.config/waybar/scripts/wifi-menu.sh",
-    "on-click-right": "kitty --title '󰤨  Network Manager TUI' bash -c nmtui",
-    "interval": 300,
-    "min-length": 1,
-    "max-length": 1
-  },
-
-  // ──────────────────────────────────────────────────────────┤ bluetooth ├───
-
-  "bluetooth": {
-    "format": "󰂰",
-    "format-disabled": "󰂲",
-    "format-connected": "󰂱",
-    "format-connected-battery": "󰂱",
-
-    "tooltip-format": 
-      "{num_connections} connected",
-    "tooltip-format-disabled": 
-      "Bluetooth Disabled",
-    "tooltip-format-connected": 
-      "{device_enumerate}",
-    "tooltip-format-enumerate-connected": 
-      "{device_alias}",
-    "tooltip-format-enumerate-connected-battery": 
-      ":: {device_alias}: 󱊣 {device_battery_percentage}%",
-
-    "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-    "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
-    "interval": 1,
-    "min-length": 1,
-    "max-length": 1
-  },
-
-  // ──────────────────────────────────────────────────────┤ system update ├───
-
-  "custom/update": {
-    "exec": "~/.config/waybar/scripts/system-update.sh",
-    "return-type": "json",
-    "format": "{}",
-    "on-click": "~/.config/waybar/scripts/system-update.sh up",
-    "interval": 3600,
-    "min-length": 1,
-    "max-length": 1
-  },
-
-  // ─────────────────────────────────────────────────────────────┤ window ├───
-
-  "hyprland/window": {
-    "swap-icon-label": false,
-    "format": "",
-    "icon": true,
-    "icon-size": 16,
-    "tooltip": false,
-    "min-length": 0,
-    "max-length": 0,
-  }, 
-  
-  // ──────────────────────────────────────────────────────────────┤ tray ├───
-
-  "tray": {
-    "icon-size": 15,
-    "spacing": 4,
-    "show-passive-items": true,
-    "reverse-direction": false
-  },
-  
-  // ───────────────────────────────────────────────────────────┤ SwayNC ├───
-  "custom/notification": {
-    "tooltip-format": "Left-click: Control-Center\nRight-click: Do not disturb",
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "󰅸",
-      "none": "",
-      "dnd-notification": "󱅫",
-      "dnd-none": "󰂠",
-      "inhibited-notification": "󰅸",
-      "inhibited-none": "󱏬",
-      "dnd-inhibited-notification": "󱅫",
-      "dnd-inhibited-none": "󱏫"
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
-  },
-  
-  // ────────────────────────────────────────────────────┤ power-profiles ├───
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "󰠠",
-      "balanced": "󰽣",
-      "power-saver": "󰽥"
-    }
-  }, 
-
-  // ──────────────────────────────────────────────────────┤ output device ├───
-
-  "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "󰝟 {volume}%",
-
-    "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"],
-      "headphone": "󰋋",
-      "headset": "󰋋"
-    },
-
-    "tooltip": false,
-    "tooltip-format": "Device: {desc}",
-    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
-    "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
-    "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
-    "min-length": 6,
-    "max-length": 6
-  },
-
-  // ─────────────────────────────────────────────────────────┤ brightness ├───
-
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "tooltip": false,
-    "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
-    "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
-    "min-length": 6,
-    "max-length": 6
-  },
-
-  // ────────────────────────────────────────────────────────────┤ battery ├───
-
-  "battery": {
-    "states": {
-      "warning": 20,
-      "critical": 10
-    },
-
-    "format": "{icon} {capacity}%",
-    "format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "format-charging": " {capacity}%",
-
-    "tooltip-format": "Discharging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
-    "tooltip-format-charging": "Charging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
-    "interval": 1,
-    "min-length": 6,
-    "max-length": 6,
-    "on-click": "gnome-system-monitor",
-    "on-click-right": "~/.ultracandy/GJS/toggle-system-monitor.sh"
-  },
-
-  // ───────────────────────────────────────────────────────┤ power button ├───
-
-  "custom/power": {
-    "format": "",
-    "tooltip": true,
-    "tooltip-format": "Left-click: rofi-logout\nRight-click: wlogout",
-    "on-click": "~/.config/waybar/scripts/power-menu.sh",
-    "on-click-right": "~/.config/waybar/scripts/wlogout.sh"
-  },
-
-  // ────────────────────────────────────────────────────────────┤ padding ├───
-
-  "custom/paddw": {
-    "format": " ",
-    "tooltip": false
-  },
-
-  "custom/paddc": {
-    "format": " ",
-    "tooltip": false
-  },
-
-  // ────────────────────────────────────────────────────────┤ left arrows ├───
-
-  "custom/left1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left2": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left3": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left4": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left5": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left6": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left7": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left8": {
-    "format": "",
-    "tooltip": false
-  },
-
-  // ───────────────────────────────────────────────────────┤ right arrows ├───
-
-  "custom/right1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right2": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right3": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right4": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right5": {
-    "format": "",
-    "tooltip": false
-  },
-
-  // ───────────────────────────────────────────────────────┤ left inverse ├───
-
-  "custom/leftin1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/leftin2": {
-    "format": "",
-    "tooltip": false
-  },
-
-  // ──────────────────────────────────────────────────────┤ right inverse ├───
-
-  "custom/rightin1": {
-    "format": "",
-    "tooltip": false
+/*
+ * Tool definitions for Gemini function calling
+ */
+
+export const TOOL_DEFINITIONS = [
+  {
+    functionDeclarations: [
+      {
+        name: "read_file",
+        description: "Read FULL file content. Use this when you need to EDIT a file. Always returns complete content - no truncation. For browsing/context without editing, use peek_file instead.",
+        parameters: {
+          type: "object",
+          properties: {
+            path: { type: "string", description: "File path to read" },
+            start_line: { type: "integer", description: "Optional: Start line number (1-based). Use with end_line to read a specific range of a very large file." },
+            end_line: { type: "integer", description: "Optional: End line number (1-based). Use with start_line to read a specific range." }
+          },
+          required: ["path"]
+        }
+      },
+      {
+        name: "peek_file",
+        description: "Quick peek at file - returns summary with first/last lines. Use this for browsing/exploring files to understand structure. When you need to edit a file, use read_file to get full content.",
+        parameters: {
+          type: "object",
+          properties: {
+            path: { type: "string", description: "File path to peek at" },
+            preview_lines: { type: "integer", description: "Optional: Number of lines to show from start/end (default: 50)" }
+          },
+          required: ["path"]
+        }
+      },
+      {
+        name: "write_file",
+        description: "Write content to a file. For small files, write complete content in one call. For large files (>10K chars), use chunked writes: call multiple times with finalize=false, then once with finalize=true for the last chunk.",
+        parameters: {
+          type: "object",
+          properties: {
+            path: { type: "string", description: "File path to write" },
+            content: { type: "string", description: "File content (or chunk for large files)" },
+            mode: { type: "string", description: "Write mode: 'overwrite' (default) or 'append' to append to existing file" },
+            finalize: { type: "boolean", description: "If false, accumulate chunks. Set true on last chunk to write file. Default: true" }
+          },
+          required: ["path", "content"]
+        }
+      },
+      {
+        name: "list_files",
+        description: "List files and directories in a path",
+        parameters: {
+          type: "object",
+          properties: {
+            directory_path: { type: "string", description: "Directory to list" }
+          },
+          required: ["directory_path"]
+        }
+      },
+      {
+        name: "search_code",
+        description: "Search for a pattern in the codebase",
+        parameters: {
+          type: "object",
+          properties: {
+            pattern: { type: "string", description: "Search pattern" }
+          },
+          required: ["pattern"]
+        }
+      },
+      {
+        name: "execute_command",
+        description: "Execute a shell command. Safe commands run automatically. Elevated commands need approval. Package installs run interactively for password entry.",
+        parameters: {
+          type: "object",
+          properties: {
+            command: { type: "string", description: "Shell command to execute" },
+            needs_elevation: { type: "boolean", description: "Whether the command requires elevated privileges (sudo, etc.)" }
+          },
+          required: ["command"]
+        }
+      },
+      {
+        name: "create_plan",
+        description: "Create or update a task plan/to-do list. Use at start of complex tasks AND mid-task when you discover additional work needed. Supports dynamic task management with add/update/skip capabilities.",
+        parameters: {
+          type: "object",
+          properties: {
+            title: { type: "string", description: "Title of the plan" },
+            steps: {
+              type: "array",
+              description: "Array of task steps. Each step should have description, status, and order. You can add new steps mid-workflow by calling create_plan again with additional steps.",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "string", description: "Unique step ID (e.g., '1', '2', 'step_1')" },
+                  description: { type: "string", description: "Description of the task step" },
+                  status: { type: "string", enum: ["pending", "in-progress", "completed", "skipped"], description: "Current status of the step" },
+                  order: { type: "number", description: "Order/sequence number (1, 2, 3, etc.)" }
+                },
+                required: ["id", "description", "status", "order"]
+              }
+            },
+            after_id: {
+              type: "string",
+              description: "Optional: Insert new steps after this step ID (for mid-workflow additions)"
+            }
+          },
+          required: ["title", "steps"]
+        }
+      },
+      {
+        name: "task_complete",
+        description: "Call this when you have finished ALL requested tasks. This signals completion.",
+        parameters: {
+          type: "object",
+          properties: {
+            summary: { type: "string", description: "Brief summary of what was accomplished" }
+          },
+          required: ["summary"]
+        }
+      },
+      {
+        name: "web_search",
+        description: "Search the web for information, documentation, or solutions.",
+        parameters: {
+          type: "object",
+          properties: {
+            query: { type: "string", description: "Search query" }
+          },
+          required: ["query"]
+        }
+      }
+    ]
   }
-}
+];
