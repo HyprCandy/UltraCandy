@@ -140,7 +140,7 @@ button:hover {
 /* Volume widget slider styling */
 .widget-volume scale slider {
     background: @buttoncolor;
-    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
     border-radius: 4px;
     padding: 0;
     margin: 0px;
@@ -157,7 +157,7 @@ button:hover {
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
     background: @buttoncolor;
-    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
     border-radius: 4px;
     padding: 0;
     margin: 1px;
@@ -214,18 +214,18 @@ button:hover {
 
 .widget-dnd > switch slider {
   background: @buttoncolor;
-  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
 .widget-dnd > switch:hover slider {
-  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
 .widget-dnd > switch:checked slider {
   background: @buttoncolor;
-  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
