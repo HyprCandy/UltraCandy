@@ -4,7 +4,7 @@
 @define-color background @blur_background;
 @define-color groupbackground @blur_background; /*linear-gradient(45deg, @bordercolor 0%, @scrim 100%);*/
 @define-color buttoncolor @primary_fixed_dim;
-@define-color bordercolor @inverse_primary;
+@define-color bordercolor @on_primary_fixed_variant;
 @define-color fontcolor @on_surface;
 @define-color text-color @primary;
 
@@ -30,10 +30,10 @@ button {
     border: 0px;
     border-radius: 8px;
     min-width: 8px;
-    min-height: 10px;
+    min-height: 8px;
     background: @bordercolor;
     color: @buttoncolor;
-    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
+    box-shadow: 0 0 0 0 @bordercolor, 0 0 0 2px @on_secondary inset;
     transition: all 0.2s ease;
     opacity: 1;
 }
@@ -41,7 +41,7 @@ button {
 button:hover {
     background: @buttoncolor;
     color: @on_secondary;
-    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
+    box-shadow: 0 0 0 0 @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
 .notification-group-header {
@@ -140,7 +140,7 @@ button:hover {
 /* Volume widget slider styling */
 .widget-volume scale slider {
     background: @buttoncolor;
-    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
+    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
     border-radius: 4px;
     padding: 0;
     margin: 0px;
@@ -150,14 +150,14 @@ button:hover {
 
 .widget-volume scale highlight {
     border-radius: 16px;
-    background: linear-gradient(90deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
+    background: linear-gradient(45deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
     box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
 /* Backlight widget slider styling */
 .widget-backlight scale slider {
     background: @buttoncolor;
-    box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
+    box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
     border-radius: 4px;
     padding: 0;
     margin: 1px;
@@ -167,7 +167,7 @@ button:hover {
 
 .widget-backlight scale highlight {
     border-radius: 16px;
-    background: linear-gradient(90deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
+    background: linear-gradient(45deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
     box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary inset;
 }
 
@@ -201,7 +201,7 @@ button:hover {
 }
 
 .widget-dnd > switch:checked {
-  background: linear-gradient(90deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
+  background: linear-gradient(45deg, @bordercolor 0%, @on_secondary 100%, #9558e1 0%, #16121a 100%);
   color: @buttoncolor;
   border-radius: 16px;
 }
@@ -214,18 +214,18 @@ button:hover {
 
 .widget-dnd > switch slider {
   background: @buttoncolor;
-  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
 .widget-dnd > switch:hover slider {
-  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
 .widget-dnd > switch:checked slider {
   background: @buttoncolor;
-  box-shadow: 0 0 2px 2px @bordercolor, 0 0 0 2px @on_secondary;
+  box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
 }
 
