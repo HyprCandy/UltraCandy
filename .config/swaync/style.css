@@ -13,7 +13,6 @@
 }
 
 /* Control Center - Default (unfocused) state */
-
 .control-center {
     border: 2px solid @bordercolor;
     border-radius: 16.0px;
@@ -33,17 +32,18 @@ button {
     min-height: 8px;
     background: @bordercolor;
     color: @buttoncolor;
-    box-shadow: 0 0 0 0 @bordercolor, 0 0 0 2px @on_secondary inset;
+    box-shadow: 0 0 0 2px @primary_fixed_dim inset;
     transition: all 0.2s ease;
     opacity: 1;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: all 0.2s ease;
 }
-
 button:hover {
     background: @buttoncolor;
     color: @on_secondary;
-    box-shadow: 0 0 0 0 @bordercolor, 0 0 0 2px @on_secondary inset;
+    box-shadow: 0 0 0 2px @on_secondary inset;
 }
-
 .notification-group-header {
     font-size: 14px;
 }
@@ -227,6 +227,10 @@ button:hover {
   background: @buttoncolor;
   box-shadow: 0 0 4px 4px @bordercolor, 0 0 0 2px @on_secondary;
   border-radius: 4px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild {
+  background: transparent;
 }
 
 * {
