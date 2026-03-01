@@ -58,11 +58,11 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "󰹑",
+                    "label": "",
                     "command": "bash -c $HOME/.config/hypr/scripts/screenshot.sh"
                 },
                 {
-                    "label": "",
+                    "label": "",
                     "command": "bash -c $HOME/.config/swaync/recorder.sh"
                 },
                 {
