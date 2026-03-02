@@ -67,15 +67,15 @@ button.titlebutton { /* GTK3 */
 }
 
 button.titlebutton.close,
-windowcontrols>button.close>image {
+  windowcontrols > button.close > image {
   color: @inverse_primary;
-  background-color: transparent;
-  border: none;
+  background: @primary;
 }
 
 button.titlebutton.close: hover,
-windowcontrols>button.close: hover>image {
-  color: white;
+  windowcontrols > button.close: hover > image {
+  color: @inverse_primary;
+  background: @primary;
   opacity: 0.5;
 }
 
