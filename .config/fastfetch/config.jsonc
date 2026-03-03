@@ -25,20 +25,20 @@
             "format": " {host-name}"
         },
         {
-            "key": "│ {#39}󰇄 device  {#keys}││ ",
+            "key": "│ {#31}󰇄 device  {#keys}││ ",
             "type": "host",
             "format": "{5} {2}"
         },
         {
-            "key": "│ {#90}{icon} distro  {#keys}││ ",
+            "key": "│ {#39}{icon} distro  {#keys}││ ",
             "type": "os"
         },
         {
-            "key": "│ {#38} kernel  {#keys}││ ",
+            "key": "│ {#37} kernel  {#keys}││ ",
             "type": "kernel"
         },
         {
-            "key": "│ {#32}󱫐 wm      {#keys}││ ",
+            "key": "│ {#38}󱫐 wm      {#keys}││ ",
             "type": "wm"
         },
         /*{
@@ -80,7 +80,7 @@
             "format": "{days} days"
         },
         {
-            "key": "│ {#90}󰅐 uptime  {#keys}││ ",
+            "key": "│ {#37}󰅐 uptime  {#keys}││ ",
             "type": "uptime"
         },
         {
