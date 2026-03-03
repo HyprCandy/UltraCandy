@@ -64,15 +64,10 @@ output_path = '~/.config/quickshell/overview/common/Appearance.colors.qml'
 input_path = '~/.config/matugen/templates/sequences'
 output_path = '~/.cache/wal/sequences'
 
-#[templates.pywalfox]
-#input_path = '~/.config/matugen/templates/pywalfox-colors.json'
-#output_path = '~/.cache/wal/colors.json'
-#post_hook = 'pywalfox update'
+[templates.qt5ct]
+input_path = '~/.config/matugen/templates/qtct-colors.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
 
-#[templates.qt5ct]
-#input_path = '~/.config/matugen/templates/darker.conf'
-#output_path = '~/.config/qt5ct/colors/matugen.conf'
-
-#[templates.qt6ct]
-#input_path = '~/.config/matugen/templates/darker.conf'
-#output_path = '~/.config/qt6ct/colors/matugen.conf'
+[templates.qt6ct]
+input_path = '~/.config/matugen/templates/qtct-colors.conf'
+output_path = '~/.config/qt6ct/colors/matugen.conf'
