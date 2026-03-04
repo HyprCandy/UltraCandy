@@ -233,6 +233,33 @@ button:hover {
   background: transparent;
 }
 
+/* ─────────────────────────────────────────────────────────────┤ tooltips ├───
+*/
+tooltip {
+  font-size: 12px;
+  padding: 2px;
+  /* not working */
+  border-radius: 5px;
+  box-shadow: none;
+  text-shadow: 0 1px black;
+}
+
+tooltip.background {
+  background-color: @on_secondary;
+  background-clip: padding-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tooltip decoration {
+  background-color: @on_secondary;
+}
+
+tooltip * {
+  padding: 2px;
+  background-color: @on_secondary;
+  color: @primary;
+}
+
 * {
     font-size: medium;
 }
