@@ -65,6 +65,7 @@ fi
 
 if [[ "$1" == "suspend" ]]; then
   echo ":: Suspend"
+  hyprlock
   sleep 1
   loginctl suspend
 fi
