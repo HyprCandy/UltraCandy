@@ -40,7 +40,7 @@ if [[ "$1" == "exit" ]]; then
   echo ":: Exit"
   terminate_clients
   sleep 0.5
-  hyprctl dispatch exit
+  loginctl terminate-user $USER
 fi
 
 if [[ "$1" == "lock" ]]; then
@@ -66,7 +66,7 @@ fi
 if [[ "$1" == "suspend" ]]; then
   echo ":: Suspend"
   sleep 1
-  systemctl suspend
+  loginctl suspend
 fi
 
 if [[ "$1" == "hibernate" ]]; then
