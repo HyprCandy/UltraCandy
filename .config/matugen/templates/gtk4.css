@@ -34,9 +34,9 @@
 @define-color card_bg_color @window_bg_color;
 @define-color card_fg_color @primary;
 @define-color card_shade_color rgba(0, 0, 6, 0.36);
-@define-color dialog_bg_color #36363a;
+@define-color dialog_bg_color @on_secondary;
 @define-color dialog_fg_color @primary;
-@define-color thumbnail_bg_color #39393d;
+@define-color thumbnail_bg_color @window_bg_color;
 @define-color thumbnail_fg_color @primary;
 @define-color shade_color rgba(0, 0, 6, 0.25);
 @define-color scrollbar_outline_color rgba(0, 0, 12, 0.95);
@@ -152,4 +152,12 @@ tooltip * {
   padding: 2px;
   background-color: @on_secondary;
   color: @primary;
+}
+
+/* Dialog action buttons row */
+dialog .dialog-action-area,
+messagedialog > box > box {
+  border-top: 2px solid @primary_container;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
 }
