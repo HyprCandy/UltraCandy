@@ -157,7 +157,7 @@ tooltip * {
 /* Dialog action buttons row */
 dialog .dialog-action-area,
 messagedialog > box > box {
-  border-top: 2px solid @primary_container;
+  border-top: 2px solid @primary_fixed_dim;
   border-radius: 0 0 10px 10px;
   padding: 10px;
 }
