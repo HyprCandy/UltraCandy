@@ -32,6 +32,7 @@ imports.searchPath.unshift(GLib.build_filenamev([SCRIPT_DIR, 'src']));
 const CandyUtils = imports['candy-utils'];
 const SystemMonitor = imports['system-monitor'];
 const Media = imports['media'];
+const Weather = imports['weather'];
 const CssWatcher = imports['css-watcher'];
 const PidUtils = imports['pid-utils'];
 
@@ -47,7 +48,8 @@ const IDLE_TIMEOUT_MS = 60000; // Exit after 60 seconds with no widgets open
 const WIDGET_POSITIONS = {
     utils: { centered: true },
     system: { width: 280, height: 320 },
-    media: { width: 520, height: 140 }
+    media: { width: 520, height: 140 },
+    weather: { width: 420, height: 340 }
 };
 
 /**
@@ -156,7 +158,7 @@ function toggleSystem() {
     if (!widgets.system) {
         widgets.system = new Gtk.ApplicationWindow({
             application: app,
-            default_width: 280, default_height: 320,
+            default_width: 400, default_height: 420,
             resizable: false, decorated: true,
             title: 'candy.systemmonitor',
         });
@@ -196,6 +198,28 @@ function toggleMedia() {
     widgets.media.get_visible() ? widgets.media.hide() : (widgets.media.show(), widgets.media.present());
 }
 
+function toggleWeather() {
+    if (!widgets.weather) {
+        widgets.weather = new Gtk.ApplicationWindow({
+            application: app,
+            default_width: 300, default_height: 240,
+            resizable: false, decorated: false,
+            title: 'candy.weather',
+        });
+        const surface = widgets.weather.get_surface();
+        if (surface) surface.set_property('name', 'Candy');
+
+        const box = Weather.createWeatherBox();
+        widgets.weather.set_child ? widgets.weather.set_child(box) : widgets.weather.set_content(box);
+        const kc = new Gtk.EventControllerKey();
+        kc.connect('key-pressed', (c, k) => { if (k === Gdk.KEY_Escape) widgets.weather.hide(); return false; });
+        widgets.weather.add_controller(kc);
+        CssWatcher.registerWindow(widgets.weather);
+        print('🔺 Weather shown');
+    }
+    widgets.weather.get_visible() ? widgets.weather.hide() : (widgets.weather.show(), widgets.weather.present());
+}
+
 /**
  * Setup file interface with polling
  */
@@ -227,6 +251,10 @@ function setupFileInterface() {
                     } else if (name === 'toggle-media') {
                         print('📁 Toggle media detected');
                         toggleMedia();
+                        gfile.delete(null);
+                    } else if (name === 'toggle-weather') {
+                        print('📁 Toggle weather detected');
+                        toggleWeather();
                         gfile.delete(null);
                     } else if (name === 'quit') {
                         gfile.delete(null);
