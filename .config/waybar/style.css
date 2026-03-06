@@ -66,6 +66,7 @@ tooltip label {
 #power-profiles-daemon,
 #pulseaudio,
 #backlight,
+#custom-media-player
 #battery,
 
 #custom-left1,
@@ -124,7 +125,7 @@ tooltip label {
 }
 
 #workspaces button {
-  color: @secondary_container;
+  color: @primary;
   transition: none;
   border-radius: 8px;
   margin: 2px;
@@ -181,7 +182,7 @@ tooltip label {
 /* ──────────────────────────────────────────────────────────┤ overview ├───
 */
 #custom-overview {
-  color: @secondary_container;
+  color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
@@ -289,7 +290,7 @@ tooltip label {
 
 #custom-distro {
   font-size: 14px;
-  color: @secondary_container;
+  color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   border-radius: 30px;
   padding-left: 5px;
@@ -560,6 +561,22 @@ window.popup menuitem {
   border-radius: 8px;
 }
 
+/* ────────────────────────────────────────────────┤ media-player ├───
+*/
+#custom-media-player {
+  color: @primary;
+  background: linear-gradient(180deg, @inverse_primary, @scrim);
+  margin-right: 1px;
+  border-radius: 30px;
+  padding-left: 6px;
+  padding-right: 8px;
+}
+
+#custom-media-player:hover {
+  color: @primary;
+  background: linear-gradient(0deg, @inverse_primary, @scrim)
+}
+
 /* ───────────────────────────────────────────────────────┤ SywaNC ├───
 */
 
@@ -664,7 +681,7 @@ window.popup menuitem {
 }
 
 #custom-power {
-  color: @secondary_container;
+  color: @primary;
   background: linear-gradient(180deg, @inverse_primary, @scrim);
   margin-left: 6px;
   border-radius: 30px;
