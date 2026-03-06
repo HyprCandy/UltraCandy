@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Toggle Candy Utils - Fast launch (daemon stays running)
-# No killing - daemon persists for instant widget launches
-
 PID_FILE="$HOME/.cache/hyprcandy/pids/candy-daemon.pid"
 DAEMON_SCRIPT="$HOME/.ultracandy/GJS/candy-daemon.js"
 TOGGLE_DIR="$HOME/.cache/hyprcandy/toggle"

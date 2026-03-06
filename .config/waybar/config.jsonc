@@ -169,7 +169,7 @@
     "interval": 300,
     "signal": 8,
     //"on-click": "gnome-weather",
-    "on-click": "~/.ultracandy/GJS/toggle-weather-widget.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-weather-widget.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 7,
@@ -182,7 +182,7 @@
     "format": "󰝚 ",
     "tooltip": true,
     "tooltip-format": "Media-Player",
-    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-media-player.sh",
     "min-length": 1,
     "max-length": 7
   },
@@ -223,8 +223,8 @@
     },
     "tooltip": true,
     "tooltip-format": "Click: Candy-Settings, // \nRight-click: Hyprland-Settings",
-    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    //"on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-control-center.sh",
+    //"on-click-right": "DRI_PRIME=1 ~/.hyprcandy/GJS/toggle-hyprland-settings.sh",
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
@@ -343,7 +343,7 @@
     "format": "󰝚",
     "tooltip": true,
     "tooltip-format": "media-player",
-    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-media-player.sh",
     "min-length": 1,
     "max-length": 7
   },
@@ -434,7 +434,7 @@
     "min-length": 6,
     "max-length": 6,
     "on-click-right": "gnome-system-monitor",
-    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh"
+    "on-click": "~/.hyprcandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
@@ -705,7 +705,7 @@
     "interval": 300,
     "signal": 8,
     //"on-click": "gnome-weather",
-    "on-click": "~/.ultracandy/GJS/toggle-weather-widget.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-weather-widget.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 7,
@@ -718,7 +718,7 @@
     "format": "󰝚 ",
     "tooltip": true,
     "tooltip-format": "Media-Player",
-    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-media-player.sh",
     "min-length": 1,
     "max-length": 7
   },
@@ -759,8 +759,8 @@
     },
     "tooltip": true,
     "tooltip-format": "Click: Candy-Settings, // \nRight-click: Hyprland-Settings",
-    "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    //"on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-control-center.sh",
+    //"on-click-right": "DRI_PRIME=1 ~/.hyprcandy/GJS/toggle-hyprland-settings.sh",
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
@@ -879,7 +879,7 @@
     "format": "󰝚",
     "tooltip": true,
     "tooltip-format": "media-player",
-    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
+    "on-click": "~/.hyprcandy/GJS/toggle-media-player.sh",
     "min-length": 1,
     "max-length": 7
   },
@@ -970,7 +970,7 @@
     "min-length": 6,
     "max-length": 6,
     "on-click-right": "gnome-system-monitor",
-    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh"
+    "on-click": "~/.hyprcandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
