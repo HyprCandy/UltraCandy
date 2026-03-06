@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Check if the process is running
-if pgrep -f "candy-system-monitor.js" > /dev/null; then
-    # If running, kill it
-    killall gjs ~/.hyprcandy/GJS/candy-system-monitor.js
-else
-    # If not running, start it
-    gjs ~/.hyprcandy/GJS/candy-system-monitor.js &
+# Toggle System Monitor - Fast launch (daemon stays running)
+
+PID_FILE="$HOME/.cache/hyprcandy/pids/candy-daemon.pid"
+DAEMON_SCRIPT="$HOME/.ultracandy/GJS/candy-daemon.js"
+TOGGLE_DIR="$HOME/.cache/hyprcandy/toggle"
+
+mkdir -p "$TOGGLE_DIR"
+
+if ! [ -f "$PID_FILE" ] || ! kill -0 "$(cat "$PID_FILE" 2>/dev/null)" 2>/dev/null; then
+    gjs "$DAEMON_SCRIPT" &
+    sleep 0.3
 fi
+
+touch "$TOGGLE_DIR/toggle-system"
