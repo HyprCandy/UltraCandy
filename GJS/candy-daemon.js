@@ -220,6 +220,10 @@ function toggleWeather() {
     widgets.weather.get_visible() ? widgets.weather.hide() : (widgets.weather.show(), widgets.weather.present());
 }
 
+// Sentinel file the toggle scripts wait for before firing.
+// Written AFTER the poll timer is registered, not at PID-write time.
+const READY_FILE = GLib.build_filenamev([HOME, '.cache', 'hyprcandy', 'toggle', 'daemon-ready']);
+
 /**
  * Setup file interface with polling
  */
@@ -227,46 +231,80 @@ function setupFileInterface() {
     try {
         GLib.mkdir_with_parents(TOGGLE_DIR, 0o755);
         print(`✅ File interface: ${TOGGLE_DIR}`);
-        
-        // Poll for toggle files every 200ms
+
+        // Poll for toggle files every 200ms.
+        // IMPORTANT: enumerator must be closed in a finally block — if next_file()
+        // throws (race between shell writing and us reading), the open dir fd would
+        // leak and eventually exhaust EMFILE. Each file action is wrapped separately
+        // so one bad delete doesn't abort processing of remaining files.
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            const dir = Gio.File.new_for_path(TOGGLE_DIR);
+            let enumerator = null;
             try {
-                const dir = Gio.File.new_for_path(TOGGLE_DIR);
-                const enumerator = dir.enumerate_children('standard::name', Gio.FileQueryInfoFlags.NONE, null);
+                enumerator = dir.enumerate_children(
+                    'standard::name', Gio.FileQueryInfoFlags.NONE, null
+                );
+                // Snapshot all names first so we don't mutate while iterating
+                const names = [];
                 let info;
-                while ((info = enumerator.next_file(null)) !== null) {
-                    const name = info.get_name();
-                    const path = GLib.build_filenamev([TOGGLE_DIR, name]);
-                    const gfile = Gio.File.new_for_path(path);
-                    
+                while (true) {
+                    try {
+                        info = enumerator.next_file(null);
+                    } catch(e) {
+                        // next_file can throw if a file disappears between
+                        // enumerate_children and next_file (zsh exits fast)
+                        break;
+                    }
+                    if (info === null) break;
+                    names.push(info.get_name());
+                }
+
+                for (const name of names) {
+                    // Skip the ready sentinel — never process it as a command
+                    if (name === 'daemon-ready') continue;
+
+                    const gfile = Gio.File.new_for_path(
+                        GLib.build_filenamev([TOGGLE_DIR, name])
+                    );
+
+                    // Delete first — prevents duplicate triggers if handler
+                    // is slow and the next poll fires before it finishes
+                    try { gfile.delete(null); } catch(e) {}
+
                     if (name === 'toggle-utils') {
-                        print('📁 Toggle utils detected');
+                        print('📁 Toggle utils');
                         toggleUtils();
-                        gfile.delete(null);
-                        print('✅ File deleted');
                     } else if (name === 'toggle-system') {
-                        print('📁 Toggle system detected');
+                        print('📁 Toggle system');
                         toggleSystem();
-                        gfile.delete(null);
                     } else if (name === 'toggle-media') {
-                        print('📁 Toggle media detected');
+                        print('📁 Toggle media');
                         toggleMedia();
-                        gfile.delete(null);
                     } else if (name === 'toggle-weather') {
-                        print('📁 Toggle weather detected');
+                        print('📁 Toggle weather');
                         toggleWeather();
-                        gfile.delete(null);
                     } else if (name === 'quit') {
-                        gfile.delete(null);
                         app.quit();
                         return false;
                     }
                 }
             } catch (e) {
                 print('⚠️ Poll error: ' + e.message);
+            } finally {
+                // Always close the enumerator to release the dir fd
+                if (enumerator) {
+                    try { enumerator.close(null); } catch(e) {}
+                }
             }
             return true;
         });
+
+        // Write the ready sentinel AFTER the timer is registered.
+        // Toggle scripts wait for this file instead of the PID file, which
+        // exists before the event loop and file interface are live.
+        try { GLib.file_set_contents(READY_FILE, 'ready'); } catch(e) {}
+        print('✅ Daemon ready sentinel written');
+
     } catch (e) {
         print('⚠️ File interface: ' + e.message);
     }
@@ -320,6 +358,8 @@ function onShutdown() {
         GLib.source_remove(idleCheckId);
         idleCheckId = null;
     }
+    // Remove ready sentinel so toggle scripts don't see a stale file
+    try { Gio.File.new_for_path(READY_FILE).delete(null); } catch(e) {}
     for (let k in widgets) if (widgets[k]) widgets[k].hide();
     if (cssWatcher) cssWatcher.stop();
     PidUtils.cleanupPid(DAEMON_NAME);
