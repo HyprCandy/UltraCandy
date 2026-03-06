@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PID_FILE="$HOME/.cache/hyprcandy/pids/candy-daemon.pid"
-DAEMON_SCRIPT="$HOME/.ultracandy/GJS/candy-daemon.js"
+DAEMON_SCRIPT="$HOME/.hyprcandy/GJS/candy-daemon.js"
 TOGGLE_DIR="$HOME/.cache/hyprcandy/toggle"
 
 mkdir -p "$TOGGLE_DIR"
