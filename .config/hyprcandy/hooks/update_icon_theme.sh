@@ -4,7 +4,7 @@ GTK_FILE="$HOME/.config/gtk-3.0/settings.ini"
 QT6CT_CONF="$HOME/.config/qt6ct/qt6ct.conf"
 QT5CT_CONF="$HOME/.config/qt5ct/qt5ct.conf"
 KDEGLOBALS="$HOME/.config/kdeglobals"
-UC_COLORS="$HOME/.local/share/color-schemes/UltraCandy.colors"
+UC_COLORS="$HOME/.local/share/color-schemes/HyprCandy.colors"
 
 ICON_THEME=$(grep "^gtk-icon-theme-name=" "$GTK_FILE" | cut -d'=' -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
