@@ -945,7 +945,7 @@ function createMediaBox() {
         }
         if (_pollTimerId === 0) {
             updatePlayerAsync(() => updateTrackInfoAsync());
-            _pollTimerId = GLib.timeout_add(GLib.PRIORITY_LOW, 1000, () => {
+            _pollTimerId = GLib.timeout_add(GLib.PRIORITY_LOW, 50, () => {
                 updatePlayerAsync(() => updateTrackInfoAsync());
                 return GLib.SOURCE_CONTINUE;
             });
