@@ -1,268 +1,213 @@
 #!/usr/bin/env gjs
 
 /**
- * PID Utility Module
- * Handles PID file creation and management for independent widget targeting
+ * CSS Watcher Module
+ * Monitors GTK color CSS files and waits for matugen to finish before hot reload
+ * Uses Gio.FileMonitor (inotify-based) for efficient file watching
  */
 
+imports.gi.versions.Gio = '2.0';
 imports.gi.versions.GLib = '2.0';
-const { GLib } = imports.gi;
+imports.gi.versions.Gtk = '4.0';
+imports.gi.versions.Gdk = '4.0';
+const { Gio, GLib, Gtk, Gdk } = imports.gi;
 
-const PID_DIR = GLib.build_filenamev([GLib.get_home_dir(), '.cache', 'hyprcandy', 'pids']);
+// CSS file paths (only GTK4 - matugen writes both simultaneously)
+const GTK4_COLORS_PATH = GLib.build_filenamev([GLib.get_home_dir(), '.config', 'gtk-4.0', 'colors.css']);
+const GTK3_COLORS_PATH = GLib.build_filenamev([GLib.get_home_dir(), '.config', 'gtk-3.0', 'colors.css']);
 
-/**
- * Get current process PID
- * @returns {number} Current process ID
- */
-function getCurrentPid() {
-    // Use /proc/self/stat to get PID (most reliable method in GJS)
-    try {
-        let [ok, contents] = GLib.file_get_contents('/proc/self/stat');
-        if (ok && contents) {
-            let stat = imports.byteArray.toString(contents);
-            let pid = parseInt(stat.split(' ')[0]);
-            if (!isNaN(pid) && pid > 0) {
-                return pid;
-            }
-        }
-    } catch (e) {
-        // Fallback: use shell command
-    }
-    
-    try {
-        let [ok, stdout] = GLib.spawn_command_line_sync('echo $$');
-        if (ok && stdout) {
-            let pid = parseInt(imports.byteArray.toString(stdout).trim());
-            if (!isNaN(pid) && pid > 0) {
-                return pid;
-            }
-        }
-    } catch (e) {
-        // Ignore errors
-    }
-    
-    return -1;
-}
+// State
+let cssProviders = [];
+let registeredWindows = [];
+let reloadPending = false;
+let matugenCheckId = null;
 
 /**
- * Ensure PID directory exists
+ * Check if matugen process is running (non-blocking)
  */
-function ensurePidDir() {
+function isMatugenRunning() {
     try {
-        GLib.mkdir_with_parents(PID_DIR, 0o755);
-    } catch (e) {
-        print('⚠️ Could not create PID directory: ' + e.message);
-    }
-}
-
-/**
- * Get PID file path for a given widget name
- * @param {string} widgetName - Name of the widget (e.g., 'candy-utils', 'system-monitor', 'media-player')
- * @returns {string} Full path to PID file
- */
-function getPidPath(widgetName) {
-    return GLib.build_filenamev([PID_DIR, `${widgetName}.pid`]);
-}
-
-/**
- * Write current process PID to file
- * @param {string} widgetName - Name of the widget
- * @returns {number} The PID that was written, or -1 on error
- */
-function writePid(widgetName) {
-    ensurePidDir();
-    
-    try {
-        const pid = getCurrentPid();
-        if (pid <= 0) {
-            print('❌ Could not determine current PID');
-            return -1;
-        }
-        const pidPath = getPidPath(widgetName);
-        GLib.file_set_contents(pidPath, pid.toString());
-        print(`📝 PID ${pid} written to ${pidPath}`);
-        return pid;
-    } catch (e) {
-        print('❌ Could not write PID file: ' + e.message);
-        return -1;
-    }
-}
-
-/**
- * Read PID from file
- * @param {string} widgetName - Name of the widget
- * @returns {number} The PID from file, or -1 if not found/error
- */
-function readPid(widgetName) {
-    try {
-        const pidPath = getPidPath(widgetName);
-        let [ok, contents] = GLib.file_get_contents(pidPath);
-        if (ok && contents) {
-            const pid = parseInt(imports.byteArray.toString(contents).trim());
-            if (!isNaN(pid) && pid > 0) {
-                return pid;
-            }
-        }
-    } catch (e) {
-        // File doesn't exist or error reading
-    }
-    return -1;
-}
-
-/**
- * Check if a process with given PID is running
- * @param {number} pid - Process ID to check
- * @returns {boolean} True if process is running
- */
-function isProcessRunning(pid) {
-    if (pid <= 0) return false;
-    
-    try {
-        // Check if process exists by sending signal 0 (doesn't actually send signal)
-        GLib.spawn_command_line_sync(`kill -0 ${pid}`);
-        return true;
+        const [ok, stdout, , status] = GLib.spawn_command_line_sync('pgrep -x matugen');
+        return ok && status === 0 && stdout.toString().trim().length > 0;
     } catch (e) {
         return false;
     }
 }
 
 /**
- * Check if widget instance is running
- * @param {string} widgetName - Name of the widget
- * @returns {boolean} True if widget is running
+ * Perform CSS reload (optimized, non-blocking)
  */
-function isWidgetRunning(widgetName) {
-    const pid = readPid(widgetName);
-    if (pid <= 0) return false;
-    
-    const isRunning = isProcessRunning(pid);
-    
-    // Clean up stale PID file if process is not running
-    if (!isRunning) {
-        cleanupPid(widgetName);
-    }
-    
-    return isRunning;
-}
+function performReload() {
+    if (reloadPending) return;
+    reloadPending = true;
 
-/**
- * Remove PID file
- * @param {string} widgetName - Name of the widget
- */
-function cleanupPid(widgetName) {
-    try {
-        const pidPath = getPidPath(widgetName);
-        if (GLib.file_test(pidPath, GLib.FileTest.EXISTS)) {
-            GLib.file_delete(pidPath);
-            print(`🧹 PID file cleaned: ${pidPath}`);
+    GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+        try {
+            print('🎨 Reloading theme colors...');
+
+            // Remove old providers
+            for (let provider of cssProviders) {
+                try {
+                    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), provider);
+                } catch (e) {}
+            }
+            cssProviders = [];
+
+            // Reload GTK3 colors
+            const gtk3Provider = new Gtk.CssProvider();
+            gtk3Provider.load_from_path(GTK3_COLORS_PATH);
+            Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), gtk3Provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+            cssProviders.push(gtk3Provider);
+
+            // Reload GTK4 colors
+            if (GLib.file_test(GTK4_COLORS_PATH, GLib.FileTest.EXISTS)) {
+                const gtk4Provider = new Gtk.CssProvider();
+                gtk4Provider.load_from_path(GTK4_COLORS_PATH);
+                Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), gtk4Provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+                cssProviders.push(gtk4Provider);
+            }
+
+            // Refresh windows
+            for (let win of registeredWindows) {
+                try {
+                    if (win?.get_visible()) {
+                        win.get_style_context()?.invalidate();
+                        win.queue_draw();
+                    }
+                } catch (e) {}
+            }
+
+            print('✅ Theme colors hot-reloaded successfully');
+        } catch (e) {
+            print('❌ CSS reload error: ' + e.message);
+        } finally {
+            reloadPending = false;
         }
-    } catch (e) {
-        // Ignore errors on cleanup
-    }
+        return false;
+    });
 }
 
 /**
- * Get the command line used to start a widget
- * @param {string} widgetName - Name of the widget
- * @returns {string} The gjs command for this widget
+ * Wait for matugen to finish, then reload
  */
-function getWidgetCommand(widgetName) {
-    const scriptDir = GLib.build_filenamev([GLib.get_home_dir(), '.ultracandy', 'GJS']);
-    const scriptMap = {
-        'candy-utils': 'candy-main.js',
-        'system-monitor': 'candy-system-monitor.js',
-        'media-player': 'media-main.js'
-    };
-    
-    const script = scriptMap[widgetName];
-    if (script) {
-        return GLib.build_filenamev([scriptDir, script]);
+function waitForMatugenAndReload() {
+    // Cancel any existing check
+    if (matugenCheckId) {
+        GLib.source_remove(matugenCheckId);
+        matugenCheckId = null;
     }
-    return null;
-}
 
-/**
- * Kill a running widget by PID
- * @param {string} widgetName - Name of the widget
- * @returns {boolean} True if killed successfully
- */
-function killWidget(widgetName) {
-    const pid = readPid(widgetName);
-    if (pid <= 0) {
-        print(`⚠️ No PID found for widget: ${widgetName}`);
-        return false;
+    // Check immediately
+    if (!isMatugenRunning()) {
+        performReload();
+        return;
     }
-    
-    if (!isProcessRunning(pid)) {
-        print(`⚠️ Process ${pid} not running, cleaning up PID file`);
-        cleanupPid(widgetName);
-        return false;
-    }
-    
-    try {
-        GLib.spawn_command_line_sync(`kill ${pid}`);
-        print(`✅ Killed widget ${widgetName} (PID: ${pid})`);
-        
-        // Clean up PID file after short delay to ensure process is terminated
-        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 500, () => {
-            cleanupPid(widgetName);
+
+    print('⏳ Matugen running, waiting...');
+
+    // Poll every 300ms (faster response, less overhead)
+    matugenCheckId = GLib.timeout_add(GLib.PRIORITY_DEFAULT_IDLE, 300, () => {
+        if (!isMatugenRunning()) {
+            print('✅ Matugen finished');
+            matugenCheckId = null;
+            // Small delay for file sync (100ms instead of 200ms)
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT_IDLE, 100, () => {
+                performReload();
+                return false;
+            });
             return false;
-        });
-        
-        return true;
-    } catch (e) {
-        print('❌ Could not kill widget: ' + e.message);
-        return false;
+        }
+        return true; // Keep polling
+    });
+}
+
+/**
+ * Register window for refresh notifications
+ */
+function registerWindow(window) {
+    if (!registeredWindows.includes(window)) {
+        registeredWindows.push(window);
     }
 }
 
 /**
- * Start a widget if not running
- * @param {string} widgetName - Name of the widget
- * @returns {boolean} True if started successfully
+ * Unregister window
  */
-function startWidget(widgetName) {
-    const command = getWidgetCommand(widgetName);
-    if (!command) {
-        print(`❌ Unknown widget: ${widgetName}`);
-        return false;
-    }
-    
-    try {
-        GLib.spawn_command_line_async(`gjs ${command}`);
-        print(`✅ Started widget ${widgetName}`);
-        return true;
-    } catch (e) {
-        print('❌ Could not start widget: ' + e.message);
-        return false;
-    }
+function unregisterWindow(window) {
+    const idx = registeredWindows.indexOf(window);
+    if (idx >= 0) registeredWindows.splice(idx, 1);
 }
 
 /**
- * Toggle widget on/off
- * @param {string} widgetName - Name of the widget
- * @returns {string} 'started', 'stopped', or 'error'
+ * Create CSS watcher controller
  */
-function toggleWidget(widgetName) {
-    if (isWidgetRunning(widgetName)) {
-        return killWidget(widgetName) ? 'stopped' : 'error';
-    } else {
-        return startWidget(widgetName) ? 'started' : 'error';
+function createCSSWatcher() {
+    let monitors = [];
+    let files = [];
+
+    function setupMonitor(path) {
+        if (!GLib.file_test(path, GLib.FileTest.EXISTS)) {
+            return null;
+        }
+
+        try {
+            const file = Gio.File.new_for_path(path);
+            const monitor = file.monitor_file(Gio.FileMonitorFlags.NONE, null);
+
+            monitor.connect('changed', (f, other, eventType) => {
+                print(`📝 CSS change: ${GLib.path_get_basename(path)}`);
+                waitForMatugenAndReload();
+            });
+
+            print(`✅ Monitoring: ${GLib.path_get_basename(path)}`);
+            return { file, monitor };
+        } catch (e) {
+            return null;
+        }
     }
+
+    return {
+        start() {
+            print('🔍 CSS watcher starting...');
+            const mon = setupMonitor(GTK4_COLORS_PATH);
+            if (mon) {
+                monitors.push(mon);
+                files.push(GTK4_COLORS_PATH);
+            }
+            print(monitors.length ? `✅ Watching ${monitors.length} file(s)` : '⚠️ No files monitored');
+        },
+
+        stop() {
+            if (matugenCheckId) {
+                GLib.source_remove(matugenCheckId);
+                matugenCheckId = null;
+            }
+            for (let mon of monitors) {
+                try { mon.monitor.cancel(); } catch (e) {}
+            }
+            monitors = [];
+            files = [];
+            print('✅ CSS watcher stopped');
+        },
+
+        isActive: () => monitors.length > 0,
+        getMonitoredFiles: () => files.slice()
+    };
 }
 
-// Export functions
+function startCSSWatcher() {
+    const w = createCSSWatcher();
+    w.start();
+    return w;
+}
+
+// Exports
 var exports = {
-    ensurePidDir,
-    getPidPath,
-    writePid,
-    readPid,
-    isProcessRunning,
-    isWidgetRunning,
-    cleanupPid,
-    getWidgetCommand,
-    killWidget,
-    startWidget,
-    toggleWidget,
-    PID_DIR
+    createCSSWatcher,
+    startCSSWatcher,
+    reloadCSS: waitForMatugenAndReload,
+    registerWindow,
+    unregisterWindow,
+    GTK4_COLORS_PATH,
+    GTK3_COLORS_PATH
 };
