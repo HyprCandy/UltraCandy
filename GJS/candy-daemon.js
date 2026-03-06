@@ -72,8 +72,18 @@ function setupCandyDesktop() {
     }
 
     if (!GLib.file_test(ICON_SOURCE, GLib.FileTest.EXISTS)) {
-        print('⚠️ HyprCandy.png not found');
-        return;
+        print('⚠️ HyprCandy.png not found, running icon setup...');
+        try {
+            const setupScript = GLib.build_filenamev([SCRIPT_DIR, 'setup-custom-icon.sh']);
+            GLib.spawn_command_line_sync(`bash "${setupScript}"`);
+        } catch(e) {
+            print('⚠️ Icon setup failed: ' + e.message);
+        }
+        // Check again after setup attempt
+        if (!GLib.file_test(ICON_SOURCE, GLib.FileTest.EXISTS)) {
+            print('⚠️ Icon still not found, skipping icon generation');
+            return;
+        }
     }
 
     // Generate icons in hicolor structure (parallel where possible)

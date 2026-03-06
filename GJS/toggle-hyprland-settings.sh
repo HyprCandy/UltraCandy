@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if hyprviz is running
+# Check if the process is running
 if pgrep -f "hyprviz" > /dev/null; then
     # If running, kill it
     pkill -f hyprviz
