@@ -40,6 +40,7 @@
           "custom/wifi",
           "power-profiles-daemon",
           "idle_inhibitor",
+          "custom/media-player",
           "custom/rofi",
           "custom/notification"
       ]
@@ -167,8 +168,8 @@
     "tooltip": true,
     "interval": 300,
     "signal": 8,
-    "on-click": "gnome-weather",
-    //"on-click": "~/.config/waybar/scripts/toggle-weather-dropdown.sh",
+    //"on-click": "gnome-weather",
+    "on-click": "~/.ultracandy/GJS/toggle-weather-widget.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 7,
@@ -221,9 +222,9 @@
       "default": " ",
     },
     "tooltip": true,
-    "tooltip-format": "Left-click: Extra-Settings\nRight-click: Hyprland-Settings",
+    "tooltip-format": "Click: Candy-Settings, // \nRight-click: Hyprland-Settings",
     "on-click": "~/.ultracandy/GJS/toggle-control-center.sh",
-    "on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
+    //"on-click-right": "DRI_PRIME=1 ~/.ultracandy/GJS/toggle-hyprland-settings.sh",
   },
 
   // ─────────────────────────────────────────────────────┤ idle inhibitor ├───
@@ -336,6 +337,17 @@
     "reverse-direction": false
   },
   
+  // ──────────────────────────────────────────────────────┤ media-player ├───
+
+  "custom/media-player": {
+    "format": "󰝚",
+    "tooltip": true,
+    "tooltip-format": "media-player",
+    "on-click": "~/.ultracandy/GJS/toggle-media-player.sh",
+    "min-length": 1,
+    "max-length": 7
+  },
+  
   // ───────────────────────────────────────────────────────────┤ SwayNC ├───
   "custom/notification": {
     "tooltip-format": "Left-click: Control-Center\nRight-click: Do not disturb",
@@ -417,12 +429,12 @@
     "format-charging": " {capacity}%",
 
     "tooltip-format": "Discharging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
-    "tooltip-format-charging": "Charging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
+    "tooltip-format-charging": "Charging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-App",
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
-    "on-click": "gnome-system-monitor",
-    "on-click-right": "~/.ultracandy/GJS/toggle-system-monitor.sh"
+    "on-click-right": "gnome-system-monitor",
+    "on-click": "~/.ultracandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
