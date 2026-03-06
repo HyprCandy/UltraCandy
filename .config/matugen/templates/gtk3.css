@@ -108,7 +108,7 @@ button.titlebutton.minimize: hover,
  ***************/
 
 popover {
-  border_radius: 20px;
+  border-radius: 20px;
 }
 
 popover.background:backdrop {
