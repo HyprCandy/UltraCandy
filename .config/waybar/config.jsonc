@@ -166,10 +166,11 @@
     "format": "{}",
     "icon-size": 12,
     "tooltip": true,
+    "tooltip-format": "Click: Launch Weather App";
     "interval": 300,
     "signal": 8,
-    //"on-click": "gnome-weather",
-    "on-click": "~/.hyprcandy/GJS/toggle-weather-widget.sh",
+    "on-click": "gnome-weather",
+    //"on-click": "~/.hyprcandy/GJS/toggle-weather-widget.sh",
     "on-scroll-up": "~/.config/waybar/scripts/toggle-weather-format.sh -c",
     "on-scroll-down": "~/.config/waybar/scripts/toggle-weather-format.sh -f",
     "min-length": 7,
@@ -429,12 +430,12 @@
     "format-charging": " {capacity}%",
 
     "tooltip-format": "Discharging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-Widget",
-    "tooltip-format-charging": "Charging: {time}\n\nLeft-click: System-Monitor-App\nRight-click: System-Monitor-App",
+    "tooltip-format-charging": "Charging: {time}\n\nClick: System-Monitor-App",
     "interval": 1,
     "min-length": 6,
     "max-length": 6,
-    "on-click-right": "gnome-system-monitor",
-    "on-click": "~/.hyprcandy/GJS/toggle-system-monitor.sh"
+    "on-click": "gnome-system-monitor"
+    //"on-click": "~/.hyprcandy/GJS/toggle-system-monitor.sh"
   },
 
   // ───────────────────────────────────────────────────────┤ power button ├───
