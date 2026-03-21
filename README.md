@@ -67,7 +67,7 @@ Since I'm an aeronautics graduate and not a programmer it took me ages to learn 
 <table>
   <tr>
     <td><img width="683" alt="screenshot_16022026_001736" src="https://github.com/user-attachments/assets/13b878b0-866c-4c58-864a-e1dd96e6280d" /></td>
-    <td><img width="683" alt="screenshot_16022026_003523" src="https://github.com/user-attachments/assets/ceb4bcad-58cb-40e9-aa7c-4090ad0b528d" /></td>
+    <td><img width="683" alt="image" src="https://github.com/user-attachments/assets/88dce375-a190-4fb3-a9e3-89f50a3507b8" /></td>
   </tr>
 </table>
 
